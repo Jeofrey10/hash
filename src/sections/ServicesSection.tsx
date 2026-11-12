@@ -5,7 +5,7 @@ import type { ServiceOffering } from '@/types';
 
 export interface ServicesSectionProps {
   readonly className?: string;
-  readonly onCtaClick?: () => void;
+  readonly onCtaClick?: (serviceTitle?: string) => void;
 }
 
 export interface ServiceItemData {
@@ -259,7 +259,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
                   description={service.description}
                   deliverables={service.deliverables}
                   icon={service.icon}
-                  onExploreClick={onCtaClick}
+                  onExploreClick={() => onCtaClick?.(service.title)}
                 />
               </div>
             );
@@ -269,3 +269,4 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
     </section>
   );
 };
+

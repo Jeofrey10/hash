@@ -72,30 +72,55 @@ test.describe('Stage 06 Services Section Validation', () => {
     }
   });
 
-  test('should verify interactive cards have visible keyboard focus and open consultation dialog', async ({
+  test('should verify each service card uses a semantic button, opens service-specific dialog, and manages focus', async ({
     page,
   }) => {
     await page.goto('/');
 
-    const firstCard = page.locator('#services article').first();
-    await expect(firstCard).toBeVisible();
+    const serviceButtons = page.locator('#services article button[aria-label^="Inquire about"]');
+    await expect(serviceButtons).toHaveCount(5);
 
-    // Focus via keyboard Tab
-    await firstCard.focus();
-    await expect(firstCard).toBeFocused();
+    // Test first service card (Website Development)
+    const firstBtn = serviceButtons.first();
+    await expect(firstBtn).toBeVisible();
+
+    // Focus via keyboard Tab / direct focus
+    await firstBtn.focus();
+    await expect(firstBtn).toBeFocused();
 
     // Activate via Enter key
     await page.keyboard.press('Enter');
 
-    // Dialog should open
+    // Dialog should open with service-specific title
     const dialog = page.locator('div[role="dialog"]');
     await expect(dialog).toBeVisible();
-    await expect(dialog).toContainText('Start a Project');
+    await expect(dialog).toContainText('Inquire: Website Development');
 
-    // Close dialog
+    // Background content should be marked aria-hidden
+    const mainEl = page.locator('main');
+    await expect(mainEl).toHaveAttribute('aria-hidden', 'true');
+
+    // Verify dialog can be closed via Escape key
+    await page.keyboard.press('Escape');
+    await expect(dialog).not.toBeVisible();
+
+    // Verify focus is restored to the triggering button
+    await expect(firstBtn).toBeFocused();
+    await expect(mainEl).not.toHaveAttribute('aria-hidden', 'true');
+
+    // Test second service card via Space key (Application Development)
+    const secondBtn = serviceButtons.nth(1);
+    await secondBtn.focus();
+    await page.keyboard.press('Space');
+
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText('Inquire: Application Development');
+
+    // Close via close button control
     const closeBtn = dialog.getByRole('button', { name: 'Close Dialog' });
     await closeBtn.click();
     await expect(dialog).not.toBeVisible();
+    await expect(secondBtn).toBeFocused();
   });
 
   test('should capture required responsive screenshots at all 5 viewports without horizontal overflow', async ({

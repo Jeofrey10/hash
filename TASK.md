@@ -214,6 +214,28 @@
 
 ---
 
+## Stage 06.1: Service Card Interaction & Accessibility Check
+
+- [x] **Semantic Native Interactive Control**
+  - [x] Replaced fake `tabIndex={0}` and synthetic key handlers on non-interactive `<article>` with a native `<button type="button">` inside `ServiceCard.tsx`.
+  - [x] Provided descriptive `aria-label="Inquire about [Service Title]"`.
+  - [x] Maintained full-card click target using `after:absolute after:inset-0` with no nested interactive elements.
+  - [x] Card container uses `focus-within:ring-2 focus-within:ring-[var(--brand-neon-green)]` for identical high-contrast focus rings.
+- [x] **Accessible Consultation Dialog (`ConsultationModal.tsx`)**
+  - [x] Dedicated modal component with `role="dialog"`, `aria-modal="true"`, and `aria-label="Project Consultation Inbound"`.
+  - [x] Dynamically reflects the selected service title (e.g. `Inquire: Website Development`).
+  - [x] Traps keyboard Tab focus within the dialog.
+  - [x] Dismissible via close control button, top-right icon button, backdrop click, and `Escape` key.
+  - [x] Background content is marked `aria-hidden="true"` while open, preventing background leakage.
+  - [x] Restores focus back to the triggering card button upon closing.
+- [x] **Playwright E2E Verification (`services.spec.ts`)**
+  - [x] Validated semantic button count (5/5).
+  - [x] Validated Enter and Space key activation opening service-specific dialogs.
+  - [x] Validated Escape key closing and focus restoration.
+  - [x] Full suite passes 47/47 active tests.
+
+---
+
 ## Upcoming Stages
 
 - [ ] **Stage 07 — Section-by-Section Engineering: Approach & Capabilities** *(Awaiting user approval to start)*

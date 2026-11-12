@@ -32,27 +32,14 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       rounded="2xl"
       className={cn(
         'flex flex-col justify-between h-full group relative',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-obsidian)]',
+        'focus-within:ring-2 focus-within:ring-[var(--brand-neon-green)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--brand-obsidian)]',
         className,
       )}
-      onClick={onExploreClick}
-      tabIndex={onExploreClick ? 0 : 0}
-      role={onExploreClick ? 'button' : undefined}
       aria-label={`${index}: ${title}`}
-      onKeyDown={
-        onExploreClick
-          ? (e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onExploreClick();
-              }
-            }
-          : undefined
-      }
     >
       {/* Top Border Hover Accent Line */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--brand-neon-green)]/40 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--brand-neon-green)]/40 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
         aria-hidden="true"
       />
 
@@ -107,13 +94,20 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
           </div>
         )}
 
-        {/* Subtle Bottom Interaction Marker */}
+        {/* Subtle Bottom Interaction Marker with Semantic Native Button */}
         <div className="flex items-center justify-between text-xs font-mono text-white/40 pt-2 border-t border-white/[0.04]">
           <span className="text-[11px] uppercase tracking-wider">Discipline {index}</span>
-          <span className="inline-flex items-center gap-1.5 text-[var(--brand-neon-green)] opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
+          <button
+            type="button"
+            onClick={onExploreClick}
+            aria-label={`Inquire about ${title}`}
+            className="inline-flex items-center gap-1.5 text-[var(--brand-neon-green)] opacity-80 group-hover:opacity-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1.5 py-0.5 after:absolute after:inset-0 after:content-[''] after:cursor-pointer"
+          >
             <span>Inquire</span>
-            <span aria-hidden="true">→</span>
-          </span>
+            <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform duration-200">
+              →
+            </span>
+          </button>
         </div>
       </div>
     </GlassPanel>

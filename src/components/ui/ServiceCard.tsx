@@ -7,6 +7,7 @@ export interface ServiceCardProps {
   readonly index: string; // e.g., "01"
   readonly title: ServiceOffering | string;
   readonly description: string;
+  readonly category?: string;
   readonly deliverables?: readonly string[];
   readonly icon?: React.ReactNode;
   readonly onExploreClick?: () => void;
@@ -17,6 +18,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   index,
   title,
   description,
+  category,
   deliverables = [],
   icon,
   onExploreClick,
@@ -28,10 +30,15 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       variant="interactive"
       padding="lg"
       rounded="2xl"
-      className={cn('flex flex-col justify-between h-full group', className)}
+      className={cn(
+        'flex flex-col justify-between h-full group relative',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-obsidian)]',
+        className,
+      )}
       onClick={onExploreClick}
-      tabIndex={onExploreClick ? 0 : undefined}
+      tabIndex={onExploreClick ? 0 : 0}
       role={onExploreClick ? 'button' : undefined}
+      aria-label={`${index}: ${title}`}
       onKeyDown={
         onExploreClick
           ? (e) => {
@@ -43,12 +50,25 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
           : undefined
       }
     >
+      {/* Top Border Hover Accent Line */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--brand-neon-green)]/40 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none"
+        aria-hidden="true"
+      />
+
       <div className="space-y-4">
-        {/* Header index & icon */}
-        <div className="flex items-center justify-between">
-          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--brand-neon-green)]">
-            {index} //
-          </span>
+        {/* Header index, category marker & icon */}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--brand-neon-green)]">
+              {index} //
+            </span>
+            {category && (
+              <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-white/50 group-hover:text-white/80 group-hover:border-white/20 transition-colors">
+                {category}
+              </span>
+            )}
+          </div>
           {icon && (
             <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/80 group-hover:text-[var(--brand-neon-green)] group-hover:border-[var(--brand-neon-green)]/40 transition-colors duration-200">
               {icon}
@@ -67,24 +87,35 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
         </p>
       </div>
 
-      {/* Deliverables / Capabilities chips */}
-      {deliverables.length > 0 && (
-        <div className="pt-6 mt-6 border-t border-white/[0.06]">
-          <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 mb-3">
-            Key Deliverables
+      {/* Deliverables / Capabilities chips and interaction affordance */}
+      <div className="pt-6 mt-6 border-t border-white/[0.06] space-y-4">
+        {deliverables.length > 0 && (
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 mb-2.5">
+              Focus & Deliverables
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {deliverables.map((item, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex items-center text-xs px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-white/75 font-mono group-hover:text-white/90 group-hover:border-white/[0.14] transition-colors"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {deliverables.map((item, idx) => (
-              <span
-                key={idx}
-                className="inline-flex items-center text-xs px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-white/80 font-mono"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
+        )}
+
+        {/* Subtle Bottom Interaction Marker */}
+        <div className="flex items-center justify-between text-xs font-mono text-white/40 pt-2 border-t border-white/[0.04]">
+          <span className="text-[11px] uppercase tracking-wider">Discipline {index}</span>
+          <span className="inline-flex items-center gap-1.5 text-[var(--brand-neon-green)] opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
+            <span>Inquire</span>
+            <span aria-hidden="true">→</span>
+          </span>
         </div>
-      )}
+      </div>
     </GlassPanel>
   );
 };

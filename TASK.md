@@ -174,11 +174,50 @@
 
 ---
 
+## Stage 06: Services Section Implementation
+
+- [x] **Services Architectural Implementation (`src/sections/ServicesSection.tsx`)**
+  - [x] Create dedicated, modular `ServicesSection` component with `id="services"` and `scroll-mt-24 lg:scroll-mt-28` anchor offset.
+  - [x] Section Introduction: Editorial overline `WHAT WE DO`, strong heading `"Integrated capabilities for connected digital growth."`, and verified supporting description.
+  - [x] All 5 official HASH.DEVS disciplines rendered with exact naming and indexes:
+    1. `01 // Website Development` (Engineering)
+    2. `02 // Application Development` (Software)
+    3. `03 // SEO Optimization` (Growth)
+    4. `04 // Meta Advertising` (Media)
+    5. `05 // Creative Design & Video` (Creative)
+  - [x] Disciplines populated with verified capability descriptions and focus/deliverables directly grounded in `PROJECT.md`.
+  - [x] Responsive balanced grid layout:
+    - Desktop (>=1024px): 6-column grid (3 cards top row at `col-span-2`, 2 cards bottom row at `col-span-3`).
+    - Tablet (768px–1023px): 2-column grid (2 cards top row, 2 cards middle row, 1 card bottom row at `col-span-2`).
+    - Mobile (<768px): Single-column stack with comfortable padding and no horizontal overflow.
+  - [x] Pure SVG minimalist line iconography for all 5 disciplines.
+  - [x] Subtle atmospheric background: technical grid, coordinate markers `SEC // 02.SERVICES` and `DISCIPLINE // 05.CORE`, and subtle radial glow.
+- [x] **Interactions, Motion & Accessibility**
+  - [x] Interactive card hover state with top neon line accent and smooth translate-x arrow affordance.
+  - [x] Keyboard focus visible outlines (`focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]`).
+  - [x] Full consultation modal trigger integration (`onCtaClick` / Enter / Space key).
+  - [x] `prefers-reduced-motion: reduce` fully respected with instantaneous transitions.
+- [x] **Application Integration (`src/App.tsx`)**
+  - [x] Mounted cleanly immediately following `HeroSection` within `SiteLayout`.
+  - [x] Hero CTA `Explore Our Services` -> `#services` navigation and floating navigation link tested and verified.
+- [x] **Playwright E2E Test Suite (`tests/e2e/services.spec.ts`)**
+  - [x] Section rendering, ID `#services`, and exactly 5 service cards verified.
+  - [x] Hero CTA and Navigation anchor links verified.
+  - [x] Keyboard focus and dialog activation verified.
+  - [x] Zero horizontal overflow verified across 5 viewports (1440px, 1280px, 768px, 390px, 360px).
+  - [x] Reduced motion preference verified.
+  - [x] Zero browser console errors verified.
+  - [x] 6 responsive screenshots captured and saved in `tests/e2e/screenshots/stage-06/`.
+- [x] **Stage 06 Verification Gate**
+  - [x] Clean production build verification (`npm run build` exits 0).
+  - [x] Full Playwright E2E suite passes 47/47 active tests (`npm run test:e2e` exits 0).
+
+---
+
 ## Upcoming Stages
 
-- [ ] **Stage 06 — Section-by-Section Engineering: Services, Approach & Capabilities** *(Awaiting user approval to start)*
-  - [ ] 5-Pillar Digital Services Showcase section (`#services`).
+- [ ] **Stage 07 — Section-by-Section Engineering: Approach & Capabilities** *(Awaiting user approval to start)*
   - [ ] Strategic Brand Narrative & Technical Approach section (`#approach`).
-  - [ ] Full interactive Contact & Project Initiation workflow (`#contact`).
-- [ ] **Stage 07 — Interactivity, Animation & Performance Polish**
-- [ ] **Stage 08 — Final QA, Cross-Browser Audit & Deployment Readiness**
+  - [ ] Interactive Capabilities breakdown (`#capabilities`).
+- [ ] **Stage 08 — Interactive Contact & Project Initiation Section (`#contact`)**
+- [ ] **Stage 09 — Final QA, Cross-Browser Audit & Deployment Readiness**

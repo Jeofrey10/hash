@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SiteLayout } from '@/layouts/SiteLayout';
 import { HeroSection } from '@/sections/HeroSection';
+import { ServicesSection } from '@/sections/ServicesSection';
 import { GlassPanel } from '@/components/ui/GlassPanel';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -11,6 +12,7 @@ export default function App() {
   return (
     <SiteLayout onCtaClick={() => setCtaModalOpen(true)}>
       <HeroSection onCtaClick={() => setCtaModalOpen(true)} />
+      <ServicesSection onCtaClick={() => setCtaModalOpen(true)} />
 
       {/* Project Consultation Inbound Modal */}
       {ctaModalOpen && (

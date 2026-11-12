@@ -32,8 +32,11 @@
 | **Stage 03** | **Design System Finalization & Component Specs** | Design system token formalization, typography ramps, motion guidelines, 10-component specification catalog | **COMPLETED** |
 | **Stage 04** | **Core UI Component Implementation & Layout Shell** | Implementation of 10 UI primitives (`PrimaryButton`, `SecondaryButton`, `GlassPanel`, `StatusBadge`, `SectionHeading`, `ServiceCard`, `ImageRevealContainer`, `MarqueeStrip`, `FooterLinkGroup`, `Navigation`, `MobileNavigation`, `SiteLayout`) | **COMPLETED** |
 | **Stage 05** | **Cinematic Hero Section Implementation** | Dedicated `HeroSection` with dominant H1, verified brand mission, dual CTAs (`#contact`, `#services`), dimensional capabilities card, and CSS atmospheric depth | **COMPLETED** |
-| **Stage 06** | **Section Engineering: Services, Approach & Contact** | 5-Pillar Service Showcase section, strategic brand narrative, and contact initiation workflow | *Ready to Begin* |
-| **Stage 07** | **Micro-Interactions, Polish & QA** | Motion refinement, cross-browser validation, production audit | *Pending* |
+| **Stage 05.1** | **Hero Detail Correction (Factual Accuracy)** | Technical coordinate node identifier `NODE // HD.CORE.01` and non-promissory status labels | **COMPLETED** |
+| **Stage 06** | **Services Section Implementation** | Dedicated `ServicesSection` (`#services`) with 5 confirmed digital disciplines, balanced 6-column grid, SVG line icons, and interactive focus states | **COMPLETED** |
+| **Stage 07** | **Section Engineering: Approach & Capabilities** | Strategic brand narrative and technical methodology showcase | *Pending* |
+| **Stage 08** | **Interactive Contact Section** | Dedicated interactive contact & project initiation workflow | *Pending* |
+| **Stage 09** | **Final QA, Cross-Browser Audit & Deployment Readiness** | Production performance, cross-browser validation, final audit | *Pending* |
 
 ---
 

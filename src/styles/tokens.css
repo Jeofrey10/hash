@@ -1,10 +1,10 @@
 /**
  * HASH.DEVS BRAND DESIGN TOKENS
  * Brand Source of Truth:
- * - Obsidian Black: #050505 (Primary dark background)
- * - Hash Neon Green: #35E85B (Primary brand accent / signal)
+ * - Obsidian Black: #050505 (Primary dark canvas background)
+ * - Hash Neon Green: #35E85B (Primary interactive accent & live status signal)
  * - Pure White: #FFFFFF (Primary high-contrast typography)
- * - Graphite: #171A18 (Secondary dark surface / cards)
+ * - Graphite: #171A18 (Secondary dark surface, cards, structural frames)
  */
 
 :root {
@@ -16,22 +16,50 @@
 
   /* Semantic Color Tokens */
   --bg-primary: var(--brand-obsidian);
+  --bg-secondary: #0D0F0E;
   --bg-surface: var(--brand-graphite);
   --bg-surface-elevated: #222623;
+  --bg-surface-card: #141715;
+
+  /* Typography Colors */
   --text-primary: var(--brand-pure-white);
   --text-secondary: rgba(255, 255, 255, 0.72);
   --text-muted: rgba(255, 255, 255, 0.45);
-  --accent-brand: var(--brand-neon-green);
+  --text-accent: var(--brand-neon-green);
+  --text-inverse: var(--brand-obsidian);
+
+  /* Border Tokens */
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(53, 232, 91, 0.4);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-active: rgba(53, 232, 91, 0.45);
+  --border-focus: rgba(53, 232, 91, 0.75);
+
+  /* Interactive States */
+  --state-hover-glass: rgba(255, 255, 255, 0.04);
+  --state-disabled-bg: rgba(255, 255, 255, 0.05);
+  --state-disabled-text: rgba(255, 255, 255, 0.28);
+  --state-disabled-border: rgba(255, 255, 255, 0.04);
+
+  /* Functional / Feedback Colors */
+  --feedback-success: #35E85B;
+  --feedback-error: #EF4444;
+  --feedback-warning: #F59E0B;
+  --feedback-info: #38BDF8;
 
   /* Glassmorphism & Atmospheric Overlay Tokens */
-  --glass-bg: rgba(23, 26, 24, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(23, 26, 24, 0.70);
+  --glass-bg-floating: rgba(23, 26, 24, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.10);
   --glass-blur: 16px;
-  --glow-neon: 0 0 24px rgba(53, 232, 91, 0.25);
+  --glass-blur-sm: 8px;
+  --glass-blur-lg: 24px;
+  --glow-neon-subtle: 0 0 20px rgba(53, 232, 91, 0.20);
+  --glow-neon-accent: 0 0 32px rgba(53, 232, 91, 0.35);
+
+  /* Elevation Shadows */
+  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.40);
+  --shadow-floating: 0 16px 48px 0 rgba(0, 0, 0, 0.65);
 
   /* Container & Layout */
   --container-max-width: 1440px;
 }
-

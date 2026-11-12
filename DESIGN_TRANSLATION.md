@@ -94,3 +94,4 @@ This document details how the design intelligence extracted from [The General In
    - Double-layered glass surfaces where background graphite panels provide structure, while foreground dialogs/cards float with crisp `1px` border highlights.
 4. **Responsive Fluidity:**
    - Implement the seamless scaling observed on the reference, ensuring that mobile devices experience the exact same luxury feel with zero cramped text or layout shifts.
+

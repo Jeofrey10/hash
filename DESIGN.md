@@ -1,114 +1,53 @@
-# HASH.DEVS — Design System & Reference Inspiration
+# HASH.DEVS — Master Design Reference
 
-This document defines the visual strategy, design tokens, reference inspiration analysis, and actual implementation decisions for the **HASH.DEVS** website.
-
----
-
-## 1. Hash.Devs Brand Tokens (Source of Truth)
-
-The Hash.Devs identity is engineered around high-contrast, technical dark surfaces energized by a luminous neon green signal accent.
-
-> **CRITICAL DIRECTIVE:** Under no circumstances should the Hash.Devs brand palette be replaced with earthy or beige tones.
-
-### Color Tokens
-
-| Token Name | Hex Code | Purpose / Semantic Role |
-|---|---|---|
-| **Obsidian Black** | `#050505` | Primary canvas background; creates deep atmospheric void |
-| **Hash Neon Green** | `#35E85B` | Primary brand accent; interactive states, badges, glow signals |
-| **Pure White** | `#FFFFFF` | Primary typography, headers, high-contrast text |
-| **Graphite** | `#171A18` | Secondary dark surface; card backgrounds, borders, structural containers |
-
-### Semantic Role Extensions
-
-- **Background Canvas:** `#050505` (Obsidian Black)
-- **Card / Surface Base:** `#171A18` (Graphite)
-- **Elevated Surface:** `#222623` (Softened Graphite)
-- **Primary Typography:** `#FFFFFF` (100% opacity)
-- **Secondary Typography:** `rgba(255, 255, 255, 0.72)` (Muted white)
-- **Tertiary / Caption Typography:** `rgba(255, 255, 255, 0.45)` (Subtle white)
-- **Border Default:** `rgba(255, 255, 255, 0.08)`
-- **Border Glow / Active:** `rgba(53, 232, 91, 0.4)`
-- **Glassmorphic Fill:** `rgba(23, 26, 24, 0.65)` with `backdrop-filter: blur(16px)`
+This document serves as the primary gateway to the **HASH.DEVS** visual identity, design system, and reference intelligence.
 
 ---
 
-## 2. Reference Website Inspiration
+## 1. Brand Identity & Source of Truth
 
-- **Reference URL:** https://www.generalintelligencecompany.com/
-- **Inspo MCP Identifier:** `generalintelligencecompany-com`
-- **Extracted Design Profile:** https://inspomcp.dev/d/generalintelligencecompany-com/DESIGN.md
+The Hash.Devs brand identity is engineered around high-contrast, technical dark surfaces energized by an electric neon green signal accent.
 
-### Principles to Adapt (NOT Copy Directly)
+> **CRITICAL DIRECTIVE:** The Hash.Devs brand palette is immutable. Never replace our dark Obsidian & Neon Green palette with earthy, beige, or warm tones.
 
-1. **Cinematic Full-Bleed Compositions:**
-   - Wide, immersive framing where visual elements anchor the user's focus immediately.
-   - Purposeful negative space that lets typography and messaging breathe.
-2. **Editorial Typography:**
-   - Expressive, editorial headline styling paired with clean, ultra-legible body typography.
-   - Tight letter-spacing on display headlines to impart precision and authority.
-3. **Glassmorphism & Layered Depth:**
-   - Semi-transparent cards with subtle borders (`1px solid rgba(255,255,255,0.08-0.12)`) and background blurs (`backdrop-blur-md` or `16px`).
-   - Cards feel physical yet weightless, floating effortlessly above atmospheric backgrounds.
-4. **Atmospheric Imagery & Visual Storytelling:**
-   - Rich backgrounds with controlled contrast and ambient lighting.
-   - Restrained motion that serves understanding rather than distraction.
-5. **Generous Spacing & Minimal Navigation:**
-   - Uncluttered viewport edges, compact floating or sticky navigation with clear signposts.
-   - Spacing scale prioritizing macro-rhythms (e.g., 80px–140px section padding).
-
-### What NOT to Adopt from the Reference
-
-- **Do NOT adopt the reference color palette:**
-  - Reference uses `#b4ac54`, `#e4bd9d`, `#845c34`, `#998271` (warm, muted, earthy tones).
-  - Hash.Devs strictly enforces `#050505` (Obsidian), `#35E85B` (Neon Green), `#FFFFFF` (Pure White), and `#171A18` (Graphite).
-- **Do NOT copy proprietary assets or logos.**
+### Core Brand Tokens
+- **Obsidian Black (`#050505`):** Primary canvas background; creates deep atmospheric void.
+- **Hash Neon Green (`#35E85B`):** Primary brand accent; interactive states, badges, glow signals.
+- **Pure White (`#FFFFFF`):** Primary typography, headers, high-contrast text.
+- **Graphite (`#171A18`):** Secondary dark surface; card backgrounds, structural borders.
 
 ---
 
-## 3. Actual Implementation Decisions
+## 2. Design System Architecture
 
-### A. CSS Architecture (Tailwind CSS v4 + Custom Properties)
+Detailed specifications have been formalized into dedicated modular documents:
 
-Tokens are defined in `src/styles/tokens.css` and bound directly to Tailwind CSS via `@theme` in `src/styles/globals.css`.
+- **[DESIGN_SYSTEM.md](file:///c:/hash.devs/DESIGN_SYSTEM.md)** — Comprehensive color tokens, surface hierarchy, type scale ramp, layout boundaries, responsive margins, and WCAG 2.1 AA accessibility rules.
+- **[COMPONENT_SPECIFICATIONS.md](file:///c:/hash.devs/COMPONENT_SPECIFICATIONS.md)** — Full specification catalog for the 10 core UI components (Navigation, Primary Button, Secondary Button, Glass Panel, Status Badge, Section Heading, Service Card, Image Reveal Container, Marquee Strip, Footer Link Group) with TypeScript prop interfaces, variants, states, and responsive behavior.
+- **[MOTION_GUIDELINES.md](file:///c:/hash.devs/MOTION_GUIDELINES.md)** — Motion philosophy, timing tokens, easing curves, hardware-accelerated transitions, and `prefers-reduced-motion` specifications.
+- **[DESIGN_TRANSLATION.md](file:///c:/hash.devs/DESIGN_TRANSLATION.md)** — Strategic analysis of what to adopt, adapt, and avoid from modern reference sites.
+- **[REFERENCE_ANALYSIS.md](file:///c:/hash.devs/REFERENCE_ANALYSIS.md)** — Live browser inspection and exact DOM measurements extracted from *The General Intelligence Company*.
+- **[DESIGN_DECISIONS.md](file:///c:/hash.devs/DESIGN_DECISIONS.md)** — High-level design choices established during initial discovery.
 
+---
+
+## 3. High-Level Implementation Decisions
+
+### 3.1 CSS Tokens in Tailwind CSS v4
+Tokens are defined in `src/styles/tokens.css` and exposed directly to Tailwind CSS via `@theme` in `src/styles/globals.css`.
+
+### 3.2 Glassmorphism Recipe
 ```css
-@theme {
-  --color-obsidian: #050505;
-  --color-neon-green: #35E85B;
-  --color-pure-white: #FFFFFF;
-  --color-graphite: #171A18;
-
-  --color-brand-obsidian: var(--brand-obsidian);
-  --color-brand-neon: var(--brand-neon-green);
-  --color-brand-white: var(--brand-pure-white);
-  --color-brand-graphite: var(--brand-graphite);
-}
-```
-
-### B. Typography Hierarchy
-
-- **Display / H1:** High-impact editorial headline, `-0.03em` letter-spacing, tight line height (`1.05`–`1.15`), Pure White (`#FFFFFF`).
-- **H2 / Section Title:** Medium weight display, `-0.02em` letter-spacing, Pure White (`#FFFFFF`).
-- **H3 / Service Title:** Semi-bold structured header, Pure White or with Neon Green marker.
-- **Body:** System sans-serif stack (`system-ui, -apple-system, sans-serif`), 16px/150%, secondary white (`rgba(255, 255, 255, 0.72)`).
-- **Caption / Overline:** Uppercase, tracking-widest (`0.1em`–`0.15em`), text-xs, Hash Neon Green (`#35E85B`) or muted white.
-
-### C. Glassmorphism Specification
-
-```css
-.glass-panel {
-  background: rgba(23, 26, 24, 0.65);
+.glass-surface {
+  background: rgba(23, 26, 24, 0.70);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.40);
 }
 ```
 
-### D. Layout Boundaries & Spatial Rhythm
-
-- **Max Container Width:** `1440px` (`max-w-[1440px]`) with responsive horizontal gutters (`px-4 sm:px-6 lg:px-12`).
-- **Section Spacing:** Minimum `py-16` on mobile, scaling to `py-24` or `py-32` on desktop for editorial breathing room.
-- **Corner Radii:** Micro-elements `rounded-full` or `rounded-md` (4px–8px); cards and floating panels `rounded-2xl` (16px) or `rounded-3xl` (24px).
-
+### 3.3 Container & Layout Bounds
+- **Maximum Width:** `1440px` (`max-w-[1440px]`).
+- **Responsive Padding:** `px-5` (mobile) -> `px-8` (tablet) -> `px-12` (desktop) -> `px-16` (ultra-wide).
+- **Macro-Spacing:** `py-16` (mobile) -> `py-24` (tablet) -> `py-32` (desktop).

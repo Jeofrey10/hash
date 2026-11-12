@@ -106,3 +106,4 @@ This document formally records all engineering and design decisions that will go
   - All animations must respect `prefers-reduced-motion: reduce`.
 - **Status Signal:**
   - Pulsing neon green dot (`@keyframes pulse` with scale and opacity pulse) next to live availability text.
+

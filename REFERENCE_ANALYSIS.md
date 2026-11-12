@@ -192,3 +192,4 @@ The following live screenshots were captured using Playwright Chromium and saved
 13. `07-small-mobile-360-fullpage.png` — Small mobile full page layout.
 14. `08-mobile-menu-open.png` — Mobile navigation drawer / state.
 15. `inspection-data.json` — Machine-readable raw DOM dump.
+

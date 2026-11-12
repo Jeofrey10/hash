@@ -85,7 +85,10 @@ npm run test:e2e:report
 ## 5. Project Documentation Index
 
 - [PROJECT.md](file:///c:/hash.devs/PROJECT.md) — Scope, objectives, and service breakdown.
-- [DESIGN.md](file:///c:/hash.devs/DESIGN.md) — Brand tokens, reference inspiration analysis, and implementation rules.
+- [DESIGN.md](file:///c:/hash.devs/DESIGN.md) — Master design reference gateway.
+- [DESIGN_SYSTEM.md](file:///c:/hash.devs/DESIGN_SYSTEM.md) — Full implementation-ready design system specification.
+- [COMPONENT_SPECIFICATIONS.md](file:///c:/hash.devs/COMPONENT_SPECIFICATIONS.md) — Specification catalog for the 10 core UI components with TypeScript APIs.
+- [MOTION_GUIDELINES.md](file:///c:/hash.devs/MOTION_GUIDELINES.md) — Motion, timing, easing curves, and reduced-motion standards.
 - [REFERENCE_ANALYSIS.md](file:///c:/hash.devs/REFERENCE_ANALYSIS.md) — Live Playwright & Inspo MCP extraction of The General Intelligence Company.
 - [DESIGN_TRANSLATION.md](file:///c:/hash.devs/DESIGN_TRANSLATION.md) — Strategic translation of reference principles into HASH.DEVS dark identity.
 - [DESIGN_DECISIONS.md](file:///c:/hash.devs/DESIGN_DECISIONS.md) — Concrete engineering decisions for layout, typography, glassmorphism, and animation.
@@ -100,5 +103,5 @@ npm run test:e2e:report
 
 ## 6. Current Status
 
-**Stage 01 (Foundation)** and **Stage 02 (Reference Analysis & Design Intelligence)** are fully completed, verified, and passing all automated build and test gates.
-Awaiting user approval before proceeding to **Stage 03: Core UI Components & Primitives**.
+**Stage 01 (Foundation)**, **Stage 02 (Reference Analysis)**, and **Stage 03 (Design System Finalization & Core Component Specification)** are fully completed, verified, and passing all automated build and test gates.
+Awaiting user approval before proceeding to **Stage 04: Core UI Component Implementation & Layout Shell**.

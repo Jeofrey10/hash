@@ -50,7 +50,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
             <div className="pt-2">
               <StatusBadge
                 status="active"
-                label="Available for Q1/Q2 Projects"
+                label="Digital Experience Studio"
               />
             </div>
           </div>

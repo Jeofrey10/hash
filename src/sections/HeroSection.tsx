@@ -52,7 +52,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
           SYS // 01.HD.CORE
         </div>
         <div className="hidden lg:block absolute top-12 right-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
-          LOC // 40.7128° N, 74.0060° W
+          NODE // HD.CORE.01
         </div>
       </div>
 
@@ -144,7 +144,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
 
                 {/* Engagement Status Footer */}
                 <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>Capacity: Available</span>
+                  <span>Digital Experience Studio</span>
                   <a
                     href="#contact"
                     onClick={onCtaClick}
@@ -161,3 +161,4 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
     </section>
   );
 };
+

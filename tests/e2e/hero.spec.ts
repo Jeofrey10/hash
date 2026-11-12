@@ -17,8 +17,16 @@ test.describe('Stage 05 Cinematic Hero Section Validation', () => {
     await expect(h1).toContainText('Grow with clarity.');
 
     // Verify overline badge
-    const badge = hero.getByText('Digital Experience Studio');
+    const badge = hero.getByText('Digital Experience Studio').first();
     await expect(badge).toBeVisible();
+
+    // Verify non-geographic technical node identifier (Stage 05.1)
+    const nodeIdentifier = hero.getByText('NODE // HD.CORE.01');
+    await expect(nodeIdentifier).toBeAttached();
+
+    // Verify geographic coordinate marker is removed
+    const geoCoordinate = page.locator('text=40.7128');
+    await expect(geoCoordinate).toHaveCount(0);
 
     // Verify supporting description
     const description = hero.getByText(

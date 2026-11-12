@@ -154,6 +154,26 @@
 
 ---
 
+## Stage 05.1: Hero Detail Correction (Factual Accuracy)
+
+- [x] **Replace Geographic Coordinate Marker**
+  - [x] Replace `LOC // 40.7128° N, 74.0060° W` in `src/sections/HeroSection.tsx` with non-geographic technical node identifier: `NODE // HD.CORE.01`.
+  - [x] Preserved existing typography, styling, position, and subtle opacity.
+  - [x] Removed all geographic and NYC references.
+- [x] **Verify Project Availability Status**
+  - [x] Reviewed source documentation (`PROJECT.md`, `types/index.ts`, `REQUIREMENTS.md`).
+  - [x] Confirmed specific availability claims ("Available for new projects" / "Capacity: Available" / "Available for Q1/Q2 Projects") are not explicitly in the company profile.
+  - [x] Replaced with verified neutral, non-promissory label: `Digital Experience Studio`.
+  - [x] Updated in `src/sections/HeroSection.tsx` (anchor card status) and `src/layouts/SiteFooter.tsx` (`StatusBadge`).
+- [x] **Verification & Test Suite**
+  - [x] Confirmed zero visual layout or typography regressions.
+  - [x] Updated `tests/e2e/hero.spec.ts` asserting presence of `NODE // HD.CORE.01` and absence of geographic coordinates.
+  - [x] `npm run build` passes with zero errors.
+  - [x] `npm run test:e2e` passes 33/33 tests across Desktop & Mobile Chromium.
+  - [x] Captured updated screenshots in `tests/e2e/screenshots/stage-05/`.
+
+---
+
 ## Upcoming Stages
 
 - [ ] **Stage 06 — Section-by-Section Engineering: Services, Approach & Capabilities** *(Awaiting user approval to start)*

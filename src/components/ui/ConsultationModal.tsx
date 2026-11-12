@@ -38,10 +38,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       closeButtonRef.current?.focus();
     }, 50);
 
-    // 3. Robust background isolation: apply inert & aria-hidden to the application root (#root)
+    // 3. Robust background isolation: capture exact original state of #root attributes before mutating
     const appRoot = document.getElementById('root');
-    const prevInert = appRoot ? appRoot.hasAttribute('inert') : false;
-    const prevAriaHidden = appRoot ? appRoot.getAttribute('aria-hidden') : null;
+    const hadInert = appRoot ? appRoot.hasAttribute('inert') : false;
+    const originalInertValue = appRoot && hadInert ? appRoot.getAttribute('inert') : null;
+    const originalAriaHidden = appRoot ? appRoot.getAttribute('aria-hidden') : null;
 
     if (appRoot) {
       appRoot.setAttribute('inert', '');
@@ -86,16 +87,16 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       clearTimeout(focusTimer);
       window.removeEventListener('keydown', handleKeyDown);
 
-      // Restore background attributes cleanly
+      // Restore exact background attributes
       if (appRoot) {
-        if (prevInert) {
-          appRoot.setAttribute('inert', '');
+        if (hadInert) {
+          appRoot.setAttribute('inert', originalInertValue ?? '');
         } else {
           appRoot.removeAttribute('inert');
         }
 
-        if (prevAriaHidden !== null) {
-          appRoot.setAttribute('aria-hidden', prevAriaHidden);
+        if (originalAriaHidden !== null) {
+          appRoot.setAttribute('aria-hidden', originalAriaHidden);
         } else {
           appRoot.removeAttribute('aria-hidden');
         }

@@ -175,6 +175,78 @@ test.describe('Stage 06 Services Section Validation', () => {
     await expect(appRoot).not.toHaveAttribute('aria-hidden');
   });
 
+  test('should verify exact background attribute restoration for both unmodified root and root with pre-existing attributes', async ({
+    page,
+  }) => {
+    await page.goto('/');
+
+    const appRoot = page.locator('#root');
+    const firstServiceBtn = page.locator('#services article button[aria-label^="Inquire about"]').first();
+    const dialog = page.locator('#modal-root [role="dialog"]');
+
+    // ── Scenario 1: Restoration of initially unmodified root ──
+    // Confirm initial baseline has no inert and no aria-hidden
+    await expect(appRoot).not.toHaveAttribute('inert');
+    await expect(appRoot).not.toHaveAttribute('aria-hidden');
+
+    // Open modal
+    await firstServiceBtn.click();
+    await expect(dialog).toBeVisible();
+    await expect(appRoot).toHaveAttribute('inert', '');
+    await expect(appRoot).toHaveAttribute('aria-hidden', 'true');
+
+    // Close modal via Escape
+    await page.keyboard.press('Escape');
+    await expect(dialog).not.toBeVisible();
+
+    // Verify root is returned to unmodified state
+    await expect(appRoot).not.toHaveAttribute('inert');
+    await expect(appRoot).not.toHaveAttribute('aria-hidden');
+
+    // ── Scenario 2: Restoration of root with pre-existing inert & aria-hidden attributes ──
+    // Inject custom pre-existing attributes on #root
+    await page.evaluate(() => {
+      const root = document.getElementById('root');
+      if (root) {
+        root.setAttribute('inert', 'pre-existing-inert');
+        root.setAttribute('aria-hidden', 'custom-hidden-value');
+      }
+    });
+
+    // Verify pre-existing state is in place
+    await expect(appRoot).toHaveAttribute('inert', 'pre-existing-inert');
+    await expect(appRoot).toHaveAttribute('aria-hidden', 'custom-hidden-value');
+
+    // Open modal while #root has pre-existing attributes (trigger programmatically since DOM-level inert suppresses hardware click events)
+    await page.evaluate(() => {
+      const btn = document.querySelector('#services article button[aria-label^="Inquire about"]') as HTMLButtonElement;
+      if (btn) btn.click();
+    });
+    await expect(dialog).toBeVisible();
+
+    // Modal overrides attributes while open
+    await expect(appRoot).toHaveAttribute('inert', '');
+    await expect(appRoot).toHaveAttribute('aria-hidden', 'true');
+
+    // Close modal via close button
+    const closeBtn = dialog.getByRole('button', { name: 'Close Dialog' });
+    await closeBtn.click();
+    await expect(dialog).not.toBeVisible();
+
+    // Verify exact pre-existing values were restored without loss or alteration
+    await expect(appRoot).toHaveAttribute('inert', 'pre-existing-inert');
+    await expect(appRoot).toHaveAttribute('aria-hidden', 'custom-hidden-value');
+
+    // Clean up test attributes on #root
+    await page.evaluate(() => {
+      const root = document.getElementById('root');
+      if (root) {
+        root.removeAttribute('inert');
+        root.removeAttribute('aria-hidden');
+      }
+    });
+  });
+
   test('should capture required responsive screenshots at all 5 viewports without horizontal overflow', async ({
     page,
   }) => {

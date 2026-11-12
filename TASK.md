@@ -260,6 +260,20 @@
 
 ---
 
+## Stage 06.3: Preserve Original Background Attributes
+
+- [x] **Attribute State Capture & Dynamic Restoration**
+  - [x] Captured exact pre-existing presence and string values of `inert` and `aria-hidden` on `#root` prior to modal mutation.
+  - [x] Restores pre-existing `inert` value if present; completely removes `inert` if originally absent.
+  - [x] Restores pre-existing `aria-hidden` value if present; completely removes `aria-hidden` if originally absent.
+  - [x] Lifecycle-safe cleanup verified across React Strict Mode effect cycles and repeated openings.
+- [x] **Automated Verification (`services.spec.ts`)**
+  - [x] Tested restoration from initially unmodified root baseline.
+  - [x] Tested restoration from root with pre-existing `inert="pre-existing-inert"` and `aria-hidden="custom-hidden-value"`.
+  - [x] Full test suite passes 49/49 active tests across Desktop & Mobile.
+
+---
+
 ## Upcoming Stages
 
 - [ ] **Stage 07 — Section-by-Section Engineering: Approach & Capabilities** *(Awaiting user approval to start)*

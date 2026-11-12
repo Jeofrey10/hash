@@ -82,3 +82,4 @@ Motion in the HASH.DEVS digital experience serves as a functional signal of prec
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(53, 232, 91, 0.15);
 }
 ```
+

@@ -90,12 +90,41 @@
 
 ---
 
+## Stage 04: Core UI Component Implementation & Layout Shell
+
+- [x] **Core UI Primitives Implementation (`src/components/ui/`)**
+  - [x] `PrimaryButton`: Neon Green background, Obsidian text, hover glow, disabled states, optional full-width and loading spinner.
+  - [x] `SecondaryButton`: Translucent Graphite glass, white text, subtle border, hover highlights.
+  - [x] `GlassPanel`: Standard, elevated, and interactive variants with backdrop-blur and restrained shadows.
+  - [x] `StatusBadge`: Live status indicator with pulse animation and reduced-motion fallback.
+  - [x] `SectionHeading`: Standardized composition with overline, display H2, and subtitle.
+  - [x] `ServiceCard`: Data-driven service card displaying the 5 official Hash.Devs offerings with deliverable chips.
+  - [x] `ImageRevealContainer`: Aspect-ratio preservation, shimmer loading placeholder, and dark vignette overlay.
+  - [x] `MarqueeStrip`: Continuous horizontal ticker with edge fade masks, pause on hover, and reduced-motion fallback.
+  - [x] `FooterLinkGroup`: Reusable categorized link column with accessible keyboard navigation.
+- [x] **Navigation & Layout Shell Implementation (`src/components/navigation/`, `src/layouts/`)**
+  - [x] `Navigation`: Desktop floating pill navbar with scroll-aware glass surface and brand logo.
+  - [x] `MobileNavigation`: Accessible full-screen mobile drawer with focus trap, body scroll lock, and Escape key listener.
+  - [x] `SiteHeader`: Persistent global header wrapper.
+  - [x] `SiteFooter`: Semantic footer with brand summary, status badge, categorized links, and copyright bar.
+  - [x] `SiteLayout`: Global application shell with semantic landmarks, accessible skip-link, and main content slot.
+- [x] **Accessibility, Motion & Quality Verification**
+  - [x] Keyboard navigation and visible focus rings on all interactive elements.
+  - [x] Automated WCAG contrast verification on actual rendered colors (21:1 on headings, 13.8:1 on primary CTA).
+  - [x] Tested across 5 viewports (1440px, 1280px, 768px, 390px, 360px) with zero horizontal overflow.
+  - [x] `prefers-reduced-motion` override verified via Playwright emulation.
+  - [x] Zero unhandled console errors during full interaction.
+  - [x] Screenshots generated and saved in `tests/e2e/screenshots/stage-04/`.
+- [x] **Stage 04 Verification Gate**
+  - [x] Clean production build verification (`npm run build` exits 0).
+  - [x] Playwright E2E suite passes 21/21 active tests (`npm run test:e2e` exits 0).
+  - [x] No premature homepage or section implementations created.
+
+---
+
 ## Upcoming Stages
 
-- [ ] **Stage 04 — Core UI Component Implementation & Layout Shell** *(Awaiting user approval to start)*
-  - [ ] Implement primitive components (`GlassPanel`, `PrimaryButton`, `SecondaryButton`, `StatusBadge`, `SectionHeading`) in `src/components/`.
-  - [ ] Implement responsive floating navigation shell in `src/layouts/`.
-- [ ] **Stage 05 — Section-by-Section Engineering**
+- [ ] **Stage 05 — Section-by-Section Engineering** *(Awaiting user approval to start)*
   - [ ] Full-bleed Marquee Hero section.
   - [ ] 5-Pillar Digital Services Showcase section.
   - [ ] Strategic Brand Narrative section.

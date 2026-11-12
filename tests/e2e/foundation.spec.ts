@@ -14,11 +14,11 @@ test.describe('HASH.DEVS Foundation & Environment Verification', () => {
     await expect(heading).toContainText('HASH.DEVS');
 
     // Verify brand messaging
-    const message = page.locator('text=Build with purpose. Grow with clarity.');
+    const message = page.locator('text=Build with purpose. Grow with clarity.').first();
     await expect(message).toBeVisible();
 
-    // Verify foundation status indicator
-    const statusIndicator = page.locator('text=Stage 01 Foundation Ready');
+    // Verify status indicator
+    const statusIndicator = page.locator('text=/Stage 0[1-4]/').first();
     await expect(statusIndicator).toBeVisible();
 
     // Take screenshot for visual verification

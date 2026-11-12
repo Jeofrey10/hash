@@ -28,11 +28,12 @@
 | Stage | Title | Focus Area | Status |
 |---|---|---|---|
 | **Stage 01** | **Project Foundation & Environment Setup** | Vite + React + TS setup, Tailwind tokens, Playwright E2E configuration, Inspo MCP verification, architecture docs | **COMPLETED** |
-| **Stage 02** | **Reference Website Analysis** | In-depth analysis of *The General Intelligence Company* via Inspo MCP and Playwright; layout, typography, glassmorphism analysis | *Ready to Begin* |
-| **Stage 03** | **Core UI Primitive Components** | Build reusable UI primitives: `GlassPanel`, `Button`, `Badge`, `Container`, navigation headers | *Pending* |
-| **Stage 04** | **Section-by-Section Engineering** | Full-bleed marquee hero, 5-service showcase, brand narrative, and contact CTA | *Pending* |
-| **Stage 05** | **Micro-Interactions & Responsive Polish** | Smooth transitions, mobile drawer navigation, viewport testing | *Pending* |
-| **Stage 06** | **Quality Assurance & Production Release** | Full Playwright E2E test runs, Lighthouse audit, production bundle optimization | *Pending* |
+| **Stage 02** | **Reference Website Analysis** | In-depth analysis of *The General Intelligence Company* via Inspo MCP and Playwright; layout, typography, glassmorphism analysis | **COMPLETED** |
+| **Stage 03** | **Design System Finalization & Component Specs** | Design system token formalization, typography ramps, motion guidelines, 10-component specification catalog | **COMPLETED** |
+| **Stage 04** | **Core UI Component Implementation & Layout Shell** | Implementation of 10 UI primitives (`PrimaryButton`, `SecondaryButton`, `GlassPanel`, `StatusBadge`, `SectionHeading`, `ServiceCard`, `ImageRevealContainer`, `MarqueeStrip`, `FooterLinkGroup`, `Navigation`, `MobileNavigation`, `SiteLayout`) | **COMPLETED** |
+| **Stage 05** | **Section-by-Section Engineering** | Full-bleed marquee hero, 5-service showcase, brand narrative, and contact CTA | *Ready to Begin* |
+| **Stage 06** | **Micro-Interactions & Responsive Polish** | Smooth transitions, mobile drawer navigation, viewport testing | *Pending* |
+| **Stage 07** | **Quality Assurance & Production Release** | Full Playwright E2E test runs, Lighthouse audit, production bundle optimization | *Pending* |
 
 ---
 

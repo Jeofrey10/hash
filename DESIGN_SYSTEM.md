@@ -151,3 +151,4 @@ The HASH.DEVS Design System is engineered to deliver a cohesive, high-performanc
 5. **No Layout Shifts (CLS < 0.05):**
    - Explicit aspect-ratio containers on imagery and media placeholders.
    - Text elements wrap cleanly with `hyphens-none break-words`.
+

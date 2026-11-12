@@ -29,14 +29,33 @@ c:\hash.devs\
 │   └── fonts/                  # Custom webfont files (if local)
 ├── src/
 │   ├── assets/                 # SVGs, icons, bundled graphics
-│   ├── components/             # Reusable UI primitives (Buttons, Cards, Badges, Glass)
+│   ├── components/             # Reusable UI primitives and navigation
+│   │   ├── ui/                 # Atomic UI primitives (Buttons, Cards, Badges, Glass, Marquee)
+│   │   │   ├── PrimaryButton.tsx
+│   │   │   ├── SecondaryButton.tsx
+│   │   │   ├── GlassPanel.tsx
+│   │   │   ├── StatusBadge.tsx
+│   │   │   ├── SectionHeading.tsx
+│   │   │   ├── ServiceCard.tsx
+│   │   │   ├── ImageRevealContainer.tsx
+│   │   │   ├── MarqueeStrip.tsx
+│   │   │   ├── FooterLinkGroup.tsx
+│   │   │   └── index.ts
+│   │   └── navigation/         # Header and mobile navigation
+│   │       ├── Navigation.tsx
+│   │       └── MobileNavigation.tsx
+│   ├── layouts/                # Global layout shells
+│   │   ├── SiteLayout.tsx      # Main application shell with landmarks & skip-link
+│   │   ├── SiteHeader.tsx      # Persistent header container
+│   │   ├── SiteFooter.tsx      # Global footer container
+│   │   └── index.ts
 │   ├── sections/               # Page-level compositional sections (Hero, Services, CTA)
-│   ├── layouts/                # Structural layout templates (Header, Footer, Container)
 │   ├── hooks/                  # Custom reusable React hooks
 │   ├── styles/                 # Global styling, tokens, and CSS variable definitions
 │   │   ├── tokens.css          # Raw brand tokens & semantic variables
 │   │   └── globals.css         # Tailwind directives and theme configuration
 │   ├── lib/                    # Utility functions, DOM helpers, formatters
+│   │   └── utils.ts            # Lightweight class merger (cn)
 │   ├── types/                  # TypeScript domain interfaces and types
 │   │   └── index.ts            # Brand, service, and data contract definitions
 │   ├── App.tsx                 # Root application shell

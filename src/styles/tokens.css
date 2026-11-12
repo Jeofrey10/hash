@@ -1,0 +1,36 @@
+/**
+ * HASH.DEVS BRAND DESIGN TOKENS
+ * Brand Source of Truth:
+ * - Obsidian Black: #050505 (Primary dark background)
+ * - Hash Neon Green: #35E85B (Primary brand accent / signal)
+ * - Pure White: #FFFFFF (Primary high-contrast typography)
+ * - Graphite: #171A18 (Secondary dark surface / cards)
+ */
+
+:root {
+  /* Brand Primitives */
+  --brand-obsidian: #050505;
+  --brand-neon-green: #35E85B;
+  --brand-pure-white: #FFFFFF;
+  --brand-graphite: #171A18;
+
+  /* Semantic Color Tokens */
+  --bg-primary: var(--brand-obsidian);
+  --bg-surface: var(--brand-graphite);
+  --bg-surface-elevated: #222623;
+  --text-primary: var(--brand-pure-white);
+  --text-secondary: rgba(255, 255, 255, 0.72);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --accent-brand: var(--brand-neon-green);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(53, 232, 91, 0.4);
+
+  /* Glassmorphism & Atmospheric Overlay Tokens */
+  --glass-bg: rgba(23, 26, 24, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: 16px;
+  --glow-neon: 0 0 24px rgba(53, 232, 91, 0.25);
+
+  /* Container & Layout */
+  --container-max-width: 1440px;
+}

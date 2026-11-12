@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@theme {
+  --color-obsidian: #050505;
+  --color-neon-green: #35E85B;
+  --color-pure-white: #FFFFFF;
+  --color-graphite: #171A18;
+
+  --color-brand-obsidian: var(--brand-obsidian);
+  --color-brand-neon: var(--brand-neon-green);
+  --color-brand-white: var(--brand-pure-white);
+  --color-brand-graphite: var(--brand-graphite);
+
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--brand-obsidian);
+  color: var(--brand-pure-white);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

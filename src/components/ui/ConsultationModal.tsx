@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { GlassPanel } from '@/components/ui/GlassPanel';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -20,19 +21,34 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
 
-    // 1. Save previous focus target to restore upon closing dialog
+    // 1. Capture previously active element to restore focus upon closing
     previousActiveElementRef.current = document.activeElement as HTMLElement;
 
-    // 2. Direct focus to the dialog close action
-    const timer = setTimeout(() => {
+    // 2. Direct focus to the dialog close action once mounted
+    const focusTimer = setTimeout(() => {
       closeButtonRef.current?.focus();
     }, 50);
 
-    // 3. Trap keyboard focus inside modal & listen for Escape
+    // 3. Robust background isolation: apply inert & aria-hidden to the application root (#root)
+    const appRoot = document.getElementById('root');
+    const prevInert = appRoot ? appRoot.hasAttribute('inert') : false;
+    const prevAriaHidden = appRoot ? appRoot.getAttribute('aria-hidden') : null;
+
+    if (appRoot) {
+      appRoot.setAttribute('inert', '');
+      appRoot.setAttribute('aria-hidden', 'true');
+    }
+
+    // 4. Trap keyboard focus inside modal & listen for Escape
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault();
@@ -64,24 +80,26 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       }
     };
 
-    // 4. Mark background content aria-hidden while dialog is open
-    const mainEl = document.querySelector('main');
-    const headerEl = document.querySelector('header');
-    const footerEl = document.querySelector('footer');
-
-    if (mainEl) mainEl.setAttribute('aria-hidden', 'true');
-    if (headerEl) headerEl.setAttribute('aria-hidden', 'true');
-    if (footerEl) footerEl.setAttribute('aria-hidden', 'true');
-
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(focusTimer);
       window.removeEventListener('keydown', handleKeyDown);
 
-      if (mainEl) mainEl.removeAttribute('aria-hidden');
-      if (headerEl) headerEl.removeAttribute('aria-hidden');
-      if (footerEl) footerEl.removeAttribute('aria-hidden');
+      // Restore background attributes cleanly
+      if (appRoot) {
+        if (prevInert) {
+          appRoot.setAttribute('inert', '');
+        } else {
+          appRoot.removeAttribute('inert');
+        }
+
+        if (prevAriaHidden !== null) {
+          appRoot.setAttribute('aria-hidden', prevAriaHidden);
+        } else {
+          appRoot.removeAttribute('aria-hidden');
+        }
+      }
 
       // Restore focus to triggering element
       if (previousActiveElementRef.current && typeof previousActiveElementRef.current.focus === 'function') {
@@ -90,9 +108,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
-  return (
+  const modalRoot = document.getElementById('modal-root') || document.body;
+
+  const modalContent = (
     <div
       role="dialog"
       aria-modal="true"
@@ -163,4 +183,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       </GlassPanel>
     </div>
   );
+
+  return createPortal(modalContent, modalRoot);
 };

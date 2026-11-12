@@ -236,6 +236,30 @@
 
 ---
 
+## Stage 06.2: Consultation Modal Accessibility Verification
+
+- [x] **React Portal Placement (`#modal-root`)**
+  - [x] Created dedicated `#modal-root` container directly inside `index.html` as a sibling to `#root`.
+  - [x] Mounted `ConsultationModal` using React `createPortal` targeting `#modal-root`.
+  - [x] Confirmed modal DOM tree is 100% outside all background landmarks (`#root`, `<header>`, `<main>`, `<footer>`).
+- [x] **Background Isolation & Inert Mechanism**
+  - [x] Applied `inert` attribute and `aria-hidden="true"` to `#root` upon modal mount.
+  - [x] Background links, buttons, and landmarks are completely excluded from keyboard and mouse focus while modal is open.
+  - [x] Verified `#modal-root` is never marked inert or aria-hidden.
+- [x] **Screen Reader Accessibility & Focus Trapping**
+  - [x] Dialog exposes `role="dialog"`, `aria-modal="true"`, and `aria-label="Project Consultation Inbound"`.
+  - [x] Headings and controls are fully accessible to assistive technology queries.
+  - [x] Two-way keyboard Tab trapping keeps focus strictly cycling inside the modal.
+- [x] **Lifecycle-Safe Restoration & Cleanup**
+  - [x] Captures `previousActiveElement` on open and restores focus to the exact triggering service button upon closing.
+  - [x] `Escape` key dismisses modal and restores background state.
+  - [x] Safe unmount cleanup removes `inert` and `aria-hidden` from `#root` without leaving stale attributes across repeated open/close cycles.
+- [x] **Automated E2E Verification & Gates**
+  - [x] Production build passes cleanly with zero errors (`npm run build`).
+  - [x] Full Playwright suite passes 47/47 active tests (`npm run test:e2e`).
+
+---
+
 ## Upcoming Stages
 
 - [ ] **Stage 07 — Section-by-Section Engineering: Approach & Capabilities** *(Awaiting user approval to start)*

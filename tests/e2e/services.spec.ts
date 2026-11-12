@@ -72,7 +72,7 @@ test.describe('Stage 06 Services Section Validation', () => {
     }
   });
 
-  test('should verify each service card uses a semantic button, opens service-specific dialog, and manages focus', async ({
+  test('should verify modal portal placement, background inert isolation, keyboard trap, and focus restoration', async ({
     page,
   }) => {
     await page.goto('/');
@@ -80,47 +80,99 @@ test.describe('Stage 06 Services Section Validation', () => {
     const serviceButtons = page.locator('#services article button[aria-label^="Inquire about"]');
     await expect(serviceButtons).toHaveCount(5);
 
-    // Test first service card (Website Development)
     const firstBtn = serviceButtons.first();
-    await expect(firstBtn).toBeVisible();
-
-    // Focus via keyboard Tab / direct focus
     await firstBtn.focus();
     await expect(firstBtn).toBeFocused();
 
-    // Activate via Enter key
+    // 1. Activate via Enter key
     await page.keyboard.press('Enter');
 
-    // Dialog should open with service-specific title
-    const dialog = page.locator('div[role="dialog"]');
+    // 2. Modal is rendered via React portal outside #root and outside main/header/footer
+    const modalRoot = page.locator('#modal-root');
+    await expect(modalRoot).toBeAttached();
+
+    const dialog = modalRoot.getByRole('dialog', { name: 'Project Consultation Inbound' });
     await expect(dialog).toBeVisible();
+    await expect(dialog).toHaveAttribute('aria-modal', 'true');
     await expect(dialog).toContainText('Inquire: Website Development');
 
-    // Background content should be marked aria-hidden
-    const mainEl = page.locator('main');
-    await expect(mainEl).toHaveAttribute('aria-hidden', 'true');
+    // Confirm dialog is NOT inside #root, header, main, or footer
+    const insideRoot = await page.evaluate(() => {
+      const modal = document.querySelector('[role="dialog"]');
+      const root = document.getElementById('root');
+      return root ? root.contains(modal) : false;
+    });
+    expect(insideRoot).toBe(false);
 
-    // Verify dialog can be closed via Escape key
+    // 3. Background application root (#root) receives inert & aria-hidden
+    const appRoot = page.locator('#root');
+    await expect(appRoot).toHaveAttribute('inert', '');
+    await expect(appRoot).toHaveAttribute('aria-hidden', 'true');
+
+    // Modal root must NOT be inert or aria-hidden
+    await expect(modalRoot).not.toHaveAttribute('inert');
+    await expect(modalRoot).not.toHaveAttribute('aria-hidden');
+
+    // 4. Tab and Shift+Tab focus trap verification
+    // Close button should be initially focused
+    const closeDialogBtn = dialog.getByRole('button', { name: 'Close Dialog' });
+    await expect(closeDialogBtn).toBeFocused();
+
+    // Press Tab from last focusable element wraps to top-right dismiss button
+    await page.keyboard.press('Tab');
+    const dismissBtn = dialog.getByRole('button', { name: 'Close consultation dialog' });
+    await expect(dismissBtn).toBeFocused();
+
+    // Press Tab from dismiss button wraps back to Close Dialog button
+    await page.keyboard.press('Tab');
+    await expect(closeDialogBtn).toBeFocused();
+
+    // Press Shift+Tab wraps back to dismiss button
+    await page.keyboard.press('Shift+Tab');
+    await expect(dismissBtn).toBeFocused();
+
+    // 5. Escape closes the dialog and restores background accessibility
     await page.keyboard.press('Escape');
     await expect(dialog).not.toBeVisible();
 
-    // Verify focus is restored to the triggering button
-    await expect(firstBtn).toBeFocused();
-    await expect(mainEl).not.toHaveAttribute('aria-hidden', 'true');
+    // Background #root is no longer inert or aria-hidden
+    await expect(appRoot).not.toHaveAttribute('inert');
+    await expect(appRoot).not.toHaveAttribute('aria-hidden');
 
-    // Test second service card via Space key (Application Development)
+    // Focus is returned to the exact triggering service button
+    await expect(firstBtn).toBeFocused();
+
+    // 6. Test repeated open/close cycles across multiple service cards
     const secondBtn = serviceButtons.nth(1);
     await secondBtn.focus();
     await page.keyboard.press('Space');
 
     await expect(dialog).toBeVisible();
     await expect(dialog).toContainText('Inquire: Application Development');
+    await expect(appRoot).toHaveAttribute('inert', '');
 
-    // Close via close button control
-    const closeBtn = dialog.getByRole('button', { name: 'Close Dialog' });
-    await closeBtn.click();
+    // Dismiss via top-right close button
+    await dismissBtn.click();
     await expect(dialog).not.toBeVisible();
+    await expect(appRoot).not.toHaveAttribute('inert');
     await expect(secondBtn).toBeFocused();
+
+    // Third cycle: third button
+    const thirdBtn = serviceButtons.nth(2);
+    await thirdBtn.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText('Inquire: SEO Optimization');
+
+    // Dismiss via Close Dialog button
+    await closeDialogBtn.click();
+    await expect(dialog).not.toBeVisible();
+    await expect(thirdBtn).toBeFocused();
+
+    // Verify zero stale attributes remain after repeated cycles
+    await expect(appRoot).not.toHaveAttribute('inert');
+    await expect(appRoot).not.toHaveAttribute('aria-hidden');
   });
 
   test('should capture required responsive screenshots at all 5 viewports without horizontal overflow', async ({

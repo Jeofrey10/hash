@@ -1,5 +1,6 @@
 import React from 'react';
 import { ServiceCard } from '@/components/ui/ServiceCard';
+import { Reveal, TextReveal } from '@/components/motion';
 import { cn } from '@/lib/utils';
 import type { ServiceOffering } from '@/types';
 
@@ -222,21 +223,29 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
       <div className="relative z-10 w-full max-w-[1440px] mx-auto space-y-12 sm:space-y-16">
         {/* Section Introduction Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]" />
-            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--brand-neon-green)]">
-              What We Do
-            </span>
-          </div>
-          <h2
+          <Reveal variant="fade-up" delay={0}>
+            <div className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]" />
+              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--brand-neon-green)]">
+                What We Do
+              </span>
+            </div>
+          </Reveal>
+
+          <TextReveal
+            as="h2"
             id="services-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--brand-pure-white)] leading-[1.12]"
+            delay={80}
           >
             Integrated capabilities for connected digital growth.
-          </h2>
-          <p className="text-base sm:text-lg text-white/70 leading-relaxed font-normal">
-            We engineer high-performance web platforms, scalable applications, and data-backed growth systems that help businesses get discovered, communicate their value, and convert visitors into customers.
-          </p>
+          </TextReveal>
+
+          <Reveal variant="fade-up" delay={160}>
+            <p className="text-base sm:text-lg text-white/70 leading-relaxed font-normal">
+              We engineer high-performance web platforms, scalable applications, and data-backed growth systems that help businesses get discovered, communicate their value, and convert visitors into customers.
+            </p>
+          </Reveal>
         </div>
 
         {/* Services 5-Discipline Balanced Grid */}
@@ -251,7 +260,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
                   : 'md:col-span-1 lg:col-span-3';
 
             return (
-              <div key={service.index} className={cn('h-full flex flex-col', colSpanClass)}>
+              <Reveal
+                key={service.index}
+                variant="fade-up"
+                staggerIndex={index + 1}
+                className={cn('h-full flex flex-col', colSpanClass)}
+              >
                 <ServiceCard
                   index={service.index}
                   title={service.title}
@@ -261,7 +275,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
                   icon={service.icon}
                   onExploreClick={() => onCtaClick?.(service.title)}
                 />
-              </div>
+              </Reveal>
             );
           })}
         </div>

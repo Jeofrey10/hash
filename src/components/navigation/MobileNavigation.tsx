@@ -53,7 +53,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
         'fixed inset-0 z-[150] lg:hidden',
         'bg-[var(--brand-obsidian)]/95 backdrop-blur-xl',
         'flex flex-col justify-between p-6 sm:p-8',
-        'animate-in fade-in duration-200',
+        'animate-drawer-slide',
       )}
     >
       {/* Top Header inside Drawer */}

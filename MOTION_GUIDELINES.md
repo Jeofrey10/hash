@@ -83,3 +83,14 @@ Motion in the HASH.DEVS digital experience serves as a functional signal of prec
 }
 ```
 
+---
+
+## 5. React Motion Architecture (Stage 07 Implementation)
+
+- **Hooks (`src/hooks/`):**
+  - `useReducedMotion`: Dynamic system query hook subscribing to `(prefers-reduced-motion: reduce)`.
+  - `useScrollReveal`: High-performance IntersectionObserver hook with configurable `threshold` (default 0.15), `rootMargin` (default `-50px`), `once` (default true), and a 2000ms safety visibility fallback.
+- **Primitives (`src/components/motion/`):**
+  - `Reveal`: General entrance component supporting `fade-up`, `fade-in`, `slide-left`, `slide-right`, and stagger indexing (`staggerIndex`).
+  - `TextReveal`: Line-masked editorial text reveal preserving semantic tags (`h1`-`h6`, `p`) and full screen-reader accessible names.
+  - `ImageReveal`: Aspect-ratio-preserving container with loading shimmer, subtle unmask scale transition, and zero layout shift.

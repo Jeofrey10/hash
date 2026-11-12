@@ -33,10 +33,11 @@
 | **Stage 04** | **Core UI Component Implementation & Layout Shell** | Implementation of 10 UI primitives (`PrimaryButton`, `SecondaryButton`, `GlassPanel`, `StatusBadge`, `SectionHeading`, `ServiceCard`, `ImageRevealContainer`, `MarqueeStrip`, `FooterLinkGroup`, `Navigation`, `MobileNavigation`, `SiteLayout`) | **COMPLETED** |
 | **Stage 05** | **Cinematic Hero Section Implementation** | Dedicated `HeroSection` with dominant H1, verified brand mission, dual CTAs (`#contact`, `#services`), dimensional capabilities card, and CSS atmospheric depth | **COMPLETED** |
 | **Stage 05.1** | **Hero Detail Correction (Factual Accuracy)** | Technical coordinate node identifier `NODE // HD.CORE.01` and non-promissory status labels | **COMPLETED** |
-| **Stage 06** | **Services Section Implementation** | Dedicated `ServicesSection` (`#services`) with 5 confirmed digital disciplines, balanced 6-column grid, SVG line icons, and interactive focus states | **COMPLETED** |
-| **Stage 07** | **Section Engineering: Approach & Capabilities** | Strategic brand narrative and technical methodology showcase | *Pending* |
-| **Stage 08** | **Interactive Contact Section** | Dedicated interactive contact & project initiation workflow | *Pending* |
-| **Stage 09** | **Final QA, Cross-Browser Audit & Deployment Readiness** | Production performance, cross-browser validation, final audit | *Pending* |
+| **Stage 06** | **Services Section Implementation** | Dedicated `ServicesSection` (`#services`) with 5 confirmed digital disciplines, balanced 6-column grid, SVG line icons, interactive focus states, React portal modal, and background isolation | **COMPLETED** |
+| **Stage 07** | **Global Animation Engineering & Motion System** | Centralized motion system (`motion.css`, `useScrollReveal`, `useReducedMotion`, `Reveal`, `TextReveal`, `ImageReveal`), micro-interactions polish, and comprehensive accessibility | **COMPLETED** |
+| **Stage 08** | **Section Engineering: Approach & Capabilities** | Strategic brand narrative and technical methodology showcase | *Pending* |
+| **Stage 09** | **Interactive Contact Section** | Dedicated interactive contact & project initiation workflow | *Pending* |
+| **Stage 10** | **Final QA, Cross-Browser Audit & Deployment Readiness** | Production performance, cross-browser validation, final audit | *Pending* |
 
 ---
 

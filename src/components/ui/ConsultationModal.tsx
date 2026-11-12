@@ -131,7 +131,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
         padding="lg"
         rounded="2xl"
         className={cn(
-          'max-w-md w-full space-y-6 text-center animate-in fade-in zoom-in-95 duration-200 relative',
+          'max-w-md w-full space-y-6 text-center animate-dialog-enter relative',
           className,
         )}
       >

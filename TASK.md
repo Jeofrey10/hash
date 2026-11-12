@@ -274,10 +274,35 @@
 
 ---
 
+## Stage 07: Global Animation Engineering & Motion System
+
+- [x] **Global Motion Architecture & Tokens**
+  - [x] Created `src/styles/motion.css` containing timing tokens, easing functions (`cubic-bezier(0.16, 1, 0.3, 1)`), keyframes, utility classes, and reduced motion overrides.
+  - [x] Integrated `motion.css` into `src/styles/globals.css`.
+- [x] **Motion Hooks Implementation (`src/hooks/`)**
+  - [x] `useReducedMotion.ts`: Dynamic live listener on `prefers-reduced-motion: reduce`.
+  - [x] `useScrollReveal.ts`: Configurable IntersectionObserver hook with threshold, rootMargin, once, and guaranteed fallback timeout to prevent permanently hidden content.
+- [x] **Motion Primitives Implementation (`src/components/motion/`)**
+  - [x] `Reveal.tsx`: Reusable entrance wrapper supporting `fade-up`, `fade-in`, `slide-left`, `slide-right`, and stagger delays.
+  - [x] `TextReveal.tsx`: Line-masked editorial text reveal preserving semantic headings and full screen reader accessibility.
+  - [x] `ImageReveal.tsx`: Aspect ratio preserving container with shimmer loading and subtle unmask scale animation.
+  - [x] `index.ts`: Barrel export.
+- [x] **Micro-Interactions Integration**
+  - [x] `ServicesSection`: Staggered card entrance reveal and editorial text reveal on section header.
+  - [x] `ConsultationModal`: Smooth `animate-dialog-enter` scale pop-in.
+  - [x] `MobileNavigation`: Smooth `animate-drawer-slide` slide-down entrance.
+  - [x] Preserved all approved copy, brand colors, and component layouts.
+- [x] **Accessibility & Reduced Motion**
+  - [x] Full `prefers-reduced-motion: reduce` compliance across CSS and React hooks.
+  - [x] Instant zero-delay transitions with zero translate transforms when reduced motion is preferred.
+- [x] **E2E Test Verification (`tests/e2e/motion.spec.ts`)**
+  - [x] Validated scroll reveals, text reveal semantics, modal dialog entrance, mobile menu drawer, card hover, zero console errors, and zero horizontal overflow across 5 standard viewports (360px, 390px, 768px, 1280px, 1440px).
+  - [x] Captured all 7 required screenshots in `tests/e2e/screenshots/stage-07/`.
+  - [x] Full test suite passes 67/67 active tests across Chromium desktop and mobile.
+
+---
+
 ## Upcoming Stages
 
-- [ ] **Stage 07 — Section-by-Section Engineering: Approach & Capabilities** *(Awaiting user approval to start)*
-  - [ ] Strategic Brand Narrative & Technical Approach section (`#approach`).
-  - [ ] Interactive Capabilities breakdown (`#capabilities`).
 - [ ] **Stage 08 — Interactive Contact & Project Initiation Section (`#contact`)**
 - [ ] **Stage 09 — Final QA, Cross-Browser Audit & Deployment Readiness**

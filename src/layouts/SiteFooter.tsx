@@ -82,3 +82,4 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
     </footer>
   );
 };
+

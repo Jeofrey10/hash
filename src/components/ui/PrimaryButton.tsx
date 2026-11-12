@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 
 export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   readonly children: React.ReactNode;
+  readonly href?: string;
   readonly size?: 'sm' | 'md' | 'lg';
   readonly fullWidth?: boolean;
   readonly icon?: React.ReactNode;
@@ -10,10 +11,11 @@ export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButto
   readonly isLoading?: boolean;
 }
 
-export const PrimaryButton = React.forwardRef<HTMLButtonElement, PrimaryButtonProps>(
+export const PrimaryButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, PrimaryButtonProps>(
   (
     {
       children,
+      href,
       size = 'md',
       fullWidth = false,
       icon,
@@ -31,24 +33,21 @@ export const PrimaryButton = React.forwardRef<HTMLButtonElement, PrimaryButtonPr
       lg: 'h-12 px-8 text-base font-medium',
     };
 
-    return (
-      <button
-        ref={ref}
-        disabled={disabled || isLoading}
-        className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-lg',
-          'bg-[var(--brand-neon-green)] text-[var(--brand-obsidian)]',
-          'transition-all duration-200 ease-out select-none',
-          'hover:brightness-105 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(53,232,91,0.30)]',
-          'active:scale-[0.98]',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-obsidian)]',
-          'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none disabled:transform-none disabled:shadow-none',
-          sizeClasses[size],
-          fullWidth ? 'w-full' : 'w-auto',
-          className,
-        )}
-        {...props}
-      >
+    const combinedClasses = cn(
+      'inline-flex items-center justify-center gap-2 rounded-lg',
+      'bg-[var(--brand-neon-green)] text-[var(--brand-obsidian)]',
+      'transition-all duration-200 ease-out select-none',
+      'hover:brightness-105 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(53,232,91,0.30)]',
+      'active:scale-[0.98]',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-obsidian)]',
+      'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none disabled:transform-none disabled:shadow-none',
+      sizeClasses[size],
+      fullWidth ? 'w-full' : 'w-auto',
+      className,
+    );
+
+    const content = (
+      <>
         {isLoading && (
           <svg
             className="animate-spin -ml-1 mr-2 h-4 w-4 text-[var(--brand-obsidian)]"
@@ -68,6 +67,31 @@ export const PrimaryButton = React.forwardRef<HTMLButtonElement, PrimaryButtonPr
         {!isLoading && icon && iconPosition === 'left' && <span aria-hidden="true">{icon}</span>}
         <span>{children}</span>
         {!isLoading && icon && iconPosition === 'right' && <span aria-hidden="true">{icon}</span>}
+      </>
+    );
+
+    if (href) {
+      return (
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          role="button"
+          className={combinedClasses}
+          {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {content}
+        </a>
+      );
+    }
+
+    return (
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        disabled={disabled || isLoading}
+        className={combinedClasses}
+        {...props}
+      >
+        {content}
       </button>
     );
   },

@@ -109,6 +109,38 @@ body {
   animation: pulse-signal 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
+/* Hero Entrance Sequence Keyframes */
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-1 {
+  animation: hero-fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 50ms both;
+}
+
+.animate-hero-2 {
+  animation: hero-fade-up 700ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both;
+}
+
+.animate-hero-3 {
+  animation: hero-fade-up 700ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+}
+
+.animate-hero-4 {
+  animation: hero-fade-up 700ms cubic-bezier(0.16, 1, 0.3, 1) 350ms both;
+}
+
+.animate-hero-5 {
+  animation: hero-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) 450ms both;
+}
+
 /* Global Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -127,5 +159,15 @@ body {
 
   .pulse-active {
     animation: none !important;
+  }
+
+  .animate-hero-1,
+  .animate-hero-2,
+  .animate-hero-3,
+  .animate-hero-4,
+  .animate-hero-5 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

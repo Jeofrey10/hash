@@ -65,3 +65,4 @@ export const MarqueeStrip: React.FC<MarqueeStripProps> = ({
     </div>
   );
 };
+

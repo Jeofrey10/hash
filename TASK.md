@@ -122,12 +122,43 @@
 
 ---
 
+## Stage 05: Cinematic Hero Section Implementation
+
+- [x] **Hero Architectural Implementation (`src/sections/HeroSection.tsx`)**
+  - [x] Create dedicated, modular `HeroSection` component.
+  - [x] Exactly one primary H1: "Build with purpose. Grow with clarity." in editorial typography.
+  - [x] Brand presence: StatusBadge overline ("Digital Experience Studio"), Obsidian Black canvas (`#050505`), and Hash Neon Green accent (`#35E85B`).
+  - [x] Verified supporting company mission copy from `PROJECT.md` without fabricated claims.
+  - [x] Dual call to actions using `PrimaryButton` ("Start a Project" -> `#contact`) and `SecondaryButton` ("Explore Our Services" -> `#services`).
+  - [x] Floating dimensional capabilities card featuring the 5 official Hash.Devs offerings with live status indicator.
+  - [x] Pure CSS/SVG atmospheric composition (ambient radial green glow, technical coordinate markers, geometric grid lines, no heavy 3D/WebGL bloat).
+- [x] **Motion & Entrance Sequences**
+  - [x] Sequential staggered entrance sequence (`animate-hero-1` through `animate-hero-5`) utilizing hardware-accelerated transform & opacity.
+  - [x] Full `prefers-reduced-motion` override turning off animation and translations.
+- [x] **Application Integration**
+  - [x] Integrate cleanly into `App.tsx` wrapped in `SiteLayout`.
+  - [x] Support `#contact` project consultation dialog callback.
+  - [x] Zero extraneous homepage sections built (strict hero scope preserved).
+- [x] **Playwright E2E Validation (`tests/e2e/hero.spec.ts`)**
+  - [x] Exactly one H1 verified.
+  - [x] Verified both CTAs with destinations `#contact` and `#services`.
+  - [x] Verified all 5 capabilities in anchor card.
+  - [x] Verified zero horizontal overflow across 5 viewports (1440px, 1280px, 768px, 390px, 360px).
+  - [x] Verified headline does not clip.
+  - [x] Verified reduced motion mode turns off animations.
+  - [x] Verified zero browser console errors.
+  - [x] Generated all 6 responsive screenshots in `tests/e2e/screenshots/stage-05/`.
+- [x] **Stage 05 Verification Gate**
+  - [x] Clean production build verification (`npm run build` exits 0).
+  - [x] Full Playwright E2E suite passes 33/33 active tests (`npm run test:e2e` exits 0).
+
+---
+
 ## Upcoming Stages
 
-- [ ] **Stage 05 — Section-by-Section Engineering** *(Awaiting user approval to start)*
-  - [ ] Full-bleed Marquee Hero section.
-  - [ ] 5-Pillar Digital Services Showcase section.
-  - [ ] Strategic Brand Narrative section.
-  - [ ] Curtain-reveal Footer & Contact CTA section.
-- [ ] **Stage 06 — Interactivity, Animation & Polish**
-- [ ] **Stage 07 — QA, Cross-Device Audit & Launch Readiness**
+- [ ] **Stage 06 — Section-by-Section Engineering: Services, Approach & Capabilities** *(Awaiting user approval to start)*
+  - [ ] 5-Pillar Digital Services Showcase section (`#services`).
+  - [ ] Strategic Brand Narrative & Technical Approach section (`#approach`).
+  - [ ] Full interactive Contact & Project Initiation workflow (`#contact`).
+- [ ] **Stage 07 — Interactivity, Animation & Performance Polish**
+- [ ] **Stage 08 — Final QA, Cross-Browser Audit & Deployment Readiness**

@@ -31,13 +31,22 @@
 | **Stage 02** | **Reference Website Analysis** | In-depth analysis of *The General Intelligence Company* via Inspo MCP and Playwright; layout, typography, glassmorphism analysis | **COMPLETED** |
 | **Stage 03** | **Design System Finalization & Component Specs** | Design system token formalization, typography ramps, motion guidelines, 10-component specification catalog | **COMPLETED** |
 | **Stage 04** | **Core UI Component Implementation & Layout Shell** | Implementation of 10 UI primitives (`PrimaryButton`, `SecondaryButton`, `GlassPanel`, `StatusBadge`, `SectionHeading`, `ServiceCard`, `ImageRevealContainer`, `MarqueeStrip`, `FooterLinkGroup`, `Navigation`, `MobileNavigation`, `SiteLayout`) | **COMPLETED** |
-| **Stage 05** | **Section-by-Section Engineering** | Full-bleed marquee hero, 5-service showcase, brand narrative, and contact CTA | *Ready to Begin* |
-| **Stage 06** | **Micro-Interactions & Responsive Polish** | Smooth transitions, mobile drawer navigation, viewport testing | *Pending* |
-| **Stage 07** | **Quality Assurance & Production Release** | Full Playwright E2E test runs, Lighthouse audit, production bundle optimization | *Pending* |
+| **Stage 05** | **Cinematic Hero Section Implementation** | Dedicated `HeroSection` with dominant H1, verified brand mission, dual CTAs (`#contact`, `#services`), dimensional capabilities card, and CSS atmospheric depth | **COMPLETED** |
+| **Stage 06** | **Section Engineering: Services, Approach & Contact** | 5-Pillar Service Showcase section, strategic brand narrative, and contact initiation workflow | *Ready to Begin* |
+| **Stage 07** | **Micro-Interactions, Polish & QA** | Motion refinement, cross-browser validation, production audit | *Pending* |
 
 ---
 
-## 3. Strict Pre-Commit Verification Gate
+## 3. Section Anchor Contracts
+- `#hero`: Anchors the primary full-bleed hero fold.
+- `#contact`: Destination for primary conversion CTA ("Start a Project"). Connected to inbound dialog in Stage 05, transitioning to full dedicated contact section in Stage 06.
+- `#services`: Destination for secondary CTA ("Explore Our Services"). Connected to 5-pillar digital services showcase in Stage 06.
+- `#approach`: Destination for strategic methodology & narrative section in Stage 06.
+- `#capabilities`: Secondary link to capability highlights.
+
+---
+
+## 4. Strict Pre-Commit Verification Gate
 
 Before any stage is considered complete or pushed:
 1. `npm run build` must succeed with **zero errors and zero warnings**.

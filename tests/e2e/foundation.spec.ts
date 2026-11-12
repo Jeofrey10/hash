@@ -8,17 +8,21 @@ test.describe('HASH.DEVS Foundation & Environment Verification', () => {
     // Verify title
     await expect(page).toHaveTitle(/HASH\.DEVS/);
 
+    // Verify brand presence in header
+    const brand = page.locator('a[href="/"]').first();
+    await expect(brand).toContainText('HASH.DEVS');
+
     // Verify brand heading
     const heading = page.locator('h1');
     await expect(heading).toBeVisible();
-    await expect(heading).toContainText('HASH.DEVS');
+    await expect(heading).toContainText('Build with purpose.');
 
     // Verify brand messaging
     const message = page.locator('text=Build with purpose. Grow with clarity.').first();
     await expect(message).toBeVisible();
 
     // Verify status indicator
-    const statusIndicator = page.locator('text=/Stage 0[1-4]/').first();
+    const statusIndicator = page.locator('[role="status"]').first();
     await expect(statusIndicator).toBeVisible();
 
     // Take screenshot for visual verification

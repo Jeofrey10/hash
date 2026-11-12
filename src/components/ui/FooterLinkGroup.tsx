@@ -40,3 +40,4 @@ export const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({
     </div>
   );
 };
+

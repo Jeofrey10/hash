@@ -4,3 +4,4 @@ export { TextReveal } from './TextReveal';
 export type { TextRevealProps } from './TextReveal';
 export { ImageReveal } from './ImageReveal';
 export type { ImageRevealProps } from './ImageReveal';
+

@@ -35,9 +35,10 @@
 | **Stage 05.1** | **Hero Detail Correction (Factual Accuracy)** | Technical coordinate node identifier `NODE // HD.CORE.01` and non-promissory status labels | **COMPLETED** |
 | **Stage 06** | **Services Section Implementation** | Dedicated `ServicesSection` (`#services`) with 5 confirmed digital disciplines, balanced 6-column grid, SVG line icons, interactive focus states, React portal modal, and background isolation | **COMPLETED** |
 | **Stage 07** | **Global Animation Engineering & Motion System** | Centralized motion system (`motion.css`, `useScrollReveal`, `useReducedMotion`, `Reveal`, `TextReveal`, `ImageReveal`), micro-interactions polish, and comprehensive accessibility | **COMPLETED** |
-| **Stage 08** | **Section Engineering: Approach & Capabilities** | Strategic brand narrative and technical methodology showcase | *Pending* |
-| **Stage 09** | **Interactive Contact Section** | Dedicated interactive contact & project initiation workflow | *Pending* |
-| **Stage 10** | **Final QA, Cross-Browser Audit & Deployment Readiness** | Production performance, cross-browser validation, final audit | *Pending* |
+| **Stage 08** | **Approach Section Implementation** | Dedicated `ApproachSection` (`#approach`) communicating the 4-phase transformation process (Discover, Define, Design & Build, Refine & Grow) with connected progression rail | **COMPLETED** |
+| **Stage 09** | **Capabilities Section Implementation** | Specialized capability matrices and technical specifications | *Pending* |
+| **Stage 10** | **Interactive Contact Section** | Dedicated interactive contact & project initiation workflow | *Pending* |
+| **Stage 11** | **Final QA, Cross-Browser Audit & Deployment Readiness** | Production performance, cross-browser validation, final audit | *Pending* |
 
 ---
 

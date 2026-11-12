@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SiteLayout } from '@/layouts/SiteLayout';
 import { HeroSection } from '@/sections/HeroSection';
 import { ServicesSection } from '@/sections/ServicesSection';
+import { ApproachSection } from '@/sections/ApproachSection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
       <SiteLayout onCtaClick={() => handleOpenConsultation()}>
         <HeroSection onCtaClick={() => handleOpenConsultation()} />
         <ServicesSection onCtaClick={(serviceTitle) => handleOpenConsultation(serviceTitle)} />
+        <ApproachSection onCtaClick={() => handleOpenConsultation()} />
       </SiteLayout>
 
       {/* Accessible Project Consultation Inbound Modal */}

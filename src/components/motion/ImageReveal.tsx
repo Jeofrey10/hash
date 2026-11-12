@@ -82,3 +82,4 @@ export const ImageReveal: React.FC<ImageRevealProps> = ({
     </div>
   );
 };
+

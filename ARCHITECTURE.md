@@ -82,3 +82,4 @@ c:\hash.devs\
    - Frame the overarching page flow, persistent navigation bar, and footer anchors.
 4. **Strict Path Aliasing:**
    - `@/*` maps directly to `./src/*`, ensuring clean, relocatable imports across modules.
+

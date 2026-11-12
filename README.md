@@ -86,6 +86,9 @@ npm run test:e2e:report
 
 - [PROJECT.md](file:///c:/hash.devs/PROJECT.md) — Scope, objectives, and service breakdown.
 - [DESIGN.md](file:///c:/hash.devs/DESIGN.md) — Brand tokens, reference inspiration analysis, and implementation rules.
+- [REFERENCE_ANALYSIS.md](file:///c:/hash.devs/REFERENCE_ANALYSIS.md) — Live Playwright & Inspo MCP extraction of The General Intelligence Company.
+- [DESIGN_TRANSLATION.md](file:///c:/hash.devs/DESIGN_TRANSLATION.md) — Strategic translation of reference principles into HASH.DEVS dark identity.
+- [DESIGN_DECISIONS.md](file:///c:/hash.devs/DESIGN_DECISIONS.md) — Concrete engineering decisions for layout, typography, glassmorphism, and animation.
 - [REQUIREMENTS.md](file:///c:/hash.devs/REQUIREMENTS.md) — Functional, visual, and performance specifications.
 - [ARCHITECTURE.md](file:///c:/hash.devs/ARCHITECTURE.md) — Frontend architecture, component hierarchy, and folder structure.
 - [IMPLEMENTATION.md](file:///c:/hash.devs/IMPLEMENTATION.md) — Code conventions, multi-stage roadmap, and quality gates.
@@ -97,5 +100,5 @@ npm run test:e2e:report
 
 ## 6. Current Status
 
-**Stage 01: Project Foundation & Environment Setup** is fully completed, verified, and passing all automated build and test gates.
-Awaiting user approval before proceeding to **Stage 02: Reference Website Analysis**.
+**Stage 01 (Foundation)** and **Stage 02 (Reference Analysis & Design Intelligence)** are fully completed, verified, and passing all automated build and test gates.
+Awaiting user approval before proceeding to **Stage 03: Core UI Components & Primitives**.

@@ -58,3 +58,4 @@ npm run test:e2e:report
 Starting in Stage 02:
 - Playwright will be utilized to inspect and snapshot reference website layouts at desktop and mobile dimensions.
 - In subsequent stages, visual regression tests will validate that custom components (e.g., `GlassPanel`, responsive navigation, service cards) maintain their spacing, typography, and contrast without layout shift.
+

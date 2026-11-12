@@ -111,3 +111,4 @@ Tokens are defined in `src/styles/tokens.css` and bound directly to Tailwind CSS
 - **Max Container Width:** `1440px` (`max-w-[1440px]`) with responsive horizontal gutters (`px-4 sm:px-6 lg:px-12`).
 - **Section Spacing:** Minimum `py-16` on mobile, scaling to `py-24` or `py-32` on desktop for editorial breathing room.
 - **Corner Radii:** Micro-elements `rounded-full` or `rounded-md` (4px–8px); cards and floating panels `rounded-2xl` (16px) or `rounded-3xl` (24px).
+

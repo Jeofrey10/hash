@@ -75,3 +75,4 @@
 - Tailwind CSS v4 styling with zero runtime CSS overhead.
 - Playwright E2E automated testing for Chromium desktop and mobile viewport configurations.
 - Inspo MCP integrated for ongoing design inspection and benchmark validation.
+

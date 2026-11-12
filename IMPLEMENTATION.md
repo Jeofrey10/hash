@@ -42,3 +42,4 @@ Before any stage is considered complete or pushed:
 1. `npm run build` must succeed with **zero errors and zero warnings**.
 2. `npm run test:e2e` must pass with all desktop and mobile viewport checks green.
 3. No fake business claims or mock clients added.
+

@@ -36,3 +36,4 @@ export const COMPANY_IDENTITY: CompanyIdentity = {
     'Creative Design & Video',
   ],
 } as const;
+

@@ -41,3 +41,4 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 ## 3. Vulnerability Reporting
 
 If any security issue is identified within the codebase or build pipeline, notify the project lead immediately for rapid remediation.
+

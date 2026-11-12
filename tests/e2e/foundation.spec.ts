@@ -38,3 +38,4 @@ test.describe('HASH.DEVS Foundation & Environment Verification', () => {
     expect(bgColor).toBe('rgb(5, 5, 5)');
   });
 });
+

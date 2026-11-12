@@ -49,3 +49,4 @@ As established in the official Hash.Devs profile, our digital services encompass
   - Responsive polish across all viewports, lightweight interactions, Core Web Vitals optimization.
 - **Stage 06 — QA, Visual Regression Testing & Deployment Readiness:**
   - Full Playwright test suite execution, multi-device cross-browser validation, production build audit.
+

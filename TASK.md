@@ -24,15 +24,7 @@
   - [x] Implement E2E smoke test in `tests/e2e/foundation.spec.ts`.
   - [x] Execute Playwright test suite and verify 4/4 passing tests with screenshot artifact generated.
 - [x] **Documentation System**
-  - [x] Create `PROJECT.md`
-  - [x] Create `DESIGN.md` (with clear token vs. inspiration vs. implementation separation)
-  - [x] Create `REQUIREMENTS.md`
-  - [x] Create `ARCHITECTURE.md`
-  - [x] Create `IMPLEMENTATION.md`
-  - [x] Create `TASK.md`
-  - [x] Create `TESTING.md`
-  - [x] Create `SECURITY.md`
-  - [x] Create `README.md`
+  - [x] Create `PROJECT.md`, `DESIGN.md`, `REQUIREMENTS.md`, `ARCHITECTURE.md`, `IMPLEMENTATION.md`, `TASK.md`, `TESTING.md`, `SECURITY.md`, `README.md`.
 - [x] **Stage 01 Verification Gate**
   - [x] Clean production build verification (`npm run build` exits 0).
   - [x] E2E test verification (`npm run test:e2e` exits 0).
@@ -40,13 +32,38 @@
 
 ---
 
+## Stage 02: Reference Website Analysis & Design Intelligence Extraction
+
+- [x] **Inspo MCP Extraction**
+  - [x] Query `get_design_system` for `generalintelligencecompany-com` (palette, fonts, macrostructure, CSS variables).
+  - [x] Query `get_screen` for high-resolution captures, autopsy analysis, and design tags.
+- [x] **Playwright Browser Live Inspection**
+  - [x] Inspect desktop (`1440x900`), laptop (`1280x800`), tablet (`768x1024`), mobile (`390x844`), and small mobile (`360x800`).
+  - [x] Capture initial hero viewports and full-page screenshots across all viewports.
+  - [x] Extract exact DOM computed styles for navigation, glass cards, buttons, headings, and section containers.
+  - [x] Verify responsive adaptations (hamburger collapse, card stacking, zero horizontal overflow).
+  - [x] Save raw machine-readable data in `tests/e2e/screenshots/reference-analysis/inspection-data.json`.
+  - [x] Save all 14 visual screenshot artifacts in `tests/e2e/screenshots/reference-analysis/`.
+- [x] **Design Translation & Decision Documentation**
+  - [x] Author `REFERENCE_ANALYSIS.md` (complete section inventory, exact measurements, glassmorphism recipes).
+  - [x] Author `DESIGN_TRANSLATION.md` (adopt vs. adapt vs. avoid, HASH.DEVS translation).
+  - [x] Author `DESIGN_DECISIONS.md` (concrete rules for layout, typography, colors, surfaces, spacing, responsiveness, animation).
+- [x] **Quality & Regression Check**
+  - [x] Verify existing build (`npm run build`) exits 0.
+  - [x] Verify existing E2E test suite (`npm run test:e2e`) passes 4/4 tests.
+  - [x] Confirm no premature code or section implementations were added.
+
+---
+
 ## Upcoming Stages
 
-- [ ] **Stage 02 — Reference Website Analysis** *(Awaiting user approval to start)*
-  - [ ] Use Inspo MCP tools (`get_design_system`, `get_site_pages`, `find_components`) for in-depth reference breakdown.
-  - [ ] Use Playwright to capture reference website layout behavior across breakpoints.
-  - [ ] Document design findings and translation into Hash.Devs dark theme.
-- [ ] **Stage 03 — Core UI Components & Primitives**
+- [ ] **Stage 03 — Core UI Components & Primitives** *(Awaiting user approval to start)*
+  - [ ] Implement `GlassPanel`, `Badge`, `Button`, `Container` primitives in `src/components/`.
+  - [ ] Implement responsive floating navigation shell in `src/layouts/`.
 - [ ] **Stage 04 — Section-by-Section Engineering**
+  - [ ] Full-bleed Marquee Hero section.
+  - [ ] 5-Pillar Digital Services Showcase section.
+  - [ ] Strategic Brand Narrative section.
+  - [ ] Curtain-reveal Footer & Contact CTA section.
 - [ ] **Stage 05 — Interactivity, Animation & Polish**
 - [ ] **Stage 06 — QA, Cross-Device Audit & Launch Readiness**

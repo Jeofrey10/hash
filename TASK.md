@@ -331,32 +331,36 @@
 
 ---
 
-## Stage 09: Capabilities Section Implementation
+## Stage 09: Capabilities Section Implementation & Content Refinement
 
 - [x] **Section Architecture & Positioning (`CapabilitiesSection.tsx`)**
   - [x] Positioned directly after Approach in `App.tsx` with id `capabilities` and landmark `aria-labelledby="capabilities-heading"`.
   - [x] Applied `scroll-mt-24 lg:scroll-mt-28` to guarantee clean anchor alignment below floating navigation.
-  - [x] Added technical boundary markers (`SEC // 04.CAPABILITIES`, `AREAS // 05.SYSTEM`).
-- [x] **Five Capability Areas & Confirmed Sub-Capabilities**
-  - [x] `01 — Website Development`: High-performance websites, Responsive interface engineering, Landing pages and conversion-focused experiences, Frontend architecture.
-  - [x] `02 — Application Development`: Web applications, Application interfaces, Backend integration, Scalable software architecture.
-  - [x] `03 — SEO Optimization`: Technical SEO, On-page optimization, Search visibility, Website structure and performance.
-  - [x] `04 — Meta Advertising`: Campaign architecture, Audience targeting, Paid acquisition strategy, Creative testing.
-  - [x] `05 — Creative Design & Video`: Brand identity and visual systems, UI/UX design, Digital creative assets, Video content and motion design.
-- [x] **Visual Design & Editorial Asymmetric Layout**
-  - [x] Row 1 features a prominent 7-column primary platform module paired with a 5-column software systems module.
-  - [x] Row 2 features three balanced 4-column modules across search, acquisition, and creative.
+  - [x] Added technical boundary markers (`SEC // 04.CAPABILITIES`, `FRAMEWORK // 05.PILLARS`).
+- [x] **Content Refinement & Role Separation from Services**
+  - [x] Services section strictly preserved as **"What We Deliver"** (the 5 client service deliverables: Website Development, Application Development, SEO Optimization, Meta Advertising, Creative Design & Video).
+  - [x] Capabilities section restructured as **"What We Bring to the Work"** (the 5 cross-disciplinary pillars of expertise and craft).
+  - [x] `01 — Digital Experience Strategy` (`STRATEGY // EXPERIENCE ARCHITECTURE`): Information architecture, User journey planning, Conversion-focused experience design, Digital experience planning.
+  - [x] `02 — Interface & Experience Design` (`DESIGN // INTERACTION SYSTEMS`): UI/UX design, Responsive interface systems, Visual consistency, Usability-focused design.
+  - [x] `03 — Software & Platform Engineering` (`ENGINEERING // SOFTWARE ARCHITECTURE`): Frontend architecture, Web application development, Backend integration, Scalable software architecture.
+  - [x] `04 — Search & Acquisition Systems` (`GROWTH // DISCOVERY & ACQUISITION`): Technical and on-page SEO, Search visibility optimization, Campaign architecture, Audience targeting and creative testing.
+  - [x] `05 — Brand & Motion Systems` (`CREATIVE // VISUAL COMMUNICATION`): Brand identity and visual systems, Digital creative assets, Video storytelling, Motion design.
+- [x] **Visual Design & Editorial Interconnected Grid**
+  - [x] Headline: *"The thinking and craft behind every digital experience."*
+  - [x] Supporting copy: *"From experience strategy and interface design to engineering, acquisition, and creative production, our capabilities connect the disciplines needed to build purposeful digital experiences."*
+  - [x] Row 1 features Strategy (6-col) + Interface Design (6-col); Row 2 features Software Engineering (4-col) + Search/Acquisition (4-col) + Brand/Motion (4-col).
   - [x] Closing directional transition panel toward `#contact` with consultation initiation trigger.
 - [x] **Motion & Accessibility**
   - [x] Integrated `Reveal` and `TextReveal` from Stage 07 motion system with sequential stagger.
   - [x] Full `prefers-reduced-motion: reduce` compliance and keyboard accessibility (`tabIndex={0}`, focus rings).
 - [x] **Playwright E2E Verification (`capabilities.spec.ts`)**
   - [x] Verified DOM ordering after Approach, section ID, and heading hierarchy.
-  - [x] Validated presence of all five areas and their exact sub-capabilities.
+  - [x] Verified strict content separation between Services offerings and Capabilities pillars without title or purpose duplication.
+  - [x] Validated presence of all five pillars and their exact confirmed methods.
   - [x] Validated navigation scrolling and header clearance.
   - [x] Validated zero horizontal overflow and zero console errors across 5 standard viewports (360x800, 390x844, 768x1024, 1280x800, 1440x900).
-  - [x] Captured all 6 required screenshots in `tests/e2e/screenshots/stage-09/`.
-  - [x] Full test suite passes 99/99 active tests across desktop and mobile.
+  - [x] Captured all 6 required screenshots in `tests/e2e/screenshots/capabilities-refinement/`.
+  - [x] Capabilities test suite passes 18/18 tests across desktop and mobile.
 
 ---
 

@@ -1,65 +1,78 @@
 import { test, expect } from '@playwright/test';
 import * as path from 'path';
 
-test.describe('Stage 09 Capabilities Section Validation', () => {
-  const screenshotDir = path.join(process.cwd(), 'tests', 'e2e', 'screenshots', 'stage-09');
+test.describe('Capabilities Section Refinement & Content Separation Validation', () => {
+  const screenshotDir = path.join(process.cwd(), 'tests', 'e2e', 'screenshots', 'capabilities-refinement');
 
-  const expectedCapabilityAreas = [
+  const expectedCapabilityPillars = [
     {
       index: '01',
-      title: 'Website Development',
-      tag: 'Core Platform // Engineering',
+      title: 'Digital Experience Strategy',
+      tag: 'STRATEGY // EXPERIENCE ARCHITECTURE',
+      description: 'We structure digital experiences around business objectives, user needs, and clear conversion paths.',
       capabilities: [
-        'High-performance websites',
-        'Responsive interface engineering',
-        'Landing pages and conversion-focused experiences',
-        'Frontend architecture',
+        'Information architecture',
+        'User journey planning',
+        'Conversion-focused experience design',
+        'Digital experience planning',
       ],
     },
     {
       index: '02',
-      title: 'Application Development',
-      tag: 'Software Systems // Full-Stack',
+      title: 'Interface & Experience Design',
+      tag: 'DESIGN // INTERACTION SYSTEMS',
+      description: 'We shape intuitive interfaces and consistent visual systems that make digital products easier to understand and use.',
       capabilities: [
-        'Web applications',
-        'Application interfaces',
+        'UI/UX design',
+        'Responsive interface systems',
+        'Visual consistency',
+        'Usability-focused design',
+      ],
+    },
+    {
+      index: '03',
+      title: 'Software & Platform Engineering',
+      tag: 'ENGINEERING // SOFTWARE ARCHITECTURE',
+      description: 'We build structured digital platforms and software experiences with attention to architecture, functionality, and performance.',
+      capabilities: [
+        'Frontend architecture',
+        'Web application development',
         'Backend integration',
         'Scalable software architecture',
       ],
     },
     {
-      index: '03',
-      title: 'SEO Optimization',
-      tag: 'Search Performance // Technical',
-      capabilities: [
-        'Technical SEO',
-        'On-page optimization',
-        'Search visibility',
-        'Website structure and performance',
-      ],
-    },
-    {
       index: '04',
-      title: 'Meta Advertising',
-      tag: 'Paid Acquisition // Funnel Strategy',
+      title: 'Search & Acquisition Systems',
+      tag: 'GROWTH // DISCOVERY & ACQUISITION',
+      description: 'We combine search optimization and paid acquisition practices to improve digital discoverability and support customer acquisition.',
       capabilities: [
+        'Technical and on-page SEO',
+        'Search visibility optimization',
         'Campaign architecture',
-        'Audience targeting',
-        'Paid acquisition strategy',
-        'Creative testing',
+        'Audience targeting and creative testing',
       ],
     },
     {
       index: '05',
-      title: 'Creative Design & Video',
-      tag: 'Brand Systems // Motion & UI',
+      title: 'Brand & Motion Systems',
+      tag: 'CREATIVE // VISUAL COMMUNICATION',
+      description: 'We develop coherent visual identities and digital creative experiences that communicate a brand consistently across touchpoints.',
       capabilities: [
         'Brand identity and visual systems',
-        'UI/UX design',
         'Digital creative assets',
-        'Video content and motion design',
+        'Video storytelling',
+        'Motion design',
       ],
     },
+  ];
+
+  const serviceTitles = [
+    'Website Development',
+    'Application Development',
+    'SEO Optimization',
+    'Meta Advertising',
+    'Creative Design & Video',
   ];
 
   test('should render capabilities section after approach with correct ID and heading structure', async ({ page }) => {
@@ -83,14 +96,14 @@ test.describe('Stage 09 Capabilities Section Validation', () => {
     const sectionHeading = capabilitiesSection.getByRole('heading', { level: 2 });
     await expect(sectionHeading).toBeVisible();
     await expect(sectionHeading).toHaveAttribute('id', 'capabilities-heading');
-    await expect(sectionHeading).toContainText('Specialized capabilities for connected digital execution');
+    await expect(sectionHeading).toContainText('The thinking and craft behind every digital experience');
 
     // 4. Verify technical markers
     await expect(capabilitiesSection.getByText('SEC // 04.CAPABILITIES')).toBeAttached();
-    await expect(capabilitiesSection.getByText('AREAS // 05.SYSTEM')).toBeAttached();
+    await expect(capabilitiesSection.getByText('FRAMEWORK // 05.PILLARS')).toBeAttached();
   });
 
-  test('should render all five capability areas and exact confirmed sub-capabilities', async ({ page }) => {
+  test('should render all five refined capability pillars and exact confirmed methods', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
@@ -100,21 +113,51 @@ test.describe('Stage 09 Capabilities Section Validation', () => {
     const articles = capabilitiesSection.locator('article');
     await expect(articles).toHaveCount(5);
 
-    for (let i = 0; i < expectedCapabilityAreas.length; i++) {
-      const area = expectedCapabilityAreas[i];
+    for (let i = 0; i < expectedCapabilityPillars.length; i++) {
+      const pillar = expectedCapabilityPillars[i];
       const article = articles.nth(i);
 
       // Verify index
-      await expect(article.getByText(`${area.index} //`)).toBeVisible();
+      await expect(article.getByText(`${pillar.index} //`)).toBeVisible();
+
+      // Verify category tag
+      await expect(article.getByText(pillar.tag)).toBeVisible();
 
       // Verify title as H3
       const h3 = article.getByRole('heading', { level: 3 });
-      await expect(h3).toContainText(area.title);
+      await expect(h3).toContainText(pillar.title);
 
-      // Verify all sub-capabilities
-      for (const cap of area.capabilities) {
+      // Verify description
+      await expect(article.getByText(pillar.description)).toBeVisible();
+
+      // Verify all core capabilities
+      for (const cap of pillar.capabilities) {
         await expect(article.getByText(cap, { exact: true })).toBeVisible();
       }
+    }
+  });
+
+  test('should verify strict content separation between Services offerings and Capabilities pillars', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const servicesSection = page.locator('#services');
+    const capabilitiesSection = page.locator('#capabilities');
+
+    // 1. Verify #services maintains the five official client deliverables
+    for (const service of serviceTitles) {
+      await expect(servicesSection.getByRole('heading', { level: 3, name: service })).toBeVisible();
+    }
+
+    // 2. Verify #capabilities does NOT reuse the five service names as capability headings
+    const capabilityHeadings = await capabilitiesSection.locator('article h3').allTextContents();
+    for (const service of serviceTitles) {
+      expect(capabilityHeadings).not.toContain(service);
+    }
+
+    // 3. Verify #capabilities headings match the five cross-disciplinary pillars
+    for (const pillar of expectedCapabilityPillars) {
+      await expect(capabilitiesSection.getByRole('heading', { level: 3, name: pillar.title })).toBeVisible();
     }
   });
 
@@ -135,7 +178,6 @@ test.describe('Stage 09 Capabilities Section Validation', () => {
     const heading = page.locator('#capabilities-heading');
     const headingBox = await heading.boundingBox();
     expect(headingBox).not.toBeNull();
-    // Header height is approx 64-74px; headingBox.y must be greater than header height to prevent overlap
     expect(headingBox!.y).toBeGreaterThan(60);
     expect(headingBox!.y).toBeLessThan(300);
   });
@@ -228,7 +270,7 @@ test.describe('Stage 09 Capabilities Section Validation', () => {
       fullPage: false,
     });
 
-    // 2. Interactive or hover state on featured card
+    // 2. Interactive or hover state on first card
     const firstCard = capabilitiesSection.locator('article').first();
     await firstCard.hover();
     await page.waitForTimeout(250);

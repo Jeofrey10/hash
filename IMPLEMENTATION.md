@@ -36,7 +36,7 @@
 | **Stage 06** | **Services Section Implementation** | Dedicated `ServicesSection` (`#services`) with 5 confirmed digital disciplines, balanced 6-column grid, SVG line icons, interactive focus states, React portal modal, and background isolation | **COMPLETED** |
 | **Stage 07** | **Global Animation Engineering & Motion System** | Centralized motion system (`motion.css`, `useScrollReveal`, `useReducedMotion`, `Reveal`, `TextReveal`, `ImageReveal`), micro-interactions polish, and comprehensive accessibility | **COMPLETED** |
 | **Stage 08** | **Approach Section Implementation** | Dedicated `ApproachSection` (`#approach`) communicating the 4-phase transformation process (Discover, Define, Design & Build, Refine & Grow) with connected progression rail | **COMPLETED** |
-| **Stage 09** | **Capabilities Section Implementation** | Dedicated `CapabilitiesSection` (`#capabilities`) with asymmetric editorial layout, 5 confirmed capability disciplines, and directional transition toward contact | **COMPLETED** |
+| **Stage 09** | **Capabilities Section Implementation & Content Refinement** | Dedicated `CapabilitiesSection` (`#capabilities`) with 5 cross-disciplinary capability pillars ("What We Bring to the Work") separated from Services deliverables | **COMPLETED** |
 | **Stage 10** | **Contact Section & Project Inquiry Experience** | Dedicated `ContactSection` (`#contact`) with accessible 4-step inquiry workflow, review & edit capabilities, robust validation, mockable typed submission adapter, and zero data loss on navigation or error | **COMPLETED** |
 | **Stage 11** | **Footer & Homepage Integration** | Global footer redesign, cross-section navigation cohesion, and homepage integration | *Pending* |
 
@@ -46,7 +46,7 @@
 - `#hero`: Anchors the primary full-bleed hero fold.
 - `#services`: Destination for services showcase (`ServicesSection`), featuring the 5 confirmed disciplines.
 - `#approach`: Destination for strategic methodology & narrative section (`ApproachSection`), featuring the 4-phase transformation process.
-- `#capabilities`: Destination for full-breadth capabilities showcase (`CapabilitiesSection`), featuring the 5 areas and 20 sub-disciplines.
+- `#capabilities`: Destination for cross-disciplinary expertise showcase (`CapabilitiesSection`), featuring the 5 foundational capability pillars and 20 core methods.
 - `#contact`: Destination for primary conversion CTA ("Start a Project") and navigation link, anchoring the multi-step project inquiry experience (`ContactSection`).
 
 ---

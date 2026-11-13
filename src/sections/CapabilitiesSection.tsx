@@ -7,83 +7,87 @@ export interface CapabilitiesSectionProps {
   readonly onCtaClick?: () => void;
 }
 
-export interface CapabilityArea {
+export interface CapabilityPillar {
   readonly index: string;
   readonly title: string;
-  readonly tag: string;
+  readonly category: string;
   readonly description: string;
   readonly capabilities: readonly string[];
   readonly featured?: boolean;
 }
 
-export const CAPABILITY_AREAS: readonly CapabilityArea[] = [
+export const CAPABILITY_PILLARS: readonly CapabilityPillar[] = [
   {
     index: '01',
-    title: 'Website Development',
-    tag: 'Core Platform // Engineering',
+    title: 'Digital Experience Strategy',
+    category: 'STRATEGY // EXPERIENCE ARCHITECTURE',
     description:
-      'High-performance digital flagships engineered for speed, responsive fidelity, and conversion.',
+      'We structure digital experiences around business objectives, user needs, and clear conversion paths.',
     capabilities: [
-      'High-performance websites',
-      'Responsive interface engineering',
-      'Landing pages and conversion-focused experiences',
-      'Frontend architecture',
+      'Information architecture',
+      'User journey planning',
+      'Conversion-focused experience design',
+      'Digital experience planning',
     ],
     featured: true,
   },
   {
     index: '02',
-    title: 'Application Development',
-    tag: 'Software Systems // Full-Stack',
+    title: 'Interface & Experience Design',
+    category: 'DESIGN // INTERACTION SYSTEMS',
     description:
-      'Robust web applications and intuitive interfaces designed to handle complex business logic.',
+      'We shape intuitive interfaces and consistent visual systems that make digital products easier to understand and use.',
     capabilities: [
-      'Web applications',
-      'Application interfaces',
+      'UI/UX design',
+      'Responsive interface systems',
+      'Visual consistency',
+      'Usability-focused design',
+    ],
+  },
+  {
+    index: '03',
+    title: 'Software & Platform Engineering',
+    category: 'ENGINEERING // SOFTWARE ARCHITECTURE',
+    description:
+      'We build structured digital platforms and software experiences with attention to architecture, functionality, and performance.',
+    capabilities: [
+      'Frontend architecture',
+      'Web application development',
       'Backend integration',
       'Scalable software architecture',
     ],
   },
   {
-    index: '03',
-    title: 'SEO Optimization',
-    tag: 'Search Performance // Technical',
-    description:
-      'Architectural search optimization and indexation designed for sustained organic visibility.',
-    capabilities: [
-      'Technical SEO',
-      'On-page optimization',
-      'Search visibility',
-      'Website structure and performance',
-    ],
-  },
-  {
     index: '04',
-    title: 'Meta Advertising',
-    tag: 'Paid Acquisition // Funnel Strategy',
+    title: 'Search & Acquisition Systems',
+    category: 'GROWTH // DISCOVERY & ACQUISITION',
     description:
-      'Data-backed acquisition campaigns structured to maximize conversion efficiency and return on spend.',
+      'We combine search optimization and paid acquisition practices to improve digital discoverability and support customer acquisition.',
     capabilities: [
+      'Technical and on-page SEO',
+      'Search visibility optimization',
       'Campaign architecture',
-      'Audience targeting',
-      'Paid acquisition strategy',
-      'Creative testing',
+      'Audience targeting and creative testing',
     ],
   },
   {
     index: '05',
-    title: 'Creative Design & Video',
-    tag: 'Brand Systems // Motion & UI',
+    title: 'Brand & Motion Systems',
+    category: 'CREATIVE // VISUAL COMMUNICATION',
     description:
-      'Distinctive visual identities, interface systems, and dynamic video assets that elevate brand perception.',
+      'We develop coherent visual identities and digital creative experiences that communicate a brand consistently across touchpoints.',
     capabilities: [
       'Brand identity and visual systems',
-      'UI/UX design',
       'Digital creative assets',
-      'Video content and motion design',
+      'Video storytelling',
+      'Motion design',
     ],
   },
 ] as const;
+
+// Backwards compatibility alias
+export type CapabilityArea = CapabilityPillar;
+export const CAPABILITY_AREAS = CAPABILITY_PILLARS;
 
 export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
   className,
@@ -132,7 +136,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
           SEC // 04.CAPABILITIES
         </div>
         <div className="hidden lg:block absolute top-10 right-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
-          AREAS // 05.SYSTEM
+          FRAMEWORK // 05.PILLARS
         </div>
       </div>
 
@@ -144,7 +148,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
             <div className="inline-flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]" />
               <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--brand-neon-green)]">
-                Core Capabilities
+                Cross-Disciplinary Capabilities
               </span>
             </div>
           </Reveal>
@@ -155,37 +159,41 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
             className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--brand-pure-white)] leading-[1.12]"
             delay={80}
           >
-            Specialized capabilities for connected digital execution.
+            The thinking and craft behind every digital experience.
           </TextReveal>
 
           <Reveal variant="fade-up" delay={160}>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed font-normal">
-              We engineer high-performance web platforms, scalable applications, and data-backed growth systems that help businesses get discovered, communicate their value, and convert visitors into customers.
+              From experience strategy and interface design to engineering, acquisition, and creative production, our capabilities connect the disciplines needed to build purposeful digital experiences.
             </p>
           </Reveal>
         </div>
 
-        {/* 3. Editorial Asymmetric Capability Grid */}
+        {/* 3. Interconnected Architectural Capability Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          {CAPABILITY_AREAS.map((area, index) => {
-            // Asymmetric layout: Row 1 has featured 7-col + 5-col; Row 2 has three 4-col modules
+          {CAPABILITY_PILLARS.map((pillar, index) => {
+            // Row 1: Strategy (6-col) + Interface Design (6-col)
+            // Row 2: Software Engineering (4-col) + Search/Acquisition (4-col) + Brand/Motion (4-col)
+            // Tablet: 2 cols with 5th element spanning 2 columns
             const colSpanClass =
               index === 0
-                ? 'md:col-span-2 lg:col-span-7'
+                ? 'md:col-span-1 lg:col-span-6'
                 : index === 1
-                ? 'md:col-span-2 lg:col-span-5'
+                ? 'md:col-span-1 lg:col-span-6'
+                : index === 4
+                ? 'md:col-span-2 lg:col-span-4'
                 : 'md:col-span-1 lg:col-span-4';
 
             return (
               <Reveal
-                key={area.index}
+                key={pillar.index}
                 variant="fade-up"
                 staggerIndex={index + 1}
                 className={cn('h-full flex flex-col', colSpanClass)}
               >
                 <article
                   tabIndex={0}
-                  aria-label={`${area.index}: ${area.title}`}
+                  aria-label={`${pillar.index}: ${pillar.title}`}
                   className={cn(
                     'relative flex flex-col justify-between h-full p-6 sm:p-7 lg:p-8 rounded-2xl',
                     'bg-white/[0.02] border border-white/[0.08]',
@@ -195,19 +203,19 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-obsidian)]',
                   )}
                 >
-                  {/* Top Header */}
+                  {/* Top Header with Technical Category Marker */}
                   <div className="flex items-center justify-between pb-5 border-b border-white/[0.06] mb-5">
                     <div className="flex items-center gap-2.5">
                       <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--brand-neon-green)]">
-                        {area.index} //
+                        {pillar.index} //
                       </span>
                       <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-white/50 group-hover:text-white/80 group-hover:border-white/20 transition-colors">
-                        {area.tag}
+                        {pillar.category}
                       </span>
                     </div>
-                    {area.featured && (
+                    {pillar.featured && (
                       <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-neon-green)] px-2 py-0.5 rounded bg-[var(--brand-neon-green)]/10 border border-[var(--brand-neon-green)]/20">
-                        Primary System
+                        Foundation Pillar
                       </span>
                     )}
                   </div>
@@ -215,26 +223,26 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
                   {/* Title & Description */}
                   <div className="space-y-3 mb-6">
                     <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-[var(--brand-pure-white)] group-hover:text-white transition-colors duration-200">
-                      {area.title}
+                      {pillar.title}
                     </h3>
                     <p className="text-sm text-white/70 leading-relaxed font-normal">
-                      {area.description}
+                      {pillar.description}
                     </p>
                   </div>
 
-                  {/* Specific Capabilities List */}
+                  {/* Specific Core Capabilities List */}
                   <div className="pt-5 border-t border-white/[0.06] mt-auto">
                     <div className="font-mono text-[10px] uppercase tracking-widest text-white/40 mb-3">
-                      Core Areas of Expertise
+                      Core Expertise & Methods
                     </div>
                     <ul className="space-y-2.5" role="list">
-                      {area.capabilities.map((capability, cIdx) => (
+                      {pillar.capabilities.map((capability, cIdx) => (
                         <li
                           key={cIdx}
                           className="flex items-start gap-2.5 text-xs sm:text-sm text-white/75 group-hover:text-white/90 transition-colors"
                         >
                           <span
-                            className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]/70 mt-1.5 flex-shrink-0"
+                            className="w-1.5 h-1.5 rounded-sm bg-[var(--brand-neon-green)]/80 mt-1.5 flex-shrink-0"
                             aria-hidden="true"
                           />
                           <span>{capability}</span>
@@ -253,7 +261,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
           <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 group hover:border-white/[0.14] transition-colors">
             <div className="space-y-1.5 max-w-2xl">
               <div className="font-mono text-xs text-[var(--brand-neon-green)] uppercase tracking-wider">
-                CONNECTED SYSTEM // 05 DISCIPLINES
+                CONNECTED SYSTEM // 05 PILLARS
               </div>
               <p className="text-sm sm:text-base text-white/80 leading-relaxed">
                 Every discipline is engineered to operate as one unified delivery system—eliminating fragmented handoffs and ensuring brand coherence from initial strategy through execution.

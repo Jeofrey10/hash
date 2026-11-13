@@ -37,3 +37,5 @@ export const COMPANY_IDENTITY: CompanyIdentity = {
   ],
 } as const;
 
+export * from './inquiry';
+

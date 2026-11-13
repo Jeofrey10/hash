@@ -36,6 +36,13 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 - No API keys, database credentials, or secret tokens may ever be stored in client-side code or committed to version control.
 - Any future environment configurations must use `.env.local` (ignored in `.gitignore`).
 
+### 2.6 Form Intake & Submission Security (Stage 10)
+- **Input Sanitization & Trimming:** All user input fields in `src/sections/ContactSection.tsx` and `src/lib/inquirySubmission.ts` are strictly stripped of dangerous characters, whitespace-trimmed, and validated against max length bounds before network serialization.
+- **Email Validation:** RFC 5322 regex checks are performed to ensure syntactic validity prior to payload transmission.
+- **No Secret Exposure in Frontend:** The submission adapter interacts with the endpoint (`VITE_INQUIRY_API_ENDPOINT` or `/api/inquiry`) without exposing backend service-role keys or database credentials in client bundles.
+- **Privacy Assurance:** The form collects only project-relevant parameters (services, description, preliminary goals, contact info) and explicitly refrains from harvesting marketing data, unnecessary third-party cookies, or sensitive business secrets.
+- **No False Success Simulation:** Production code strictly gates the success confirmation state behind a verified HTTP 2xx server response with a valid inquiry ID.
+
 ---
 
 ## 3. Vulnerability Reporting

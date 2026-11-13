@@ -360,7 +360,40 @@
 
 ---
 
+## Stage 10: Contact Section & Project Inquiry Experience Implementation
+
+- [x] **Section Architecture & Positioning (`ContactSection.tsx`)**
+  - [x] Positioned directly after Capabilities in `App.tsx` with id `contact` and landmark `aria-labelledby="contact-heading"`.
+  - [x] Applied `scroll-mt-24 lg:scroll-mt-28` to guarantee clean anchor alignment below floating navigation without header overlap.
+  - [x] Added technical boundary markers (`SEC // 05.CONTACT`, `FLOW // 04.STEPS`).
+- [x] **Four-Step Multi-Step Inquiry Form Experience**
+  - [x] `Step 01 — Project Type`: Multi-select service chips across all 5 core disciplines + exclusive 'Not sure yet' toggle option.
+  - [x] `Step 02 — Project Details`: Project or business name, short project description (minimum 10 characters), and selectable main project goal chips.
+  - [x] `Step 03 — Scope & Timeline`: Optional estimated budget range (INR tiers) and preliminary target timeline preferences.
+  - [x] `Step 04 — Your Details`: Full name, RFC 5322-compliant email validation, optional international phone number, and optional additional project message with technical privacy reassurance.
+  - [x] `Review Step`: Formatted summary of all entered parameters with accessible edit controls returning directly to respective steps while strictly preserving all entered data.
+  - [x] `Submission & Feedback Handling`: Accessible loading indicator, retry banner on network error that preserves all inputs, confirmed success screen rendering inquiry reference ID, and reset trigger.
+- [x] **Typed Submission Adapter (`src/lib/inquirySubmission.ts`)**
+  - [x] Strictly typed adapter adhering to `InquiryFormData` and `InquirySubmissionResult`.
+  - [x] Sanitizes string inputs, trims extraneous whitespace, enforces maximum character limits, and verifies email format.
+  - [x] Configured to transmit to `VITE_INQUIRY_API_ENDPOINT` or `/api/inquiry`.
+  - [x] Explicitly avoids simulated success in production code; only verified server responses trigger the success screen.
+- [x] **Visual Design & Restrained Motion**
+  - [x] Styled in Obsidian Black (`#050505`), Graphite surfaces (`#171A18`), Pure White (`#FFFFFF`), and Hash Neon Green (`#35E85B`) accents.
+  - [x] Integrated `Reveal` and `TextReveal` from the Stage 07 motion system with full reduced-motion support.
+  - [x] Live ARIA region progress announcement (`aria-live="polite"`, `role="progressbar"`).
+- [x] **Playwright E2E Verification (`contact.spec.ts`)**
+  - [x] Verified DOM ordering after Capabilities, section ID, and heading hierarchy.
+  - [x] Validated full 4-step workflow, step validation rules, answer persistence across step transitions, and review step edits.
+  - [x] Validated mock network error handling (500), retry button behavior, and confirmed 200 OK success state with inquiry ID.
+  - [x] Validated navigation scrolling from header to `#contact` with correct clearance.
+  - [x] Validated zero horizontal overflow across 5 standard viewports (360x800, 390x844, 768x1024, 1280x800, 1440x900).
+  - [x] Validated zero browser console errors throughout the entire inquiry interaction.
+  - [x] Captured all 8 required visual screenshots in `tests/e2e/screenshots/stage-10/`.
+  - [x] Contact test suite passes 14/14 tests across Chromium desktop and mobile.
+
+---
+
 ## Upcoming Stages
 
-- [ ] **Stage 10 — Interactive Contact & Project Initiation Section (`#contact`)**
-- [ ] **Stage 11 — Final QA, Cross-Browser Audit & Deployment Readiness**
+- [ ] **Stage 11 — Footer & Homepage Integration**

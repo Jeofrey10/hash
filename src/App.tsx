@@ -4,6 +4,7 @@ import { HeroSection } from '@/sections/HeroSection';
 import { ServicesSection } from '@/sections/ServicesSection';
 import { ApproachSection } from '@/sections/ApproachSection';
 import { CapabilitiesSection } from '@/sections/CapabilitiesSection';
+import { ContactSection } from '@/sections/ContactSection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <ServicesSection onCtaClick={(serviceTitle) => handleOpenConsultation(serviceTitle)} />
         <ApproachSection onCtaClick={() => handleOpenConsultation()} />
         <CapabilitiesSection onCtaClick={() => handleOpenConsultation()} />
+        <ContactSection />
       </SiteLayout>
 
       {/* Accessible Project Consultation Inbound Modal */}

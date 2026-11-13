@@ -12,6 +12,19 @@ export interface SignalEqualiserProps {
  * multi-harmonic wave oscillations, outward ripple from central core,
  * and integer-aligned square pixel rendering.
  */
+// Pre-allocated RGBA color cache to eliminate runtime string allocations and garbage collection pauses
+const COLOR_CACHE = new Map<string, string>();
+function getCachedRgba(r: number, g: number, b: number, a: number): string {
+  const aBucket = Math.round(a * 20) / 20; // 20 discrete alpha buckets (0.05 steps)
+  const key = `${r},${g},${b},${aBucket}`;
+  let color = COLOR_CACHE.get(key);
+  if (!color) {
+    color = `rgba(${r}, ${g}, ${b}, ${aBucket})`;
+    COLOR_CACHE.set(key, color);
+  }
+  return color;
+}
+
 export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
   className,
   pointerX = 0,
@@ -36,20 +49,34 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
     let isVisible = true;
     let isTabVisible = true;
     let lastRenderTime = 0;
+    let isScrolling = false;
+    let scrollTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
     // Check prefers-reduced-motion
     if (typeof window !== 'undefined' && window.matchMedia) {
       isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
 
+    const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
+
+    // Mobile scroll listener: when user actively scrolls, throttle canvas to free up main thread
+    const handleScroll = () => {
+      isScrolling = true;
+      if (scrollTimeoutId) clearTimeout(scrollTimeoutId);
+      scrollTimeoutId = setTimeout(() => {
+        isScrolling = false;
+      }, 150);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     let currentWidth = 0;
     let currentHeight = 0;
     let currentDpr = 1;
 
     const resize = () => {
-      // Cap DPR at 1.5 on mobile to save GPU cycles and battery, max 2 on desktop
-      const isMobileDevice = window.innerWidth < 768;
-      currentDpr = Math.min(window.devicePixelRatio || 1, isMobileDevice ? 1.5 : 2);
+      // Cap DPR at 1.25 on mobile to save GPU cycles and battery, max 2 on desktop
+      const isMobile = window.innerWidth < 768;
+      currentDpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 2);
       currentWidth = canvas.parentElement?.clientWidth || window.innerWidth;
       currentHeight = canvas.parentElement?.clientHeight || 600;
 
@@ -104,13 +131,14 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
     const renderFrame = (now: number) => {
       animationFrameId = null;
 
-      // Stop loop if hero is off-screen or tab is hidden
-      if (!isVisible || !isTabVisible) {
+      // Stop loop if hero is off-screen, tab is hidden, or scrolled past
+      if (!isVisible || !isTabVisible || window.scrollY > currentHeight + 80) {
         return;
       }
 
-      // Throttle rendering to ~60fps max (frame delta >= 15ms)
-      if (now - lastRenderTime < 15) {
+      // Frame interval throttle: 30fps during mobile scrolling, ~60fps normally
+      const minInterval = isMobileDevice && isScrolling ? 32 : 16;
+      if (now - lastRenderTime < minInterval) {
         if (!isReducedMotion) {
           animationFrameId = requestAnimationFrame(renderFrame);
         }
@@ -127,7 +155,7 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
 
       // Equaliser Grid Geometry
       const dotSize = width < 640 ? 3 : 4;
-      const gap = width < 640 ? 4 : 5;
+      const gap = width < 640 ? 5 : 5;
       const colStep = dotSize + gap;
       const numCols = Math.floor(width / colStep);
       const startX = Math.floor((width - numCols * colStep) / 2);
@@ -173,7 +201,7 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
           );
 
           if (heightRatio > 0.6) {
-            const peakRatio = (heightRatio - 0.6) * 2.5; // (x - 0.6) / 0.4
+            const peakRatio = (heightRatio - 0.6) * 2.5;
             if (isLight) {
               rVal = Math.floor(22 + 53 * peakRatio);
               gVal = Math.floor(139 - 54 * peakRatio);
@@ -185,7 +213,7 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
             }
           }
 
-          ctx.fillStyle = `rgba(${rVal}, ${gVal}, ${bVal}, ${alpha.toFixed(2)})`;
+          ctx.fillStyle = getCachedRgba(rVal, gVal, bVal, alpha);
           ctx.fillRect(Math.floor(x), Math.floor(y), dotSize, dotSize);
         }
       }
@@ -199,6 +227,8 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
 
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      if (scrollTimeoutId) clearTimeout(scrollTimeoutId);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', resize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (intersectionObserver) intersectionObserver.disconnect();

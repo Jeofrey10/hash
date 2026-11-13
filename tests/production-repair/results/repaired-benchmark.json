@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-11-13T22:36:42.089Z",
+  "standardMobile": {
+    "totalFrames": 507,
+    "avgFps": 60,
+    "avgDelta": "16.64",
+    "over16Pct": "29.4%",
+    "over33Pct": "0.0%",
+    "over50Pct": "0.0%",
+    "longestFrameMs": "16.80"
+  },
+  "throttledMobile": {
+    "totalFrames": 529,
+    "avgFps": 55,
+    "avgDelta": "18.11",
+    "over16Pct": "36.3%",
+    "over33Pct": "7.2%",
+    "longestFrameMs": "50.00"
+  },
+  "heapDeltaKB": "0.00"
+}

@@ -152,8 +152,8 @@ export const Preloader: React.FC<PreloaderProps> = ({
         {/* Technical progress bar */}
         <div className="mt-8 w-48 sm:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
           <div
-            className="h-full bg-[var(--brand-neon-green,#35E85B)] rounded-full transition-all duration-150 ease-out shadow-[0_0_8px_var(--brand-neon-green,#35E85B)]"
-            style={{ width: `${Math.round(progress)}%` }}
+            className="h-full bg-[var(--brand-neon-green,#35E85B)] rounded-full transition-all duration-150 ease-out shadow-[0_0_8px_var(--brand-neon-green,#35E85B)] min-w-[4px]"
+            style={{ width: `${Math.max(2, Math.round(progress))}%` }}
             role="progressbar"
             aria-valuenow={Math.round(progress)}
             aria-valuemin={0}

@@ -91,7 +91,7 @@ export const HorizontalSlatReveal: React.FC<HorizontalSlatRevealProps> = ({
                   'absolute left-0 right-0',
                   slatBg,
                   'border-b border-[var(--border-subtle)]/40',
-                  'transition-all will-change-transform'
+                  'transition-[transform,opacity]'
                 )}
                 style={{
                   top: `${slatTop}%`,

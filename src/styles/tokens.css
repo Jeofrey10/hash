@@ -97,6 +97,28 @@
   --container-max-width: 1440px;
 }
 
+/* Mobile Safari & High-DPI Performance Tuning */
+@media (max-width: 768px) {
+  :root,
+  :root[data-theme="dark"] {
+    --glass-blur: 0px;
+    --glass-blur-sm: 0px;
+    --glass-blur-lg: 0px;
+    --glass-bg: rgba(23, 26, 24, 0.94);
+    --glass-bg-floating: rgba(23, 26, 24, 0.98);
+    --panel-bg: rgba(23, 26, 24, 0.92);
+  }
+
+  :root[data-theme="light"] {
+    --glass-blur: 0px;
+    --glass-blur-sm: 0px;
+    --glass-blur-lg: 0px;
+    --glass-bg: rgba(255, 255, 255, 0.96);
+    --glass-bg-floating: rgba(255, 255, 255, 0.98);
+    --panel-bg: #FFFFFF;
+  }
+}
+
 :root[data-theme="light"] {
   /* Brand Primitives in Light Context */
   --brand-obsidian: #F5F6F2;

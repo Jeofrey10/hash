@@ -274,7 +274,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
         {/* 3. Multi-Step Inquiry Form Shell */}
         <Reveal variant="card" delay={180} duration={750}>
-          <div className="max-w-4xl mx-auto rounded-3xl bg-[var(--panel-bg)] border border-[var(--panel-border)] shadow-[var(--shadow-card)] p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-md">
+          <div className="max-w-4xl mx-auto rounded-3xl bg-[var(--panel-bg)] border border-[var(--panel-border)] shadow-[var(--shadow-card)] p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-none sm:backdrop-blur-md">
             {/* Top Step Progress Bar (Shown during steps 1-4 & review) */}
             {step !== 'success' && (
               <div className="mb-8 sm:mb-10 pb-6 border-b border-[var(--divider-color)]">

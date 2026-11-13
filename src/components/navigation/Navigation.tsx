@@ -52,7 +52,7 @@ export const Navigation: React.FC<NavigationProps> = ({
       <header
         role="banner"
         className={cn(
-          'fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-out',
+          'fixed top-0 left-0 right-0 z-[100] transition-[background-color,border-color,box-shadow] duration-300 ease-out',
           'px-4 sm:px-8 lg:px-12 pt-4 pointer-events-none',
           className,
         )}
@@ -63,7 +63,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             aria-label="Main Navigation"
             className={cn(
               'pointer-events-auto flex items-center justify-between w-full lg:w-fit lg:mx-auto gap-4 sm:gap-8',
-              'px-4 sm:px-6 h-[56px] rounded-2xl transition-all duration-300 ease-out',
+              'px-4 sm:px-6 h-[56px] rounded-2xl transition-[background-color,border-color,box-shadow] duration-300 ease-out',
               isScrolled
                 ? 'bg-[var(--glass-bg-floating)] backdrop-blur-md border border-[var(--border-medium)] shadow-[var(--shadow-floating)]'
                 : 'bg-[var(--glass-bg)] backdrop-blur-sm border border-[var(--border-subtle)] shadow-[var(--shadow-card)]',

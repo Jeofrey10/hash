@@ -61,17 +61,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       ref={ref}
       id="hero"
       aria-label="Hero"
+      data-hero-visible={isVisible ? 'true' : 'false'}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        'relative w-full min-h-[calc(100vh-74px)] flex flex-col items-center justify-start overflow-hidden',
+        'relative w-full min-h-[calc(100vh-74px)] sm:min-h-[calc(100dvh-74px)] flex flex-col items-center justify-start overflow-hidden',
         'px-5 sm:px-8 lg:px-12 pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28',
         'bg-[var(--bg-primary)] transition-colors duration-250',
         className,
       )}
     >
       {/* 1. Cinematic Noise Texture Layer */}
-      <CinematicNoise />
+      <CinematicNoise className="hero-anim-pauseable" />
 
       {/* 2. Layered Atmospheric Horizon & Green Signal Illumination */}
       <div
@@ -202,7 +203,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
 
             {/* Central Geometric Signal Core */}
             <div className="relative z-10">
-              <SignalCore pointerOffset={pointerOffset} />
+              <SignalCore className="hero-anim-pauseable" pointerOffset={pointerOffset} />
             </div>
 
             {/* Right Flanking Telemetry Panel (Creative) */}

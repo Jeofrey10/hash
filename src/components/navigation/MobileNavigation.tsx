@@ -93,6 +93,12 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Navigation Menu"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+          triggerRef?.current?.focus();
+        }
+      }}
       className={cn(
         'fixed inset-0 z-[150] lg:hidden',
         'bg-[var(--bg-primary)]/96 backdrop-blur-2xl',

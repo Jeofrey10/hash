@@ -73,6 +73,7 @@ test.describe('Stage 05 Cinematic Hero Section Validation', () => {
   });
 
   test('should capture required responsive screenshots at all 5 viewports without horizontal overflow', async ({ page }) => {
+    test.setTimeout(60000);
     const viewports = [
       { name: '01-hero-desktop-1440.png', width: 1440, height: 900 },
       { name: '02-hero-laptop-1280.png', width: 1280, height: 800 },

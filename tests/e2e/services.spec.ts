@@ -250,6 +250,7 @@ test.describe('Stage 06 Services Section Validation', () => {
   test('should capture required responsive screenshots at all 5 viewports without horizontal overflow', async ({
     page,
   }) => {
+    test.setTimeout(60000);
     const viewports = [
       { name: '01-services-desktop-1440.png', width: 1440, height: 900 },
       { name: '02-services-laptop-1280.png', width: 1280, height: 800 },

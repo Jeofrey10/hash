@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { HashSymbol } from '@/components/hero/HashSymbol';
 
 export interface SignalCoreProps {
   readonly className?: string;
@@ -103,64 +104,17 @@ export const SignalCore: React.FC<SignalCoreProps> = ({
 
           {/* Central Illuminated Hash Digital Glyph Matrix */}
           <div className="relative z-10 flex flex-col items-center justify-center">
-            {/* Geometric Precision Hash Emblem */}
-            <svg
-              className="w-12 h-12 sm:w-16 sm:h-16 text-[var(--brand-neon-green)] drop-shadow-[0_0_16px_rgba(53,232,91,0.6)]"
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Horizontal Bars */}
-              <line
-                x1="8"
-                y1="18"
-                x2="40"
-                y2="18"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                className="opacity-90"
-              />
-              <line
-                x1="8"
-                y1="30"
-                x2="40"
-                y2="30"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                className="opacity-90"
-              />
-              {/* Slanted Vertical Bars */}
-              <line
-                x1="20"
-                y1="8"
-                x2="14"
-                y2="40"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                className="opacity-90"
-              />
-              <line
-                x1="32"
-                y1="8"
-                x2="26"
-                y2="40"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                className="opacity-90"
-              />
-              {/* Pulsing Intersection Quantum Points */}
-              <circle cx="18.5" cy="18" r="2" fill="#FFFFFF" />
-              <circle cx="28.5" cy="18" r="2" fill="#FFFFFF" />
-              <circle cx="15.5" cy="30" r="2" fill="#FFFFFF" />
-              <circle cx="25.5" cy="30" r="2" fill="#FFFFFF" />
-            </svg>
+            {/* Official HASH.DEVS Brand Symbol */}
+            <HashSymbol
+              className="w-14 h-11 sm:w-18 sm:h-14 lg:w-22 lg:h-17 drop-shadow-[0_0_16px_rgba(53,232,91,0.45)] mb-1"
+              aria-label="HASH.DEVS brand symbol"
+            />
 
             {/* Core Status Monospace Tag */}
-            <span className="font-mono text-[9px] uppercase tracking-widest text-white/50 mt-1">
+            <span
+              data-testid="hd-core-label"
+              className="font-mono text-[9px] uppercase tracking-widest text-white/50"
+            >
               HD.CORE.01
             </span>
           </div>

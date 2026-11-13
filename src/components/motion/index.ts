@@ -4,4 +4,5 @@ export { TextReveal } from './TextReveal';
 export type { TextRevealProps } from './TextReveal';
 export { ImageReveal } from './ImageReveal';
 export type { ImageRevealProps } from './ImageReveal';
-
+export { HorizontalSlatReveal } from './HorizontalSlatReveal';
+export type { HorizontalSlatRevealProps } from './HorizontalSlatReveal';

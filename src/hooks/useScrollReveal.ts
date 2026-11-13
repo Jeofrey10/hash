@@ -5,21 +5,20 @@ export interface ScrollRevealOptions {
   threshold?: number | number[];
   rootMargin?: string;
   once?: boolean;
-  fallbackTimeout?: number;
 }
 
 /**
- * Hook to trigger visibility state when an element scrolls into the viewport.
- * Automatically respects reduced-motion preferences and provides fallback handling.
+ * Hook to trigger bidirectional visibility state when an element scrolls into/out of the viewport.
+ * Automatically reverses when scrolling away and replays when re-entering.
+ * Fully respects reduced-motion preferences and preserves keyboard accessibility.
  */
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   options: ScrollRevealOptions = {}
 ) {
   const {
-    threshold = 0.15,
-    rootMargin = '0px 0px -50px 0px',
-    once = true,
-    fallbackTimeout = 2000,
+    threshold = 0.1,
+    rootMargin = '0px 0px -40px 0px',
+    once = false,
   } = options;
 
   const prefersReducedMotion = useReducedMotion();
@@ -42,6 +41,16 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     const element = elementRef.current;
     if (!element) {
       return;
+    }
+
+    // Check immediate visibility on mount (e.g. Hero section or hash navigation)
+    const rect = element.getBoundingClientRect();
+    const isCurrentlyInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isCurrentlyInViewport) {
+      setIsVisible(true);
+      if (once) {
+        return;
+      }
     }
 
     let observer: IntersectionObserver | null = new IntersectionObserver(
@@ -67,20 +76,13 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 
     observer.observe(element);
 
-    // Guaranteed fallback: never leave content permanently hidden
-    const timeoutId = setTimeout(() => {
-      setIsVisible(true);
-    }, fallbackTimeout);
-
     return () => {
-      clearTimeout(timeoutId);
       if (observer) {
         observer.unobserve(element);
         observer.disconnect();
       }
     };
-  }, [threshold, rootMargin, once, prefersReducedMotion, fallbackTimeout]);
+  }, [threshold, rootMargin, once, prefersReducedMotion]);
 
   return { ref: elementRef, isVisible };
 }
-

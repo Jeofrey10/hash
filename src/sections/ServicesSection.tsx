@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServiceCard } from '@/components/ui/ServiceCard';
-import { Reveal, TextReveal } from '@/components/motion';
+import { Reveal, HorizontalSlatReveal } from '@/components/motion';
 import { cn } from '@/lib/utils';
 import type { ServiceOffering } from '@/types';
 
@@ -232,14 +232,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
             </div>
           </Reveal>
 
-          <TextReveal
+          <HorizontalSlatReveal
             as="h2"
             id="services-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--text-primary)] leading-[1.12]"
-            delay={80}
+            delay={60}
+            slatCount={6}
           >
             Integrated capabilities for connected digital growth.
-          </TextReveal>
+          </HorizontalSlatReveal>
 
           <Reveal variant="fade-up" delay={160}>
             <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal">
@@ -262,8 +263,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
             return (
               <Reveal
                 key={service.index}
-                variant="fade-up"
+                variant="card"
                 staggerIndex={index + 1}
+                duration={650}
                 className={cn('h-full flex flex-col', colSpanClass)}
               >
                 <ServiceCard

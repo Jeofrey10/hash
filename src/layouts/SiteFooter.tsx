@@ -1,6 +1,7 @@
 import React from 'react';
 import { FooterLinkGroup, type FooterLink } from '@/components/ui/FooterLinkGroup';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { Reveal } from '@/components/motion';
 import { cn } from '@/lib/utils';
 
 export interface SiteFooterProps {
@@ -37,7 +38,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Brand Column */}
-          <div className="lg:col-span-6 space-y-4">
+          <Reveal variant="fade-up" delay={50} className="lg:col-span-6 space-y-4">
             <a
               href="/"
               className="inline-block font-semibold text-2xl tracking-tight text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
@@ -53,31 +54,33 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
                 label="Digital Experience Studio"
               />
             </div>
-          </div>
+          </Reveal>
 
           {/* Link Groups */}
-          <div className="lg:col-span-3">
+          <Reveal variant="fade-up" delay={140} className="lg:col-span-3">
             <FooterLinkGroup
               title="Digital Services"
               links={SERVICES_LINKS}
             />
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-3">
+          <Reveal variant="fade-up" delay={220} className="lg:col-span-3">
             <FooterLinkGroup
               title="Company & Contact"
               links={COMPANY_LINKS}
             />
-          </div>
+          </Reveal>
         </div>
 
         {/* Bottom Bar: Copyright & Tagline */}
-        <div className="pt-8 border-t border-[var(--divider-color)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-muted)]">
-          <p>© {currentYear} HASH.DEVS. All rights reserved.</p>
-          <p className="tracking-widest uppercase">
-            Build with purpose. Grow with clarity.
-          </p>
-        </div>
+        <Reveal variant="fade-in" delay={280}>
+          <div className="pt-8 border-t border-[var(--divider-color)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-muted)]">
+            <p>© {currentYear} HASH.DEVS. All rights reserved.</p>
+            <p className="tracking-widest uppercase">
+              Build with purpose. Grow with clarity.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </footer>
   );

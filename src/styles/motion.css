@@ -11,6 +11,19 @@
   --motion-duration-deliberate: 500ms;
   --motion-duration-cinematic: 800ms;
 
+  /* Bidirectional Reveal Timing Tokens */
+  --motion-duration-small-text: 500ms;
+  --motion-duration-heading: 750ms;
+  --motion-duration-card: 650ms;
+  --motion-duration-slat: 900ms;
+  --motion-duration-image: 800ms;
+  --motion-duration-footer: 750ms;
+
+  /* Stagger Tokens */
+  --motion-stagger-text: 90ms;
+  --motion-stagger-card: 110ms;
+  --motion-stagger-metadata: 70ms;
+
   /* Easing Curves */
   --motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --motion-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Reveal, TextReveal } from '@/components/motion';
+import { Reveal, HorizontalSlatReveal } from '@/components/motion';
 import { cn } from '@/lib/utils';
 
 export interface ApproachSectionProps {
@@ -111,14 +111,15 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ className }) =
             </div>
           </Reveal>
 
-          <TextReveal
+          <HorizontalSlatReveal
             as="h2"
             id="approach-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--text-primary)] leading-[1.12]"
-            delay={80}
+            delay={60}
+            slatCount={6}
           >
             A disciplined path from requirements to execution.
-          </TextReveal>
+          </HorizontalSlatReveal>
 
           <Reveal variant="fade-up" delay={160}>
             <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal">
@@ -143,8 +144,9 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ className }) =
               return (
                 <Reveal
                   key={phase.number}
-                  variant="fade-up"
+                  variant="card"
                   staggerIndex={index + 1}
+                  duration={650}
                   className="h-full flex flex-col"
                 >
                   <article

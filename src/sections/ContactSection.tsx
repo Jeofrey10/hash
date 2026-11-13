@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { SecondaryButton } from '@/components/ui/SecondaryButton';
-import { Reveal, TextReveal } from '@/components/motion';
+import { Reveal, HorizontalSlatReveal } from '@/components/motion';
 import { submitProjectInquiry } from '@/lib/inquirySubmission';
 import { cn } from '@/lib/utils';
 import type { InquiryFormData, InquiryFormErrors } from '@/types';
@@ -67,11 +67,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
   const [inquiryId, setInquiryId] = useState<string | null>(null);
 
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
+  const isFirstRender = useRef(true);
 
-  // Focus step heading on step change for accessibility
+  // Focus step heading on step change for accessibility (skip on initial page load to prevent scrolling down)
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (stepHeadingRef.current) {
-      stepHeadingRef.current.focus();
+      stepHeadingRef.current.focus({ preventScroll: true });
     }
   }, [step]);
 
@@ -250,14 +255,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
             </div>
           </Reveal>
 
-          <TextReveal
+          <HorizontalSlatReveal
             as="h2"
             id="contact-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--text-primary)] leading-[1.12]"
-            delay={80}
+            delay={60}
+            slatCount={6}
           >
             Have a project in mind? Let's build something purposeful.
-          </TextReveal>
+          </HorizontalSlatReveal>
 
           <Reveal variant="fade-up" delay={160}>
             <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal">
@@ -267,7 +273,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
         </div>
 
         {/* 3. Multi-Step Inquiry Form Shell */}
-        <Reveal variant="fade-up" delay={200}>
+        <Reveal variant="card" delay={180} duration={750}>
           <div className="max-w-4xl mx-auto rounded-3xl bg-[var(--panel-bg)] border border-[var(--panel-border)] shadow-[var(--shadow-card)] p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-md">
             {/* Top Step Progress Bar (Shown during steps 1-4 & review) */}
             {step !== 'success' && (

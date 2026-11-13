@@ -11,6 +11,7 @@ export interface ImageRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   readonly overlay?: boolean;
   readonly threshold?: number;
   readonly rootMargin?: string;
+  readonly once?: boolean;
 }
 
 export const ImageReveal: React.FC<ImageRevealProps> = ({
@@ -19,8 +20,9 @@ export const ImageReveal: React.FC<ImageRevealProps> = ({
   aspectRatio = '16/9',
   priority = false,
   overlay = true,
-  threshold = 0.15,
-  rootMargin = '0px 0px -50px 0px',
+  threshold = 0.1,
+  rootMargin = '0px 0px -40px 0px',
+  once = false,
   className,
   ...props
 }) => {
@@ -29,7 +31,7 @@ export const ImageReveal: React.FC<ImageRevealProps> = ({
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>({
     threshold,
     rootMargin,
-    once: true,
+    once,
   });
 
   const aspectClasses = {
@@ -82,4 +84,3 @@ export const ImageReveal: React.FC<ImageRevealProps> = ({
     </div>
   );
 };
-

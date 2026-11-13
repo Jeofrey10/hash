@@ -17,10 +17,10 @@ export const TextReveal: React.FC<TextRevealProps> = ({
   children,
   as: Component = 'h2',
   delay = 0,
-  duration = 700,
-  threshold = 0.15,
-  rootMargin = '0px 0px -50px 0px',
-  once = true,
+  duration = 750,
+  threshold = 0.1,
+  rootMargin = '0px 0px -40px 0px',
+  once = false,
   className,
   style,
   ...props
@@ -39,7 +39,7 @@ export const TextReveal: React.FC<TextRevealProps> = ({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       aria-label={accessibleLabel}
-      className={cn('block', className)}
+      className={cn('block focus-within:opacity-100', className)}
       style={style}
       {...props}
     >

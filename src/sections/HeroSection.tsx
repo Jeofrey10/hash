@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { SecondaryButton } from '@/components/ui/SecondaryButton';
 import { StatusBadge } from '@/components/ui/StatusBadge';
@@ -20,6 +21,11 @@ export interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick }) => {
   const [pointerOffset, setPointerOffset] = useState({ x: 0, y: 0 });
+  const { ref, isVisible } = useScrollReveal<HTMLElement>({
+    threshold: 0.05,
+    rootMargin: '0px 0px 0px 0px',
+    once: false,
+  });
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     // Only apply on fine-pointer (desktop) devices
@@ -40,6 +46,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
 
   return (
     <section
+      ref={ref}
       id="hero"
       aria-label="Hero"
       onMouseMove={handleMouseMove}
@@ -101,7 +108,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       <SignalEqualiser pointerX={pointerOffset.x} />
 
       {/* 4. Main Centered Editorial Composition */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center">
+      <div
+        className={cn(
+          'relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center',
+          'transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]',
+          isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-[0.98]'
+        )}
+      >
         {/* Entrance 1: Overline Live Status Badge (Centered) */}
         <div className="animate-hero-1 mb-5 sm:mb-6">
           <StatusBadge

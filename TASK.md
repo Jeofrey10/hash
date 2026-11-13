@@ -174,7 +174,35 @@
 
 ---
 
-## Stage 06: Services Section Implementation
+## Stage 05.2: Cinematic Digital Signal Hero Rebuild
+
+- [x] **Monochromatic Noise Environment (`CinematicNoise.tsx`)**
+  - [x] High-performance seamless SVG turbulence film grain overlay at 7.5% opacity.
+  - [x] Subtle stepped organic translation animation (`cinematic-noise-shift 1.2s steps(4) infinite`).
+  - [x] Collapses cleanly to static texture under `prefers-reduced-motion: reduce`.
+- [x] **Layered Atmospheric Horizon & Glow**
+  - [x] Concentrated emerald radial illumination behind main visual (`rgba(53, 232, 91, 0.40)`).
+  - [x] Ambient lower horizon glow spanning the base of the hero.
+  - [x] Precision 64px technical grid and boundary markers (`SYS // 01.HD.CORE`, `NODE // HD.CORE.01`).
+- [x] **Pixel-Dot Signal Equaliser (`SignalEqualiser.tsx`)**
+  - [x] Full-width HTML5 canvas implementation using `requestAnimationFrame`.
+  - [x] Multi-harmonic oscillation waves with outward ripple radiating from the center.
+  - [x] Integer-aligned square pixel rendering with color grading from Hash Neon Green to muted graphite-white.
+  - [x] Dynamic Gaussian bell envelope clustering signal amplitude at the center.
+  - [x] High-DPI support (`devicePixelRatio`) and 0% idle CPU under reduced motion (renders 1 static frame and halts loop).
+- [x] **Central Hash Signal Core (`SignalCore.tsx`)**
+  - [x] Layered precision rings: outer rotating satellite ring (`spin-slower`), middle reverse-rotating tech arc (`spin-reverse-slower`), and calibration markings.
+  - [x] Central solid graphite monolith disk with illuminated digital `#` glyph and pulsing intersection points.
+  - [x] Smooth 3D gimbal pointer tilt on desktop; static fallback on touch/reduced-motion.
+- [x] **Floating Interface Panels (`FloatingInterfacePanels.tsx`)**
+  - [x] `Panel A`: `SYSTEM // 001 - DIGITAL ENGINEERING` with micro frequency meter and architecture disciplines.
+  - [x] `Panel B`: `SYSTEM // 002 - CREATIVE INTELLIGENCE` with `HASH.NODE // ACTIVE` and motion disciplines.
+  - [x] `Capabilities Card`: Preserved all 5 core disciplines, `Digital Experience Studio` status, and inquiry callback.
+- [x] **Testing & Verification**
+  - [x] `tests/e2e/hero.spec.ts` passes 12/12 tests across desktop and mobile.
+  - [x] `tests/e2e/hero-cinematic.spec.ts` passes 8/8 tests across desktop and mobile.
+  - [x] Captured all 6 screenshots in `tests/e2e/screenshots/hero-cinematic-rebuild/`.
+  - [x] Zero horizontal overflow, zero console errors, clean production build.
 
 - [x] **Services Architectural Implementation (`src/sections/ServicesSection.tsx`)**
   - [x] Create dedicated, modular `ServicesSection` component with `id="services"` and `scroll-mt-24 lg:scroll-mt-28` anchor offset.

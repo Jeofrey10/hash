@@ -122,6 +122,26 @@ body {
   }
 }
 
+/* Cinematic Noise Stepped Shift */
+@keyframes cinematic-noise-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1.5%, 1.2%); }
+  50% { transform: translate(1.2%, -1.5%); }
+  75% { transform: translate(-1.2%, -1.2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Precision Geometric Core Rotations */
+@keyframes spin-slower {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse-slower {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
 .animate-hero-1 {
   animation: hero-fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 50ms both;
 }

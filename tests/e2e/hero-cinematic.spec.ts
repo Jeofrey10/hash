@@ -10,6 +10,68 @@ test.describe('HASH.DEVS Cinematic Digital Signal Hero Experience', () => {
     'hero-cinematic-rebuild'
   );
 
+  const centeredTypographyDir = path.join(
+    process.cwd(),
+    'tests',
+    'e2e',
+    'screenshots',
+    'hero-centered-typography'
+  );
+
+  test('should verify centered editorial typography and cursive script headline', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const hero = page.locator('#hero');
+    await expect(hero).toBeVisible();
+
+    const h1 = hero.getByRole('heading', { level: 1 });
+    await expect(h1).toBeVisible();
+
+    // Verify H1 is text-align center
+    const h1TextAlign = await h1.evaluate((el) => window.getComputedStyle(el).textAlign);
+    expect(h1TextAlign).toBe('center');
+
+    // Verify Line 1: "Build with purpose."
+    const line1 = h1.locator('span').filter({ hasText: 'Build with purpose.' }).first();
+    await expect(line1).toBeVisible();
+    const line1Styles = await line1.evaluate((el) => {
+      const style = window.getComputedStyle(el);
+      return {
+        color: style.color,
+        fontFamily: style.fontFamily,
+        fontWeight: style.fontWeight,
+      };
+    });
+    // Pure White: rgb(255, 255, 255)
+    expect(line1Styles.color).toBe('rgb(255, 255, 255)');
+
+    // Verify Line 2: "Grow with clarity."
+    const line2 = h1.locator('span').filter({ hasText: 'Grow with clarity.' }).first();
+    await expect(line2).toBeVisible();
+    const line2Styles = await line2.evaluate((el) => {
+      const style = window.getComputedStyle(el);
+      return {
+        color: style.color,
+        fontFamily: style.fontFamily,
+        fontStyle: style.fontStyle,
+      };
+    });
+    // Hash Neon Green: rgb(53, 232, 91)
+    expect(line2Styles.color).toBe('rgb(53, 232, 91)');
+    // Italic cursive script
+    expect(line2Styles.fontStyle).toBe('italic');
+    expect(
+      line2Styles.fontFamily.toLowerCase().includes('instrument') ||
+      line2Styles.fontFamily.toLowerCase().includes('playfair') ||
+      line2Styles.fontFamily.toLowerCase().includes('serif') ||
+      line2Styles.fontFamily.toLowerCase().includes('cursive')
+    ).toBe(true);
+  });
+
   test('should verify cinematic hero elements: noise, equaliser, signal core, and floating panels', async ({
     page,
   }) => {
@@ -79,9 +141,13 @@ test.describe('HASH.DEVS Cinematic Digital Signal Hero Experience', () => {
       });
       expect(hasOverflow, `Overflow detected at ${vp.width}px`).toBe(false);
 
-      // Capture screenshot
+      // Capture screenshots in both directories
       await page.screenshot({
         path: path.join(screenshotDir, vp.name),
+        fullPage: false,
+      });
+      await page.screenshot({
+        path: path.join(centeredTypographyDir, vp.name),
         fullPage: false,
       });
     }
@@ -102,9 +168,13 @@ test.describe('HASH.DEVS Cinematic Digital Signal Hero Experience', () => {
     const h1 = hero.getByRole('heading', { level: 1 });
     await expect(h1).toBeVisible();
 
-    // Capture reduced motion screenshot
+    // Capture reduced motion screenshots
     await page.screenshot({
       path: path.join(screenshotDir, '06-hero-cinematic-reduced-motion.png'),
+      fullPage: false,
+    });
+    await page.screenshot({
+      path: path.join(centeredTypographyDir, '06-hero-centered-reduced-motion.png'),
       fullPage: false,
     });
   });

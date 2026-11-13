@@ -231,3 +231,4 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ className }) =
     </section>
   );
 };
+

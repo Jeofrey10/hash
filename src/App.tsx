@@ -3,6 +3,7 @@ import { SiteLayout } from '@/layouts/SiteLayout';
 import { HeroSection } from '@/sections/HeroSection';
 import { ServicesSection } from '@/sections/ServicesSection';
 import { ApproachSection } from '@/sections/ApproachSection';
+import { CapabilitiesSection } from '@/sections/CapabilitiesSection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <HeroSection onCtaClick={() => handleOpenConsultation()} />
         <ServicesSection onCtaClick={(serviceTitle) => handleOpenConsultation(serviceTitle)} />
         <ApproachSection onCtaClick={() => handleOpenConsultation()} />
+        <CapabilitiesSection onCtaClick={() => handleOpenConsultation()} />
       </SiteLayout>
 
       {/* Accessible Project Consultation Inbound Modal */}

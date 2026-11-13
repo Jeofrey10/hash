@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { SecondaryButton } from '@/components/ui/SecondaryButton';
@@ -21,6 +21,7 @@ export interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick }) => {
   const [pointerOffset, setPointerOffset] = useState({ x: 0, y: 0 });
+  const rafId = useRef<number | null>(null);
   const { ref, isVisible } = useScrollReveal<HTMLElement>({
     threshold: 0.05,
     rootMargin: '0px 0px 0px 0px',
@@ -33,15 +34,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       const rect = e.currentTarget.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-      setPointerOffset({
-        x: Math.max(-1, Math.min(1, x)),
-        y: Math.max(-1, Math.min(1, y)),
+
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        setPointerOffset({
+          x: Math.max(-1, Math.min(1, x)),
+          y: Math.max(-1, Math.min(1, y)),
+        });
       });
     }
   }, []);
 
   const handleMouseLeave = useCallback(() => {
+    if (rafId.current) cancelAnimationFrame(rafId.current);
     setPointerOffset({ x: 0, y: 0 });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   return (

@@ -46,7 +46,8 @@ export const TextReveal: React.FC<TextRevealProps> = ({
       <span className="block overflow-hidden pb-[0.08em]">
         <span
           className={cn(
-            'block transition-all will-change-[transform,opacity]',
+            'block transition-[opacity,transform]',
+            !isVisible && 'will-change-[transform,opacity]',
             prefersReduced
               ? 'opacity-100 transform-none transition-none'
               : isVisible

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { SiteLayout } from '@/layouts/SiteLayout';
 import { HeroSection } from '@/sections/HeroSection';
@@ -6,38 +6,46 @@ import { ServicesSection } from '@/sections/ServicesSection';
 import { ApproachSection } from '@/sections/ApproachSection';
 import { CapabilitiesSection } from '@/sections/CapabilitiesSection';
 import { ContactSection } from '@/sections/ContactSection';
-import { ConsultationModal } from '@/components/ui/ConsultationModal';
+
+// Lazy-load the ConsultationModal so its dialog and form dependencies only bundle when needed
+const ConsultationModal = lazy(() =>
+  import('@/components/ui/ConsultationModal').then((mod) => ({ default: mod.ConsultationModal }))
+);
 
 export default function App() {
   const [ctaModalOpen, setCtaModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
 
-  const handleOpenConsultation = (serviceTitle?: string) => {
-    setSelectedService(serviceTitle || null);
+  const handleOpenConsultation = useCallback((serviceTitle?: string | unknown) => {
+    setSelectedService(typeof serviceTitle === 'string' ? serviceTitle : null);
     setCtaModalOpen(true);
-  };
+  }, []);
 
-  const handleCloseConsultation = () => {
+  const handleCloseConsultation = useCallback(() => {
     setCtaModalOpen(false);
     setSelectedService(null);
-  };
+  }, []);
 
   return (
     <ThemeProvider>
-      <SiteLayout onCtaClick={() => handleOpenConsultation()}>
-        <HeroSection onCtaClick={() => handleOpenConsultation()} />
-        <ServicesSection onCtaClick={(serviceTitle) => handleOpenConsultation(serviceTitle)} />
-        <ApproachSection onCtaClick={() => handleOpenConsultation()} />
-        <CapabilitiesSection onCtaClick={() => handleOpenConsultation()} />
+      <SiteLayout onCtaClick={handleOpenConsultation}>
+        <HeroSection onCtaClick={handleOpenConsultation} />
+        <ServicesSection onCtaClick={handleOpenConsultation} />
+        <ApproachSection onCtaClick={handleOpenConsultation} />
+        <CapabilitiesSection onCtaClick={handleOpenConsultation} />
         <ContactSection />
       </SiteLayout>
 
       {/* Accessible Project Consultation Inbound Modal */}
-      <ConsultationModal
-        isOpen={ctaModalOpen}
-        onClose={handleCloseConsultation}
-        serviceTitle={selectedService}
-      />
+      {ctaModalOpen && (
+        <Suspense fallback={null}>
+          <ConsultationModal
+            isOpen={ctaModalOpen}
+            onClose={handleCloseConsultation}
+            serviceTitle={selectedService}
+          />
+        </Suspense>
+      )}
     </ThemeProvider>
   );
 }

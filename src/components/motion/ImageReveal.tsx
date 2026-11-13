@@ -65,12 +65,13 @@ export const ImageReveal: React.FC<ImageRevealProps> = ({
         loading={priority ? 'eager' : 'lazy'}
         onLoad={() => setIsLoaded(true)}
         className={cn(
-          'w-full h-full object-cover will-change-[transform,opacity]',
+          'w-full h-full object-cover',
+          !showContent && 'will-change-[transform,opacity]',
           prefersReduced
             ? 'opacity-100 transform-none transition-none'
             : showContent
-            ? 'opacity-100 scale-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]'
-            : 'opacity-0 scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]'
+            ? 'opacity-100 scale-100 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]'
+            : 'opacity-0 scale-105 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]'
         )}
       />
 

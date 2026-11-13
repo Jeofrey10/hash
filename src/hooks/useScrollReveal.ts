@@ -44,14 +44,20 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     }
 
     // Check immediate visibility on mount (e.g. Hero section or hash navigation)
-    const rect = element.getBoundingClientRect();
-    const isCurrentlyInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isCurrentlyInViewport) {
-      setIsVisible(true);
-      if (once) {
-        return;
+    // Run inside requestAnimationFrame to batch layout reads and avoid forced synchronous layout
+    let rafMountId: number | null = requestAnimationFrame(() => {
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
+      const isCurrentlyInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      if (isCurrentlyInViewport) {
+        setIsVisible(true);
+        if (once && observer) {
+          observer.unobserve(element);
+          observer.disconnect();
+          observer = null;
+        }
       }
-    }
+    });
 
     let observer: IntersectionObserver | null = new IntersectionObserver(
       (entries) => {
@@ -77,6 +83,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     observer.observe(element);
 
     return () => {
+      if (rafMountId) cancelAnimationFrame(rafMountId);
       if (observer) {
         observer.unobserve(element);
         observer.disconnect();

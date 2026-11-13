@@ -90,6 +90,9 @@
   transform: translateY(24px);
   transition: opacity var(--motion-duration-deliberate) var(--motion-ease-entrance),
               transform var(--motion-duration-deliberate) var(--motion-ease-entrance);
+}
+
+.motion-reveal:not(.is-visible) {
   will-change: opacity, transform;
 }
 
@@ -101,6 +104,9 @@
 .motion-fade {
   opacity: 0;
   transition: opacity var(--motion-duration-deliberate) var(--motion-ease-entrance);
+}
+
+.motion-fade:not(.is-visible) {
   will-change: opacity;
 }
 

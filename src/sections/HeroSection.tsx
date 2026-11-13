@@ -47,12 +47,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       className={cn(
         'relative w-full min-h-[calc(100vh-74px)] flex flex-col items-center justify-start overflow-hidden',
         'px-5 sm:px-8 lg:px-12 pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28',
-        'bg-[var(--brand-obsidian)]',
+        'bg-[var(--bg-primary)] transition-colors duration-250',
         className,
       )}
     >
       {/* 1. Cinematic Noise Texture Layer */}
-      <CinematicNoise opacity={0.075} />
+      <CinematicNoise />
 
       {/* 2. Layered Atmospheric Horizon & Green Signal Illumination */}
       <div
@@ -61,28 +61,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       >
         {/* Concentrated Green Radial Illumination Behind Headline & Visual Core */}
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] sm:w-[1000px] sm:h-[700px] rounded-full blur-[140px] opacity-30"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] sm:w-[1000px] sm:h-[700px] rounded-full blur-[140px] opacity-35 transition-all duration-300"
           style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(53, 232, 91, 0.40) 0%, rgba(23, 26, 24, 0.18) 50%, transparent 80%)',
+            background: 'var(--hero-radial-glow)',
           }}
         />
 
         {/* Ambient Lower Horizon Glow */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[320px] rounded-full blur-[110px] opacity-25"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[320px] rounded-full blur-[110px] opacity-25 transition-all duration-300"
           style={{
-            background:
-              'radial-gradient(ellipse 90% 60% at 50% 100%, rgba(53, 232, 91, 0.35) 0%, rgba(23, 26, 24, 0.10) 65%, transparent 85%)',
+            background: 'var(--hero-horizon-glow)',
           }}
         />
 
         {/* Precision Geometric Technical Grid Overlay */}
         <div
-          className="absolute inset-0 opacity-[0.035]"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
+              'linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px)',
             backgroundSize: '64px 64px',
             maskImage: 'radial-gradient(ellipse 85% 70% at 50% 50%, black 45%, transparent 100%)',
             WebkitMaskImage:
@@ -91,10 +89,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
         />
 
         {/* Subtle Technical Framing Coordinate Markers */}
-        <div className="hidden lg:block absolute top-12 left-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
+        <div className="hidden lg:block absolute top-12 left-12 font-mono text-[11px] text-[var(--text-muted)] tracking-widest uppercase">
           SYS // 01.HD.CORE
         </div>
-        <div className="hidden lg:block absolute top-12 right-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
+        <div className="hidden lg:block absolute top-12 right-12 font-mono text-[11px] text-[var(--text-muted)] tracking-widest uppercase">
           NODE // HD.CORE.01
         </div>
       </div>
@@ -115,10 +113,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
         {/* Entrance 2: Primary Dominant Centered H1 */}
         <div className="animate-hero-2 mb-6 sm:mb-8">
           <h1 className="text-center tracking-[-0.035em]">
-            <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[88px] font-sans font-semibold tracking-[-0.035em] leading-[1.08] text-[var(--brand-pure-white)]">
+            <span
+              id="hero-primary-headline"
+              className="block text-4xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[88px] font-sans font-semibold tracking-[-0.035em] leading-[1.08] text-[var(--text-primary)]"
+            >
               Build with purpose.
             </span>
-            <span className="block font-cursive italic font-normal text-[var(--brand-neon-green)] text-4xl sm:text-6xl md:text-7xl lg:text-[86px] xl:text-[98px] leading-[1.12] mt-1 sm:mt-2.5 tracking-normal drop-shadow-[0_0_28px_rgba(53,232,91,0.35)]">
+            <span
+              id="hero-cursive-headline"
+              className="block font-cursive italic font-normal text-[var(--cursive-headline-color)] text-4xl sm:text-6xl md:text-7xl lg:text-[86px] xl:text-[98px] leading-[1.12] mt-1 sm:mt-2.5 tracking-normal drop-shadow-[var(--cursive-headline-shadow)]"
+            >
               Grow with clarity.
             </span>
           </h1>
@@ -126,7 +130,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
 
         {/* Entrance 3: Centered Supporting Description */}
         <div className="animate-hero-3 max-w-[650px] mx-auto mb-8 sm:mb-9 px-4">
-          <p className="text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed font-normal text-center">
+          <p className="text-base sm:text-lg lg:text-xl text-[var(--text-secondary)] leading-relaxed font-normal text-center">
             {COMPANY_IDENTITY.mission}
           </p>
         </div>
@@ -151,7 +155,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
         </div>
 
         {/* Telemetry Micro-Marker Footnote */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4 pb-6 sm:pb-8 border-b border-white/[0.06] font-mono text-[11px] text-white/35 max-w-md mx-auto">
+        <div className="flex items-center justify-center gap-3 sm:gap-4 pb-6 sm:pb-8 border-b border-[var(--divider-color)] font-mono text-[11px] text-[var(--text-muted)] max-w-md mx-auto">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]" />
             <span>SIGNAL // ACTIVE</span>

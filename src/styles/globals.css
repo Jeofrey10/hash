@@ -47,12 +47,13 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--brand-obsidian);
-  color: var(--brand-pure-white);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
 }
 
 #root {

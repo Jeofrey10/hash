@@ -197,7 +197,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
       className={cn(
         'relative w-full overflow-hidden scroll-mt-24 lg:scroll-mt-28',
         'px-5 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-36',
-        'border-t border-white/[0.08]',
+        'border-t border-[var(--border-subtle)] bg-[var(--bg-primary)] transition-colors duration-250',
         className,
       )}
     >
@@ -217,10 +217,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
         {/* Precision Geometric Technical Grid */}
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
+              'linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px)',
             backgroundSize: '64px 64px',
             maskImage: 'radial-gradient(ellipse 90% 70% at 50% 50%, black 40%, transparent 100%)',
             WebkitMaskImage:
@@ -229,10 +229,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
         />
 
         {/* Technical Framing Boundary Markers */}
-        <div className="hidden lg:block absolute top-10 left-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
+        <div className="hidden lg:block absolute top-10 left-12 font-mono text-[11px] text-[var(--text-muted)] tracking-widest uppercase">
           SEC // 05.CONTACT
         </div>
-        <div className="hidden lg:block absolute top-10 right-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
+        <div className="hidden lg:block absolute top-10 right-12 font-mono text-[11px] text-[var(--text-muted)] tracking-widest uppercase">
           FLOW // 04.STEPS
         </div>
       </div>
@@ -244,7 +244,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
           <Reveal variant="fade-up" delay={0}>
             <div className="inline-flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]" />
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--brand-neon-green)]">
+              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--text-accent)]">
                 Initiate Project
               </span>
             </div>
@@ -253,14 +253,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
           <TextReveal
             as="h2"
             id="contact-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--brand-pure-white)] leading-[1.12]"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--text-primary)] leading-[1.12]"
             delay={80}
           >
             Have a project in mind? Let's build something purposeful.
           </TextReveal>
 
           <Reveal variant="fade-up" delay={160}>
-            <p className="text-base sm:text-lg text-white/70 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal">
               Tell us what you're working towards. Share a little about your business, your goals, and the digital experience you want to create.
             </p>
           </Reveal>
@@ -268,12 +268,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
         {/* 3. Multi-Step Inquiry Form Shell */}
         <Reveal variant="fade-up" delay={200}>
-          <div className="max-w-4xl mx-auto rounded-3xl bg-white/[0.02] border border-white/[0.08] p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-md">
+          <div className="max-w-4xl mx-auto rounded-3xl bg-[var(--panel-bg)] border border-[var(--panel-border)] shadow-[var(--shadow-card)] p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-md">
             {/* Top Step Progress Bar (Shown during steps 1-4 & review) */}
             {step !== 'success' && (
-              <div className="mb-8 sm:mb-10 pb-6 border-b border-white/[0.06]">
+              <div className="mb-8 sm:mb-10 pb-6 border-b border-[var(--divider-color)]">
                 <div className="flex items-center justify-between text-xs font-mono mb-3">
-                  <span className="text-[var(--brand-neon-green)] uppercase tracking-wider font-semibold">
+                  <span className="text-[var(--text-accent)] uppercase tracking-wider font-semibold">
                     {step === 'review'
                       ? 'REVIEW // CONFIRMATION'
                       : `STEP 0${step} OF 04 // ${
@@ -286,14 +286,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                             : 'YOUR DETAILS'
                         }`}
                   </span>
-                  <span className="text-white/40">
+                  <span className="text-[var(--text-muted)]">
                     {step === 'review' ? '100% COMPLETE' : `${step * 25}% COMPLETE`}
                   </span>
                 </div>
 
                 {/* Visual Step Progress Track */}
                 <div
-                  className="w-full h-1 bg-white/[0.06] rounded-full overflow-hidden"
+                  className="w-full h-1 bg-[var(--divider-color)] rounded-full overflow-hidden"
                   role="progressbar"
                   aria-valuenow={step === 'review' ? 100 : step * 25}
                   aria-valuemin={0}
@@ -328,11 +328,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     <h3
                       ref={stepHeadingRef}
                       tabIndex={-1}
-                      className="text-2xl sm:text-3xl font-medium text-white tracking-tight focus:outline-none"
+                      className="text-2xl sm:text-3xl font-medium text-[var(--text-primary)] tracking-tight focus:outline-none"
                     >
                       What are you looking to build?
                     </h3>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-[var(--text-muted)]">
                       Select one or more capabilities that align with your requirements.
                     </p>
                   </div>
@@ -358,8 +358,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                           className={cn(
                             'p-4 rounded-xl text-left border transition-all duration-200 flex items-center justify-between',
                             isSelected
-                              ? 'bg-[var(--brand-neon-green)]/10 border-[var(--brand-neon-green)] text-white shadow-[0_0_16px_rgba(53,232,91,0.12)]'
-                              : 'bg-white/[0.03] border-white/[0.08] text-white/80 hover:bg-white/[0.06] hover:border-white/20',
+                              ? 'bg-[var(--brand-neon-green)]/15 border-[var(--brand-neon-green)] text-[var(--text-primary)] shadow-[var(--glow-neon-subtle)]'
+                              : 'bg-[var(--tag-bg)] border-[var(--tag-border)] text-[var(--text-secondary)] hover:border-[var(--border-medium)] hover:text-[var(--text-primary)]',
                             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]',
                           )}
                         >
@@ -368,8 +368,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                             className={cn(
                               'w-5 h-5 rounded-md flex items-center justify-center border text-xs',
                               isSelected
-                                ? 'bg-[var(--brand-neon-green)] border-[var(--brand-neon-green)] text-black'
-                                : 'border-white/20 bg-transparent text-transparent',
+                                ? 'bg-[var(--brand-neon-green)] border-[var(--brand-neon-green)] text-black font-bold'
+                                : 'border-[var(--border-medium)] bg-transparent text-transparent',
                             )}
                             aria-hidden="true"
                           >
@@ -389,11 +389,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     <h3
                       ref={stepHeadingRef}
                       tabIndex={-1}
-                      className="text-2xl sm:text-3xl font-medium text-white tracking-tight focus:outline-none"
+                      className="text-2xl sm:text-3xl font-medium text-[var(--text-primary)] tracking-tight focus:outline-none"
                     >
                       Tell us a little about your project.
                     </h3>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-[var(--text-muted)]">
                       Share the context and the primary outcome you want to achieve.
                     </p>
                   </div>
@@ -401,7 +401,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                   <div className="space-y-4">
                     {/* Project Name */}
                     <div className="space-y-1.5">
-                      <label htmlFor="projectName" className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                      <label htmlFor="projectName" className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                         Project or Business Name <span className="text-[var(--brand-neon-green)]">*</span>
                       </label>
                       <input
@@ -415,9 +415,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         }}
                         placeholder="e.g. Acme Corp or Next-Gen Design Studio"
                         className={cn(
-                          'w-full bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/30',
+                          'w-full bg-[var(--input-bg)] border rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)]',
                           'focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors',
-                          errors.projectName ? 'border-red-500/60' : 'border-white/[0.12]',
+                          errors.projectName ? 'border-red-500/60' : 'border-[var(--input-border)]',
                         )}
                       />
                       {errors.projectName && (
@@ -429,7 +429,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
                     {/* Project Description */}
                     <div className="space-y-1.5">
-                      <label htmlFor="projectDescription" className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                      <label htmlFor="projectDescription" className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                         Project Summary <span className="text-[var(--brand-neon-green)]">*</span>
                       </label>
                       <textarea
@@ -443,12 +443,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         }}
                         placeholder="Briefly describe what you are looking to build, improve, or solve..."
                         className={cn(
-                          'w-full bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 resize-none',
+                          'w-full bg-[var(--input-bg)] border rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] resize-none',
                           'focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors',
-                          errors.projectDescription ? 'border-red-500/60' : 'border-white/[0.12]',
+                          errors.projectDescription ? 'border-red-500/60' : 'border-[var(--input-border)]',
                         )}
                       />
-                      <div className="flex justify-between items-center text-[11px] font-mono text-white/40">
+                      <div className="flex justify-between items-center text-[11px] font-mono text-[var(--text-muted)]">
                         {errors.projectDescription ? (
                           <span role="alert" className="text-red-400">
                             {errors.projectDescription}
@@ -462,7 +462,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
                     {/* Primary Goal */}
                     <div className="space-y-2 pt-2">
-                      <span className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                      <span className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                         Primary Project Goal <span className="text-[var(--brand-neon-green)]">*</span>
                       </span>
                       {errors.projectGoal && (
@@ -484,8 +484,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                               className={cn(
                                 'p-3 rounded-xl text-left border text-xs sm:text-sm transition-all',
                                 isSelected
-                                  ? 'bg-[var(--brand-neon-green)]/10 border-[var(--brand-neon-green)] text-white'
-                                  : 'bg-white/[0.03] border-white/[0.08] text-white/75 hover:bg-white/[0.05] hover:border-white/20',
+                                  ? 'bg-[var(--brand-neon-green)]/15 border-[var(--brand-neon-green)] text-[var(--text-primary)]'
+                                  : 'bg-[var(--tag-bg)] border-[var(--tag-border)] text-[var(--text-secondary)] hover:border-[var(--border-medium)] hover:text-[var(--text-primary)]',
                                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]',
                               )}
                             >
@@ -506,18 +506,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     <h3
                       ref={stepHeadingRef}
                       tabIndex={-1}
-                      className="text-2xl sm:text-3xl font-medium text-white tracking-tight focus:outline-none"
+                      className="text-2xl sm:text-3xl font-medium text-[var(--text-primary)] tracking-tight focus:outline-none"
                     >
                       Let's understand the scope.
                     </h3>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-[var(--text-muted)]">
                       These planning preferences help us prepare for our discussion. All choices are flexible.
                     </p>
                   </div>
 
                   {/* Budget Choices */}
                   <div className="space-y-2.5">
-                    <span className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                    <span className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                       Estimated Budget Range (Optional)
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -536,8 +536,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                             className={cn(
                               'p-3 rounded-xl text-center border text-xs sm:text-sm font-mono transition-all',
                               isSelected
-                                ? 'bg-[var(--brand-neon-green)]/10 border-[var(--brand-neon-green)] text-white'
-                                : 'bg-white/[0.03] border-white/[0.08] text-white/75 hover:bg-white/[0.05] hover:border-white/20',
+                                ? 'bg-[var(--brand-neon-green)]/15 border-[var(--brand-neon-green)] text-[var(--text-primary)]'
+                                : 'bg-[var(--tag-bg)] border-[var(--tag-border)] text-[var(--text-secondary)] hover:border-[var(--border-medium)] hover:text-[var(--text-primary)]',
                               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]',
                             )}
                           >
@@ -550,7 +550,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
                   {/* Timeline Choices */}
                   <div className="space-y-2.5 pt-2">
-                    <span className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                    <span className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                       Desired Timeline (Optional)
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -569,8 +569,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                             className={cn(
                               'p-3 rounded-xl text-center border text-xs sm:text-sm font-mono transition-all',
                               isSelected
-                                ? 'bg-[var(--brand-neon-green)]/10 border-[var(--brand-neon-green)] text-white'
-                                : 'bg-white/[0.03] border-white/[0.08] text-white/75 hover:bg-white/[0.05] hover:border-white/20',
+                                ? 'bg-[var(--brand-neon-green)]/15 border-[var(--brand-neon-green)] text-[var(--text-primary)]'
+                                : 'bg-[var(--tag-bg)] border-[var(--tag-border)] text-[var(--text-secondary)] hover:border-[var(--border-medium)] hover:text-[var(--text-primary)]',
                               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]',
                             )}
                           >
@@ -581,7 +581,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     </div>
                   </div>
 
-                  <p className="text-xs text-white/40 font-mono pt-2">
+                  <p className="text-xs text-[var(--text-muted)] font-mono pt-2">
                     Note: Budget ranges and timelines are preliminary parameters for project alignment, not binding commitments.
                   </p>
                 </div>
@@ -594,11 +594,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     <h3
                       ref={stepHeadingRef}
                       tabIndex={-1}
-                      className="text-2xl sm:text-3xl font-medium text-white tracking-tight focus:outline-none"
+                      className="text-2xl sm:text-3xl font-medium text-[var(--text-primary)] tracking-tight focus:outline-none"
                     >
                       Where can we reach you?
                     </h3>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-[var(--text-muted)]">
                       Provide your contact details so our team can follow up with your inquiry.
                     </p>
                   </div>
@@ -607,7 +607,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Full Name */}
                       <div className="space-y-1.5">
-                        <label htmlFor="fullName" className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                        <label htmlFor="fullName" className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                           Full Name <span className="text-[var(--brand-neon-green)]">*</span>
                         </label>
                         <input
@@ -621,9 +621,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                           }}
                           placeholder="Your Name"
                           className={cn(
-                            'w-full bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/30',
+                            'w-full bg-[var(--input-bg)] border rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)]',
                             'focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors',
-                            errors.fullName ? 'border-red-500/60' : 'border-white/[0.12]',
+                            errors.fullName ? 'border-red-500/60' : 'border-[var(--input-border)]',
                           )}
                         />
                         {errors.fullName && (
@@ -635,7 +635,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
                       {/* Email Address */}
                       <div className="space-y-1.5">
-                        <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                        <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                           Email Address <span className="text-[var(--brand-neon-green)]">*</span>
                         </label>
                         <input
@@ -649,9 +649,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                           }}
                           placeholder="name@company.com"
                           className={cn(
-                            'w-full bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/30',
+                            'w-full bg-[var(--input-bg)] border rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)]',
                             'focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors',
-                            errors.email ? 'border-red-500/60' : 'border-white/[0.12]',
+                            errors.email ? 'border-red-500/60' : 'border-[var(--input-border)]',
                           )}
                         />
                         {errors.email && (
@@ -664,7 +664,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
                     {/* Phone Number */}
                     <div className="space-y-1.5">
-                      <label htmlFor="phone" className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                      <label htmlFor="phone" className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                         Phone Number (Optional)
                       </label>
                       <input
@@ -674,13 +674,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         value={formData.phone}
                         onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
                         placeholder="+91 or country code with number"
-                        className="w-full bg-white/[0.04] border border-white/[0.12] rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors"
+                        className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors"
                       />
                     </div>
 
                     {/* Additional Message */}
                     <div className="space-y-1.5">
-                      <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-white/70">
+                      <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                         Additional Context or Notes (Optional)
                       </label>
                       <textarea
@@ -690,12 +690,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         value={formData.message}
                         onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
                         placeholder="Any additional details, links, or specific questions..."
-                        className="w-full bg-white/[0.04] border border-white/[0.12] rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 resize-none focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors"
+                        className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] resize-none focus:outline-none focus:border-[var(--brand-neon-green)] focus:ring-1 focus:ring-[var(--brand-neon-green)] transition-colors"
                       />
                     </div>
                   </div>
 
-                  <p className="text-xs text-white/45 leading-relaxed font-normal pt-1">
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed font-normal pt-1">
                     Privacy Reassurance: Your information is handled securely and used solely to evaluate your project inquiry. We respect your inbox and never send unsolicited marketing.
                   </p>
                 </div>
@@ -708,11 +708,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                     <h3
                       ref={stepHeadingRef}
                       tabIndex={-1}
-                      className="text-2xl sm:text-3xl font-medium text-white tracking-tight focus:outline-none"
+                      className="text-2xl sm:text-3xl font-medium text-[var(--text-primary)] tracking-tight focus:outline-none"
                     >
                       Review Your Project Inquiry
                     </h3>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-[var(--text-muted)]">
                       Confirm your parameters before transmission. You can edit any section below.
                     </p>
                   </div>
@@ -729,16 +729,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
                   <div className="space-y-4">
                     {/* Section 1: Services */}
-                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-start justify-between gap-4">
+                    <div className="p-4 rounded-xl bg-[var(--tag-bg)] border border-[var(--border-subtle)] flex items-start justify-between gap-4">
                       <div className="space-y-1.5">
-                        <span className="text-[11px] font-mono text-[var(--brand-neon-green)] uppercase tracking-wider">
+                        <span className="text-[11px] font-mono text-[var(--text-accent)] uppercase tracking-wider font-semibold">
                           01 // Selected Services
                         </span>
                         <div className="flex flex-wrap gap-1.5 pt-1">
                           {formData.services.map((s) => (
                             <span
                               key={s}
-                              className="px-2.5 py-1 rounded bg-white/[0.06] border border-white/[0.10] text-xs font-mono text-white/90"
+                              className="px-2.5 py-1 rounded bg-[var(--tag-bg)] border border-[var(--tag-border)] text-xs font-mono text-[var(--text-primary)]"
                             >
                               {s}
                             </span>
@@ -749,29 +749,29 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         type="button"
                         onClick={() => setStep(1)}
                         aria-label="Edit selected services"
-                        className="text-xs font-mono uppercase text-[var(--brand-neon-green)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1"
+                        className="text-xs font-mono uppercase text-[var(--text-accent)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1 font-medium cursor-pointer"
                       >
                         Edit
                       </button>
                     </div>
 
                     {/* Section 2: Project Details */}
-                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-start justify-between gap-4">
+                    <div className="p-4 rounded-xl bg-[var(--tag-bg)] border border-[var(--border-subtle)] flex items-start justify-between gap-4">
                       <div className="space-y-1 text-xs sm:text-sm">
-                        <span className="text-[11px] font-mono text-[var(--brand-neon-green)] uppercase tracking-wider block mb-1">
+                        <span className="text-[11px] font-mono text-[var(--text-accent)] uppercase tracking-wider block mb-1 font-semibold">
                           02 // Project Details
                         </span>
                         <div>
-                          <span className="text-white/50">Name: </span>
-                          <span className="text-white font-medium">{formData.projectName}</span>
+                          <span className="text-[var(--text-muted)]">Name: </span>
+                          <span className="text-[var(--text-primary)] font-medium">{formData.projectName}</span>
                         </div>
                         <div>
-                          <span className="text-white/50">Goal: </span>
-                          <span className="text-white">{formData.projectGoal}</span>
+                          <span className="text-[var(--text-muted)]">Goal: </span>
+                          <span className="text-[var(--text-primary)]">{formData.projectGoal}</span>
                         </div>
                         <div className="pt-1">
-                          <span className="text-white/50 block">Summary:</span>
-                          <p className="text-white/80 text-xs leading-relaxed mt-0.5">
+                          <span className="text-[var(--text-muted)] block">Summary:</span>
+                          <p className="text-[var(--text-secondary)] text-xs leading-relaxed mt-0.5">
                             {formData.projectDescription}
                           </p>
                         </div>
@@ -780,61 +780,61 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         type="button"
                         onClick={() => setStep(2)}
                         aria-label="Edit project details"
-                        className="text-xs font-mono uppercase text-[var(--brand-neon-green)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1"
+                        className="text-xs font-mono uppercase text-[var(--text-accent)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1 font-medium cursor-pointer"
                       >
                         Edit
                       </button>
                     </div>
 
                     {/* Section 3: Scope & Timeline */}
-                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-start justify-between gap-4">
+                    <div className="p-4 rounded-xl bg-[var(--tag-bg)] border border-[var(--border-subtle)] flex items-start justify-between gap-4">
                       <div className="space-y-1 text-xs sm:text-sm">
-                        <span className="text-[11px] font-mono text-[var(--brand-neon-green)] uppercase tracking-wider block mb-1">
+                        <span className="text-[11px] font-mono text-[var(--text-accent)] uppercase tracking-wider block mb-1 font-semibold">
                           03 // Scope & Timeline
                         </span>
                         <div>
-                          <span className="text-white/50">Estimated Budget: </span>
-                          <span className="text-white font-mono">{formData.budgetRange || 'Not specified'}</span>
+                          <span className="text-[var(--text-muted)]">Estimated Budget: </span>
+                          <span className="text-[var(--text-primary)] font-mono">{formData.budgetRange || 'Not specified'}</span>
                         </div>
                         <div>
-                          <span className="text-white/50">Timeline: </span>
-                          <span className="text-white font-mono">{formData.timeline || 'Flexible'}</span>
+                          <span className="text-[var(--text-muted)]">Timeline: </span>
+                          <span className="text-[var(--text-primary)] font-mono">{formData.timeline || 'Flexible'}</span>
                         </div>
                       </div>
                       <button
                         type="button"
                         onClick={() => setStep(3)}
                         aria-label="Edit scope and timeline"
-                        className="text-xs font-mono uppercase text-[var(--brand-neon-green)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1"
+                        className="text-xs font-mono uppercase text-[var(--text-accent)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1 font-medium cursor-pointer"
                       >
                         Edit
                       </button>
                     </div>
 
                     {/* Section 4: Contact Information */}
-                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-start justify-between gap-4">
+                    <div className="p-4 rounded-xl bg-[var(--tag-bg)] border border-[var(--border-subtle)] flex items-start justify-between gap-4">
                       <div className="space-y-1 text-xs sm:text-sm">
-                        <span className="text-[11px] font-mono text-[var(--brand-neon-green)] uppercase tracking-wider block mb-1">
+                        <span className="text-[11px] font-mono text-[var(--text-accent)] uppercase tracking-wider block mb-1 font-semibold">
                           04 // Contact Details
                         </span>
                         <div>
-                          <span className="text-white/50">Name: </span>
-                          <span className="text-white font-medium">{formData.fullName}</span>
+                          <span className="text-[var(--text-muted)]">Name: </span>
+                          <span className="text-[var(--text-primary)] font-medium">{formData.fullName}</span>
                         </div>
                         <div>
-                          <span className="text-white/50">Email: </span>
-                          <span className="text-white font-mono">{formData.email}</span>
+                          <span className="text-[var(--text-muted)]">Email: </span>
+                          <span className="text-[var(--text-primary)] font-mono">{formData.email}</span>
                         </div>
                         {formData.phone && (
                           <div>
-                            <span className="text-white/50">Phone: </span>
-                            <span className="text-white font-mono">{formData.phone}</span>
+                            <span className="text-[var(--text-muted)]">Phone: </span>
+                            <span className="text-[var(--text-primary)] font-mono">{formData.phone}</span>
                           </div>
                         )}
                         {formData.message && (
                           <div className="pt-1">
-                            <span className="text-white/50 block">Notes:</span>
-                            <p className="text-white/80 text-xs leading-relaxed mt-0.5">
+                            <span className="text-[var(--text-muted)] block">Notes:</span>
+                            <p className="text-[var(--text-secondary)] text-xs leading-relaxed mt-0.5">
                               {formData.message}
                             </p>
                           </div>
@@ -844,7 +844,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
                         type="button"
                         onClick={() => setStep(4)}
                         aria-label="Edit contact details"
-                        className="text-xs font-mono uppercase text-[var(--brand-neon-green)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1"
+                        className="text-xs font-mono uppercase text-[var(--text-accent)] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1 font-medium cursor-pointer"
                       >
                         Edit
                       </button>
@@ -856,20 +856,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
               {/* SUCCESS STATE */}
               {step === 'success' && (
                 <div className="text-center py-8 sm:py-12 space-y-6 animate-in fade-in zoom-in-95 duration-300">
-                  <div className="w-16 h-16 rounded-full bg-[var(--brand-neon-green)]/15 border border-[var(--brand-neon-green)] flex items-center justify-center mx-auto text-[var(--brand-neon-green)] text-2xl shadow-[0_0_24px_rgba(53,232,91,0.2)]">
+                  <div className="w-16 h-16 rounded-full bg-[var(--brand-neon-green)]/15 border border-[var(--brand-neon-green)] flex items-center justify-center mx-auto text-[var(--text-accent)] text-2xl shadow-[var(--glow-neon-subtle)]">
                     ✓
                   </div>
 
                   <div className="space-y-2 max-w-md mx-auto">
-                    <h3 className="text-2xl sm:text-3xl font-medium text-white tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-medium text-[var(--text-primary)] tracking-tight">
                       Inquiry Successfully Received
                     </h3>
                     {inquiryId && (
-                      <div className="font-mono text-xs text-[var(--brand-neon-green)] uppercase tracking-widest pt-1">
+                      <div className="font-mono text-xs text-[var(--text-accent)] uppercase tracking-widest pt-1 font-semibold">
                         REFERENCE // {inquiryId}
                       </div>
                     )}
-                    <p className="text-sm text-white/70 leading-relaxed pt-2">
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed pt-2">
                       Thank you for sharing your project parameters. Our engineering and creative leads will analyze your scope and follow up promptly.
                     </p>
                   </div>
@@ -884,7 +884,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ className }) => 
 
               {/* Form Navigation Controls */}
               {step !== 'success' && (
-                <div className="pt-8 mt-8 border-t border-white/[0.08] flex items-center justify-between gap-4">
+                <div className="pt-8 mt-8 border-t border-[var(--divider-color)] flex items-center justify-between gap-4">
                   {(typeof step === 'number' && step > 1) || step === 'review' ? (
                     <SecondaryButton type="button" onClick={handleBack} disabled={isSubmitting}>
                       ← Back

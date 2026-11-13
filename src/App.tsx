@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import { SiteLayout } from '@/layouts/SiteLayout';
 import { HeroSection } from '@/sections/HeroSection';
 import { ServicesSection } from '@/sections/ServicesSection';
@@ -22,7 +23,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <ThemeProvider>
       <SiteLayout onCtaClick={() => handleOpenConsultation()}>
         <HeroSection onCtaClick={() => handleOpenConsultation()} />
         <ServicesSection onCtaClick={(serviceTitle) => handleOpenConsultation(serviceTitle)} />
@@ -37,6 +38,6 @@ export default function App() {
         onClose={handleCloseConsultation}
         serviceTitle={selectedService}
       />
-    </>
+    </ThemeProvider>
   );
 }

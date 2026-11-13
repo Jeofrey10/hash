@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 import { MobileNavigation } from '@/components/navigation/MobileNavigation';
 import { cn } from '@/lib/utils';
 
@@ -32,6 +33,7 @@ export const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +52,7 @@ export const Navigation: React.FC<NavigationProps> = ({
         role="banner"
         className={cn(
           'fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-out',
-          'px-5 sm:px-8 lg:px-12 pt-4 pointer-events-none',
+          'px-4 sm:px-8 lg:px-12 pt-4 pointer-events-none',
           className,
         )}
       >
@@ -59,8 +61,8 @@ export const Navigation: React.FC<NavigationProps> = ({
           <nav
             aria-label="Main Navigation"
             className={cn(
-              'pointer-events-auto flex items-center justify-between w-full lg:w-fit lg:mx-auto gap-8',
-              'px-4 sm:px-6 h-[54px] rounded-2xl transition-all duration-300 ease-out',
+              'pointer-events-auto flex items-center justify-between w-full lg:w-fit lg:mx-auto gap-4 sm:gap-8',
+              'px-4 sm:px-6 h-[56px] rounded-2xl transition-all duration-300 ease-out',
               isScrolled
                 ? 'bg-[var(--glass-bg-floating)] backdrop-blur-md border border-[var(--border-medium)] shadow-[var(--shadow-floating)]'
                 : 'bg-[var(--glass-bg)] backdrop-blur-sm border border-[var(--border-subtle)] shadow-[var(--shadow-card)]',
@@ -69,7 +71,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             {/* Brand Logo */}
             <a
               href="/"
-              className="font-semibold text-lg sm:text-xl tracking-tight text-[var(--brand-pure-white)] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
+              className="font-semibold text-lg sm:text-xl tracking-tight text-[var(--text-primary)] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
             >
               HASH<span className="text-[var(--brand-neon-green)]">.</span>DEVS
             </a>
@@ -82,7 +84,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                     href={item.href}
                     target={item.isExternal ? '_blank' : undefined}
                     rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                    className="text-[14px] font-medium text-white/75 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1"
+                    className="text-[14px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1.5 py-1"
                   >
                     {item.label}
                   </a>
@@ -90,32 +92,49 @@ export const Navigation: React.FC<NavigationProps> = ({
               ))}
             </ul>
 
-            {/* Desktop CTA Action */}
-            <div className="hidden lg:flex items-center">
+            {/* Desktop Actions: Theme Switcher & CTA */}
+            <div className="hidden lg:flex items-center gap-3">
+              <ThemeSwitcher id="desktop-theme-switcher" size="sm" />
               <PrimaryButton size="sm" onClick={onCtaClick}>
                 {ctaText}
               </PrimaryButton>
             </div>
 
-            {/* Mobile Hamburger Toggle Button */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-navigation-drawer"
-              aria-label="Open navigation menu"
-              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-white/[0.05] border border-white/[0.10] text-white hover:bg-white/[0.10] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] cursor-pointer"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            {/* Mobile Actions: Theme Switcher & Hamburger Toggle Button */}
+            <div className="flex lg:hidden items-center gap-2">
+              <ThemeSwitcher id="mobile-theme-switcher" size="md" />
+              <button
+                ref={menuButtonRef}
+                type="button"
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-navigation-drawer"
+                aria-label="Open navigation menu"
+                className="w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-xl bg-[var(--tag-bg)] border border-[var(--border-medium)] text-[var(--text-primary)] hover:border-[var(--border-active)] hover:bg-[var(--state-hover-glass)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] cursor-pointer select-none transition-all duration-200"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-            </button>
+                <span
+                  className={cn(
+                    'w-5 h-[2px] bg-current rounded-full transition-transform duration-300 ease-out origin-center',
+                    mobileMenuOpen ? 'rotate-45 translate-y-[8px]' : '',
+                  )}
+                  aria-hidden="true"
+                />
+                <span
+                  className={cn(
+                    'w-5 h-[2px] bg-current rounded-full transition-opacity duration-200 ease-out',
+                    mobileMenuOpen ? 'opacity-0' : 'opacity-100',
+                  )}
+                  aria-hidden="true"
+                />
+                <span
+                  className={cn(
+                    'w-5 h-[2px] bg-current rounded-full transition-transform duration-300 ease-out origin-center',
+                    mobileMenuOpen ? '-rotate-45 -translate-y-[8px]' : '',
+                  )}
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
           </nav>
         </div>
       </header>
@@ -123,12 +142,15 @@ export const Navigation: React.FC<NavigationProps> = ({
       {/* Mobile Drawer */}
       <MobileNavigation
         isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
+        onClose={() => {
+          setMobileMenuOpen(false);
+          menuButtonRef.current?.focus();
+        }}
         items={items}
         ctaText={ctaText}
         onCtaClick={onCtaClick}
+        triggerRef={menuButtonRef}
       />
     </>
   );
 };
-

@@ -48,7 +48,7 @@ export const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
       <Component
         ref={ref}
         className={cn(
-          'relative overflow-hidden text-[var(--brand-pure-white)]',
+          'relative overflow-hidden text-[var(--text-primary)]',
           roundedClasses[rounded],
           paddingClasses[padding],
           variantClasses[variant],

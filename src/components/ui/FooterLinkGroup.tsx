@@ -20,7 +20,7 @@ export const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({
 }) => {
   return (
     <div className={cn('space-y-4', className)}>
-      <h4 className="font-mono text-xs uppercase tracking-widest text-white/50 font-semibold">
+      <h4 className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] font-semibold">
         {title}
       </h4>
       <ul className="space-y-2.5 list-none p-0 m-0">
@@ -30,7 +30,7 @@ export const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({
               href={link.href}
               target={link.isExternal ? '_blank' : undefined}
               rel={link.isExternal ? 'noopener noreferrer' : undefined}
-              className="text-sm text-white/70 hover:text-[var(--brand-neon-green)] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded"
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-accent)] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded"
             >
               {link.label}
             </a>

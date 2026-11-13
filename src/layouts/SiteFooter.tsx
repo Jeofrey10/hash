@@ -28,7 +28,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
     <footer
       role="contentinfo"
       className={cn(
-        'w-full bg-[var(--brand-obsidian)] border-t border-white/[0.08] text-white',
+        'w-full bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] text-[var(--text-primary)]',
         'pt-16 pb-12 px-5 sm:px-8 lg:px-12',
         className,
       )}
@@ -40,11 +40,11 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
           <div className="lg:col-span-6 space-y-4">
             <a
               href="/"
-              className="inline-block font-semibold text-2xl tracking-tight text-[var(--brand-pure-white)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
+              className="inline-block font-semibold text-2xl tracking-tight text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
             >
               HASH<span className="text-[var(--brand-neon-green)]">.</span>DEVS
             </a>
-            <p className="text-sm sm:text-base text-white/70 max-w-md leading-relaxed">
+            <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-md leading-relaxed">
               Connected digital experiences that help businesses get discovered, communicate their value and convert visitors into customers.
             </p>
             <div className="pt-2">
@@ -72,7 +72,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
         </div>
 
         {/* Bottom Bar: Copyright & Tagline */}
-        <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
+        <div className="pt-8 border-t border-[var(--divider-color)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-muted)]">
           <p>© {currentYear} HASH.DEVS. All rights reserved.</p>
           <p className="tracking-widest uppercase">
             Build with purpose. Grow with clarity.

@@ -19,7 +19,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
   const dotColorClasses = {
     active: 'bg-[var(--brand-neon-green)]',
     accent: 'bg-[var(--brand-neon-green)]',
-    neutral: 'bg-white/60',
+    neutral: 'bg-[var(--text-muted)]',
   };
 
   return (
@@ -27,8 +27,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       role="status"
       className={cn(
         'inline-flex items-center gap-2 h-7 px-3 rounded-full',
-        'bg-white/[0.05] border border-white/[0.10] backdrop-blur-sm',
-        'text-xs font-mono font-medium tracking-wide uppercase text-white/90',
+        'bg-[var(--tag-bg)] border border-[var(--tag-border)] backdrop-blur-sm',
+        'text-xs font-mono font-medium tracking-wide uppercase text-[var(--text-primary)]',
         'select-none transition-colors duration-200',
         className,
       )}

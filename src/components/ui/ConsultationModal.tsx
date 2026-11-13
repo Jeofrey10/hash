@@ -140,7 +140,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
           type="button"
           onClick={onClose}
           aria-label="Close consultation dialog"
-          className="absolute top-4 right-4 p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.06] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]"
+          className="absolute top-4 right-4 p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--state-hover-glass)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)]"
         >
           <svg
             width="18"
@@ -164,10 +164,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
         />
 
         <div className="space-y-2">
-          <h3 id="consultation-dialog-title" className="text-2xl font-semibold text-white">
+          <h3 id="consultation-dialog-title" className="text-2xl font-semibold text-[var(--text-primary)]">
             {serviceTitle ? `Inquire: ${serviceTitle}` : 'Start a Project'}
           </h3>
-          <p className="text-sm text-white/70 leading-relaxed">
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
             {serviceTitle
               ? `You selected ${serviceTitle}. The full dedicated interactive contact section will be connected in upcoming stages.`
               : 'Hero and Services sections are active. The full dedicated interactive contact section will be connected in upcoming stages.'}

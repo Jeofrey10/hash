@@ -33,11 +33,11 @@ export const SecondaryButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEl
 
     const combinedClasses = cn(
       'inline-flex items-center justify-center gap-2 rounded-lg',
-      'bg-white/[0.04] text-[var(--brand-pure-white)] border border-white/[0.12]',
+      'bg-[var(--tag-bg)] text-[var(--text-primary)] border border-[var(--border-medium)]',
       'backdrop-blur-sm transition-all duration-200 ease-out select-none',
-      'hover:bg-white/[0.08] hover:border-white/[0.25] hover:text-white',
+      'hover:bg-[var(--panel-hover-bg)] hover:border-[var(--border-active)] hover:text-[var(--text-primary)]',
       'active:scale-[0.98]',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-obsidian)]',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]',
       'disabled:opacity-35 disabled:cursor-not-allowed disabled:pointer-events-none disabled:transform-none',
       sizeClasses[size],
       fullWidth ? 'w-full' : 'w-auto',

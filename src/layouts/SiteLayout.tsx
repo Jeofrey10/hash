@@ -15,11 +15,11 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
   onCtaClick,
 }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--brand-obsidian)] text-[var(--brand-pure-white)] antialiased selection:bg-[var(--brand-neon-green)] selection:text-[var(--brand-obsidian)]">
+    <div className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased selection:bg-[var(--brand-neon-green)] selection:text-[var(--text-inverse)] transition-colors duration-250">
       {/* Accessible Skip Link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[200] px-4 py-2 rounded-lg bg-[var(--brand-neon-green)] text-[var(--brand-obsidian)] font-medium text-sm shadow-lg outline-none ring-2 ring-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[200] px-4 py-2 rounded-lg bg-[var(--brand-neon-green)] text-[var(--text-inverse)] font-medium text-sm shadow-lg outline-none ring-2 ring-white"
       >
         Skip to main content
       </a>
@@ -27,7 +27,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
       {/* Persistent Global Header */}
       <SiteHeader onCtaClick={onCtaClick} />
 
-      {/* Main Content Region — Ready to receive sections in Stage 05 */}
+      {/* Main Content Region */}
       <main
         id="main-content"
         tabIndex={-1}
@@ -41,4 +41,3 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
     </div>
   );
 };
-

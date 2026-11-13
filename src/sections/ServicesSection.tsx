@@ -180,7 +180,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
       className={cn(
         'relative w-full overflow-hidden scroll-mt-24 lg:scroll-mt-28',
         'px-5 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-36',
-        'border-t border-white/[0.08]',
+        'border-t border-[var(--border-subtle)] bg-[var(--bg-primary)] transition-colors duration-250',
         className,
       )}
     >
@@ -200,10 +200,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
 
         {/* Precision Geometric Technical Grid */}
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
+              'linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px)',
             backgroundSize: '64px 64px',
             maskImage: 'radial-gradient(ellipse 90% 70% at 50% 50%, black 40%, transparent 100%)',
             WebkitMaskImage: 'radial-gradient(ellipse 90% 70% at 50% 50%, black 40%, transparent 100%)',
@@ -211,10 +211,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
         />
 
         {/* Subtle Technical Framing Markers (Architectural Continuity with Hero) */}
-        <div className="hidden lg:block absolute top-10 left-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
+        <div className="hidden lg:block absolute top-10 left-12 font-mono text-[11px] text-[var(--text-muted)] tracking-widest uppercase">
           SEC // 02.SERVICES
         </div>
-        <div className="hidden lg:block absolute top-10 right-12 font-mono text-[11px] text-white/20 tracking-widest uppercase">
+        <div className="hidden lg:block absolute top-10 right-12 font-mono text-[11px] text-[var(--text-muted)] tracking-widest uppercase">
           DISCIPLINE // 05.CORE
         </div>
       </div>
@@ -226,7 +226,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
           <Reveal variant="fade-up" delay={0}>
             <div className="inline-flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-neon-green)]" />
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--brand-neon-green)]">
+              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--text-accent)]">
                 What We Do
               </span>
             </div>
@@ -235,21 +235,21 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ className, onC
           <TextReveal
             as="h2"
             id="services-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--brand-pure-white)] leading-[1.12]"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.025em] text-[var(--text-primary)] leading-[1.12]"
             delay={80}
           >
             Integrated capabilities for connected digital growth.
           </TextReveal>
 
           <Reveal variant="fade-up" delay={160}>
-            <p className="text-base sm:text-lg text-white/70 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal">
               We engineer high-performance web platforms, scalable applications, and data-backed growth systems that help businesses get discovered, communicate their value, and convert visitors into customers.
             </p>
           </Reveal>
         </div>
 
         {/* Services 5-Discipline Balanced Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8 items-stretch">
+        <div id="services-offerings-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8 items-stretch">
           {SERVICES_DATA.map((service, index) => {
             // Balanced composition: Row 1 has 3 equal columns (col-span-2 each); Row 2 has 2 equal columns (col-span-3 each)
             const colSpanClass =

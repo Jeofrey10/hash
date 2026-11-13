@@ -5,28 +5,41 @@
  * - Hash Neon Green: #35E85B (Primary interactive accent & live status signal)
  * - Pure White: #FFFFFF (Primary high-contrast typography)
  * - Graphite: #171A18 (Secondary dark surface, cards, structural frames)
+ * 
+ * Light Theme (Editorial Technology Studio):
+ * - Main background: #F5F6F2
+ * - Secondary background: #ECEFE9
+ * - Surface / cards: #FFFFFF
+ * - Primary text: #111512
+ * - Secondary text: #4B554D
+ * - Muted text: #727B74
+ * - Brand accent: #168B39
+ * - Strong accent: #35E85B
  */
 
-:root {
+:root,
+:root[data-theme="dark"] {
   /* Brand Primitives */
   --brand-obsidian: #050505;
   --brand-neon-green: #35E85B;
   --brand-pure-white: #FFFFFF;
   --brand-graphite: #171A18;
+  --brand-emerald-deep: #168B39;
 
-  /* Semantic Color Tokens */
-  --bg-primary: var(--brand-obsidian);
+  /* Semantic Background Tokens */
+  --bg-primary: #050505;
   --bg-secondary: #0D0F0E;
-  --bg-surface: var(--brand-graphite);
+  --bg-surface: #171A18;
   --bg-surface-elevated: #222623;
   --bg-surface-card: #141715;
 
   /* Typography Colors */
-  --text-primary: var(--brand-pure-white);
+  --text-primary: #FFFFFF;
   --text-secondary: rgba(255, 255, 255, 0.72);
   --text-muted: rgba(255, 255, 255, 0.45);
-  --text-accent: var(--brand-neon-green);
-  --text-inverse: var(--brand-obsidian);
+  --text-accent: #35E85B;
+  --text-accent-secondary: #35E85B;
+  --text-inverse: #050505;
 
   /* Border Tokens */
   --border-subtle: rgba(255, 255, 255, 0.08);
@@ -60,6 +73,100 @@
   --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.40);
   --shadow-floating: 0 16px 48px 0 rgba(0, 0, 0, 0.65);
 
+  /* Card and Panel tokens */
+  --panel-bg: rgba(255, 255, 255, 0.02);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-hover-bg: rgba(255, 255, 255, 0.04);
+  --panel-hover-border: rgba(255, 255, 255, 0.18);
+  --tag-bg: rgba(255, 255, 255, 0.04);
+  --tag-border: rgba(255, 255, 255, 0.08);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-placeholder: rgba(255, 255, 255, 0.30);
+  --divider-color: rgba(255, 255, 255, 0.06);
+
+  /* Hero & Atmospheric Visual Tokens */
+  --hero-radial-glow: radial-gradient(ellipse at center, rgba(53, 232, 91, 0.40) 0%, rgba(23, 26, 24, 0.18) 50%, transparent 80%);
+  --hero-horizon-glow: radial-gradient(ellipse 90% 60% at 50% 100%, rgba(53, 232, 91, 0.35) 0%, rgba(23, 26, 24, 0.10) 65%, transparent 85%);
+  --grid-line-color: rgba(255, 255, 255, 0.035);
+  --cursive-headline-color: #35E85B;
+  --cursive-headline-shadow: 0 0 28px rgba(53, 232, 91, 0.35);
+  --noise-opacity: 0.075;
+
   /* Container & Layout */
   --container-max-width: 1440px;
+}
+
+:root[data-theme="light"] {
+  /* Brand Primitives in Light Context */
+  --brand-obsidian: #F5F6F2;
+  --brand-pure-white: #111512;
+  --brand-graphite: #FFFFFF;
+
+  /* Semantic Background Tokens */
+  --bg-primary: #F5F6F2;
+  --bg-secondary: #ECEFE9;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #FFFFFF;
+  --bg-surface-card: #FFFFFF;
+
+  /* Typography Colors */
+  --text-primary: #111512;
+  --text-secondary: #4B554D;
+  --text-muted: #727B74;
+  --text-accent: #168B39;
+  --text-accent-secondary: #35E85B;
+  --text-inverse: #FFFFFF;
+
+  /* Border Tokens */
+  --border-subtle: rgba(17, 21, 18, 0.08);
+  --border-medium: rgba(17, 21, 18, 0.12);
+  --border-active: rgba(22, 139, 57, 0.40);
+  --border-focus: rgba(22, 139, 57, 0.75);
+
+  /* Interactive States */
+  --state-hover-glass: rgba(17, 21, 18, 0.04);
+  --state-disabled-bg: rgba(17, 21, 18, 0.05);
+  --state-disabled-text: rgba(17, 21, 18, 0.35);
+  --state-disabled-border: rgba(17, 21, 18, 0.06);
+
+  /* Functional / Feedback Colors */
+  --feedback-success: #168B39;
+  --feedback-error: #DC2626;
+  --feedback-warning: #D97706;
+  --feedback-info: #0284C7;
+
+  /* Glassmorphism & Atmospheric Overlay Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-bg-floating: rgba(255, 255, 255, 0.94);
+  --glass-border: rgba(17, 21, 18, 0.10);
+  --glass-blur: 16px;
+  --glass-blur-sm: 8px;
+  --glass-blur-lg: 24px;
+  --glow-neon-subtle: 0 0 20px rgba(22, 139, 57, 0.12);
+  --glow-neon-accent: 0 0 32px rgba(22, 139, 57, 0.22);
+
+  /* Elevation Shadows */
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-floating: 0 16px 40px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Card and Panel tokens */
+  --panel-bg: #FFFFFF;
+  --panel-border: rgba(17, 21, 18, 0.10);
+  --panel-hover-bg: #FFFFFF;
+  --panel-hover-border: rgba(22, 139, 57, 0.35);
+  --tag-bg: #ECEFE9;
+  --tag-border: rgba(17, 21, 18, 0.08);
+  --input-bg: #FFFFFF;
+  --input-border: rgba(17, 21, 18, 0.16);
+  --input-placeholder: rgba(17, 21, 18, 0.40);
+  --divider-color: rgba(17, 21, 18, 0.08);
+
+  /* Hero & Atmospheric Visual Tokens */
+  --hero-radial-glow: radial-gradient(ellipse at center, rgba(22, 139, 57, 0.16) 0%, rgba(236, 239, 233, 0.3) 50%, transparent 80%);
+  --hero-horizon-glow: radial-gradient(ellipse 90% 60% at 50% 100%, rgba(22, 139, 57, 0.12) 0%, rgba(236, 239, 233, 0.10) 65%, transparent 85%);
+  --grid-line-color: rgba(17, 21, 18, 0.045);
+  --cursive-headline-color: #168B39;
+  --cursive-headline-shadow: 0 0 20px rgba(22, 139, 57, 0.18);
+  --noise-opacity: 0.035;
 }

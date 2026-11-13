@@ -32,7 +32,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       rounded="2xl"
       className={cn(
         'flex flex-col justify-between h-full group relative',
-        'focus-within:ring-2 focus-within:ring-[var(--brand-neon-green)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--brand-obsidian)]',
+        'bg-[var(--panel-bg)] border border-[var(--panel-border)] shadow-[var(--shadow-card)]',
+        'hover:border-[var(--panel-hover-border)]',
+        'focus-within:ring-2 focus-within:ring-[var(--brand-neon-green)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--bg-primary)]',
         className,
       )}
       aria-label={`${index}: ${title}`}
@@ -47,45 +49,45 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
         {/* Header index, category marker & icon */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2.5">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--brand-neon-green)]">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--text-accent)]">
               {index} //
             </span>
             {category && (
-              <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-white/50 group-hover:text-white/80 group-hover:border-white/20 transition-colors">
+              <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-[var(--tag-bg)] border border-[var(--tag-border)] text-[var(--text-muted)] group-hover:text-[var(--text-secondary)] group-hover:border-[var(--border-medium)] transition-colors">
                 {category}
               </span>
             )}
           </div>
           {icon && (
-            <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/80 group-hover:text-[var(--brand-neon-green)] group-hover:border-[var(--brand-neon-green)]/40 transition-colors duration-200">
+            <div className="w-9 h-9 rounded-lg bg-[var(--tag-bg)] border border-[var(--tag-border)] flex items-center justify-center text-[var(--text-secondary)] group-hover:text-[var(--text-accent)] group-hover:border-[var(--border-active)] transition-colors duration-200">
               {icon}
             </div>
           )}
         </div>
 
         {/* Title */}
-        <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-[var(--brand-pure-white)] group-hover:text-white transition-colors duration-200">
+        <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-[var(--text-primary)] transition-colors duration-200">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-white/70 leading-relaxed font-normal">
+        <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal">
           {description}
         </p>
       </div>
 
       {/* Deliverables / Capabilities chips and interaction affordance */}
-      <div className="pt-6 mt-6 border-t border-white/[0.06] space-y-4">
+      <div className="pt-6 mt-6 border-t border-[var(--divider-color)] space-y-4">
         {deliverables.length > 0 && (
           <div>
-            <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 mb-2.5">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--text-muted)] mb-2.5">
               Focus & Deliverables
             </div>
             <div className="flex flex-wrap gap-2">
               {deliverables.map((item, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center text-xs px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-white/75 font-mono group-hover:text-white/90 group-hover:border-white/[0.14] transition-colors"
+                  className="inline-flex items-center text-xs px-2.5 py-1 rounded-md bg-[var(--tag-bg)] border border-[var(--tag-border)] text-[var(--text-secondary)] font-mono group-hover:text-[var(--text-primary)] group-hover:border-[var(--border-medium)] transition-colors"
                 >
                   {item}
                 </span>
@@ -95,13 +97,13 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
         )}
 
         {/* Subtle Bottom Interaction Marker with Semantic Native Button */}
-        <div className="flex items-center justify-between text-xs font-mono text-white/40 pt-2 border-t border-white/[0.04]">
+        <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)] pt-2 border-t border-[var(--divider-color)]">
           <span className="text-[11px] uppercase tracking-wider">Discipline {index}</span>
           <button
             type="button"
             onClick={onExploreClick}
             aria-label={`Inquire about ${title}`}
-            className="inline-flex items-center gap-1.5 text-[var(--brand-neon-green)] opacity-80 group-hover:opacity-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1.5 py-0.5 after:absolute after:inset-0 after:content-[''] after:cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-[var(--text-accent)] opacity-85 group-hover:opacity-100 transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--brand-neon-green)] rounded px-1.5 py-0.5 after:absolute after:inset-0 after:content-[''] after:cursor-pointer font-medium"
           >
             <span>Inquire</span>
             <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform duration-200">
@@ -113,4 +115,3 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
     </GlassPanel>
   );
 };
-

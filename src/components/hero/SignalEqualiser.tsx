@@ -93,25 +93,33 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
         // Edge fade factor
         const edgeFade = Math.sin(normCol * Math.PI); // 0 at edges, 1 at center
 
+        const isLight =
+          typeof document !== 'undefined' &&
+          document.documentElement.getAttribute('data-theme') === 'light';
+
         for (let r = 0; r < activeDots; r++) {
           const y = horizonY - r * colStep;
           const heightRatio = r / Math.max(activeDots - 1, 1); // 0 (bottom) to 1 (top)
 
-          // Dynamic Color Grading:
-          // Bottom rows: Vibrant Hash Neon Green (#35E85B)
-          // Mid rows: Soft emerald / graphite-green
-          // Top rows: Muted graphite-white fade
-          let rVal = 53;
-          let gVal = 232;
-          let bVal = 91;
-          let alpha = Math.min(1, (1 - heightRatio * 0.75) * edgeFade * 0.9);
+          let rVal = isLight ? 22 : 53;
+          let gVal = isLight ? 139 : 232;
+          let bVal = isLight ? 57 : 91;
+          let alpha = Math.min(
+            isLight ? 0.85 : 1,
+            (1 - heightRatio * 0.75) * edgeFade * (isLight ? 0.85 : 0.9),
+          );
 
           if (heightRatio > 0.6) {
-            // Shift towards pure white in high-amplitude peaks
             const peakRatio = (heightRatio - 0.6) / 0.4;
-            rVal = Math.floor(53 + (255 - 53) * peakRatio * 0.6);
-            gVal = Math.floor(232 + (255 - 232) * peakRatio * 0.4);
-            bVal = Math.floor(91 + (255 - 91) * peakRatio * 0.6);
+            if (isLight) {
+              rVal = Math.floor(22 + (75 - 22) * peakRatio);
+              gVal = Math.floor(139 + (85 - 139) * peakRatio);
+              bVal = Math.floor(57 + (77 - 57) * peakRatio);
+            } else {
+              rVal = Math.floor(53 + (255 - 53) * peakRatio * 0.6);
+              gVal = Math.floor(232 + (255 - 232) * peakRatio * 0.4);
+              bVal = Math.floor(91 + (255 - 91) * peakRatio * 0.6);
+            }
           }
 
           ctx.fillStyle = `rgba(${rVal}, ${gVal}, ${bVal}, ${alpha.toFixed(3)})`;

@@ -103,20 +103,12 @@ export const SignalCore: React.FC<SignalCoreProps> = ({
           <div className="absolute inset-1.5 rounded-full border border-white/[0.08] pointer-events-none" />
 
           {/* Central Illuminated Hash Digital Glyph Matrix */}
-          <div className="relative z-10 flex flex-col items-center justify-center">
+          <div className="relative z-10 flex items-center justify-center">
             {/* Official HASH.DEVS Brand Symbol */}
             <HashSymbol
-              className="w-14 h-11 sm:w-18 sm:h-14 lg:w-22 lg:h-17 drop-shadow-[0_0_16px_rgba(53,232,91,0.45)] mb-1"
+              className="w-14 h-11 sm:w-18 sm:h-14 lg:w-22 lg:h-17 drop-shadow-[0_0_16px_rgba(53,232,91,0.45)]"
               aria-label="HASH.DEVS brand symbol"
             />
-
-            {/* Core Status Monospace Tag */}
-            <span
-              data-testid="hd-core-label"
-              className="font-mono text-[9px] uppercase tracking-widest text-white/50"
-            >
-              HD.CORE.01
-            </span>
           </div>
 
           {/* Subtle Outer Floating Nodes */}

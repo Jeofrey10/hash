@@ -49,23 +49,24 @@ test.describe('Hero Central Symbol Replacement Verification', () => {
       });
       expect(whiteFill).toMatch(/rgb\(255,\s*255,\s*255\)|#ffffff/i);
 
-      // 4. Verify HD.CORE.01 tag is present underneath the symbol
+      // 4. Verify HD.CORE.01 tag is completely removed from the central core
       const coreLabel = hero.getByTestId('hd-core-label');
-      await expect(coreLabel).toBeVisible();
+      await expect(coreLabel).toHaveCount(0);
 
-      // 5. Verify no text collision / overlap: symbol center is above label center
+      // 5. Verify the symbol is centered inside the core disk
+      const coreDisk = hero.locator('div:has(> div > svg[aria-label="HASH.DEVS brand symbol"])').first();
       const symbolCenterY = await symbolSvg.evaluate((el) => {
         const rect = el.getBoundingClientRect();
         return rect.top + rect.height / 2;
       });
-      const labelCenterY = await coreLabel.evaluate((el) => {
+      const diskCenterY = await coreDisk.evaluate((el) => {
         const rect = el.getBoundingClientRect();
         return rect.top + rect.height / 2;
       });
-      expect(symbolCenterY).toBeLessThan(labelCenterY);
+      // Symbol center should closely align with the circular disk vertical center
+      expect(Math.abs(symbolCenterY - diskCenterY)).toBeLessThan(6);
 
       // 6. Capture closeup screenshot of circular monolith core
-      const coreDisk = hero.locator('div:has(> div > svg[aria-label="HASH.DEVS brand symbol"])').first();
       await coreDisk.screenshot({
         path: path.join(screenshotDir, `core-disk-${vp.name}.png`),
       });

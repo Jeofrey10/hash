@@ -90,9 +90,9 @@ test.describe('HASH.DEVS Cinematic Digital Signal Hero Experience', () => {
     const equaliserCanvas = hero.locator('canvas');
     await expect(equaliserCanvas).toBeAttached();
 
-    // 3. Verify central geometric hash signal core
-    const coreStatus = hero.getByText('HD.CORE.01').first();
-    await expect(coreStatus).toBeAttached();
+    // 3. Verify central geometric hash signal core and symbol
+    const symbolSvg = hero.locator('svg[aria-label="HASH.DEVS brand symbol"]');
+    await expect(symbolSvg).toBeVisible();
 
     // 4. Verify telemetry panels: SYSTEM // 001 and SYSTEM // 002
     await expect(hero.getByText('SYSTEM // 001').first()).toBeAttached();

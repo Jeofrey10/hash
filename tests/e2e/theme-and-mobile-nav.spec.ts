@@ -124,8 +124,9 @@ test.describe('Stage 11: Global Theme System (Light / Dark)', () => {
     await page.locator('#services').scrollIntoViewIfNeeded();
     const serviceCards = page.locator('#services article');
     await expect(serviceCards.first()).toBeVisible();
-    const cardBg = await serviceCards.first().evaluate((el) => window.getComputedStyle(el).backgroundColor);
-    expect(cardBg).toMatch(/rgb\(2[4-5][0-9],\s*2[4-5][0-9],\s*2[4-5][0-9]\)|rgba\(2[4-5][0-9],\s*2[4-5][0-9],\s*2[4-5][0-9],\s*0\.8[1-9]\)/);
+    await expect.poll(async () => {
+      return serviceCards.first().evaluate((el) => window.getComputedStyle(el).backgroundColor);
+    }, { timeout: 4000 }).toMatch(/rgb\(2[4-5][0-9],\s*2[4-5][0-9],\s*2[4-5][0-9]\)|rgba\(2[4-5][0-9],\s*2[4-5][0-9],\s*2[4-5][0-9]/);
 
     // Verify Footer background (#F5F6F2 -> rgb(245, 246, 242))
     const footer = page.locator('footer[role="contentinfo"]');

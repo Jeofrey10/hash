@@ -6,6 +6,7 @@ import { ServicesSection } from '@/sections/ServicesSection';
 import { ApproachSection } from '@/sections/ApproachSection';
 import { CapabilitiesSection } from '@/sections/CapabilitiesSection';
 import { ContactSection } from '@/sections/ContactSection';
+import { Preloader } from '@/components/ui/Preloader';
 
 // Lazy-load the ConsultationModal so its dialog and form dependencies only bundle when needed
 const ConsultationModal = lazy(() =>
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <ThemeProvider>
+      <Preloader />
       <SiteLayout onCtaClick={handleOpenConsultation}>
         <HeroSection onCtaClick={handleOpenConsultation} />
         <ServicesSection onCtaClick={handleOpenConsultation} />

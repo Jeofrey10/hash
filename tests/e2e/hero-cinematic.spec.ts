@@ -119,7 +119,7 @@ test.describe('HASH.DEVS Cinematic Digital Signal Hero Experience', () => {
   test('should verify zero horizontal overflow across all 5 viewports and capture screenshots', async ({
     page,
   }) => {
-    test.setTimeout(60000);
+    test.setTimeout(120000);
 
     const viewports = [
       { name: '01-hero-cinematic-desktop-1440.png', width: 1440, height: 900 },

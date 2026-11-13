@@ -1,93 +1,93 @@
 {
-  "timestamp": "2026-11-13T21:34:43.845Z",
+  "timestamp": "2026-11-13T22:08:50.263Z",
   "viewports": {
     "desktop-1440": {
-      "loadTimeMs": 1001,
+      "loadTimeMs": 1018,
       "frameData": {
-        "count": 141,
-        "avgFps": 51,
-        "avgDeltaMs": "19.62",
-        "over16Pct": "46.8%",
-        "over33Pct": "6.4%",
-        "longestFrameMs": "100.00"
+        "count": 133,
+        "avgFps": 49,
+        "avgDeltaMs": "20.55",
+        "over16Pct": "39.8%",
+        "over33Pct": "12.8%",
+        "longestFrameMs": "66.70"
       },
-      "jsHeapKB": "6634.00",
-      "layoutCount": 5,
-      "recalcStyleCount": 227
+      "jsHeapKB": "9944.12",
+      "layoutCount": 23,
+      "recalcStyleCount": 211
     },
     "laptop-1280": {
-      "loadTimeMs": 1017,
+      "loadTimeMs": 987,
       "frameData": {
-        "count": 149,
-        "avgFps": 54,
-        "avgDeltaMs": "18.68",
-        "over16Pct": "40.3%",
-        "over33Pct": "5.4%",
-        "longestFrameMs": "50.00"
+        "count": 144,
+        "avgFps": 52,
+        "avgDeltaMs": "19.10",
+        "over16Pct": "43.1%",
+        "over33Pct": "7.6%",
+        "longestFrameMs": "66.70"
       },
-      "jsHeapKB": "8877.59",
-      "layoutCount": 5,
-      "recalcStyleCount": 239
+      "jsHeapKB": "9181.34",
+      "layoutCount": 26,
+      "recalcStyleCount": 232
     },
     "tablet-768": {
-      "loadTimeMs": 988,
+      "loadTimeMs": 994,
       "frameData": {
         "count": 176,
-        "avgFps": 55,
-        "avgDeltaMs": "18.09",
-        "over16Pct": "32.4%",
-        "over33Pct": "5.1%",
-        "longestFrameMs": "83.40"
+        "avgFps": 54,
+        "avgDeltaMs": "18.37",
+        "over16Pct": "34.1%",
+        "over33Pct": "6.8%",
+        "longestFrameMs": "50.00"
       },
-      "jsHeapKB": "8972.37",
-      "layoutCount": 5,
+      "jsHeapKB": "6415.02",
+      "layoutCount": 25,
       "recalcStyleCount": 274
     },
     "mobile-390": {
-      "loadTimeMs": 1194,
+      "loadTimeMs": 1006,
       "frameData": {
-        "count": 245,
-        "avgFps": 60,
-        "avgDeltaMs": "16.67",
-        "over16Pct": "24.1%",
-        "over33Pct": "0.0%",
-        "longestFrameMs": "16.80"
+        "count": 246,
+        "avgFps": 59,
+        "avgDeltaMs": "16.87",
+        "over16Pct": "27.2%",
+        "over33Pct": "0.4%",
+        "longestFrameMs": "33.30"
       },
-      "jsHeapKB": "6891.32",
-      "layoutCount": 6,
-      "recalcStyleCount": 389
+      "jsHeapKB": "6392.57",
+      "layoutCount": 37,
+      "recalcStyleCount": 385
     },
     "mobile-360": {
-      "loadTimeMs": 1020,
+      "loadTimeMs": 1027,
       "frameData": {
-        "count": 257,
+        "count": 256,
         "avgFps": 60,
         "avgDeltaMs": "16.67",
-        "over16Pct": "24.1%",
+        "over16Pct": "34.8%",
         "over33Pct": "0.0%",
         "longestFrameMs": "16.80"
       },
-      "jsHeapKB": "9302.89",
-      "layoutCount": 6,
-      "recalcStyleCount": 399
+      "jsHeapKB": "7988.62",
+      "layoutCount": 37,
+      "recalcStyleCount": 388
     }
   },
   "cpuThrottling4x": {
-    "loadTimeMs": 770,
+    "loadTimeMs": 776,
     "frameData": {
-      "avgFps": 50,
-      "longestFrameMs": "83.30"
+      "avgFps": 48,
+      "longestFrameMs": "100.00"
     }
   },
   "themes": {
-    "toLightMs": 144,
-    "toDarkMs": 154
+    "toLightMs": 178,
+    "toDarkMs": 175
   },
   "interactionLatencies": {},
   "memoryLeaks": {
-    "heapStartKB": "6303.94",
-    "heapEndKB": "23188.27",
-    "heapDeltaKB": "16884.32",
+    "heapStartKB": "6168.61",
+    "heapEndKB": "22398.63",
+    "heapDeltaKB": "16230.02",
     "verdict": "ELEVATED"
   }
 }

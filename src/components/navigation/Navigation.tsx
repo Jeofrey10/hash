@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
+import { HashFullLogo } from '@/components/ui/HashFullLogo';
 import { MobileNavigation } from '@/components/navigation/MobileNavigation';
 import { cn } from '@/lib/utils';
 
@@ -71,9 +72,14 @@ export const Navigation: React.FC<NavigationProps> = ({
             {/* Brand Logo */}
             <a
               href="/"
-              className="font-semibold text-lg sm:text-xl tracking-tight text-[var(--text-primary)] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
+              aria-label="HASH.DEVS Homepage"
+              className="flex items-center gap-2 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded py-1"
             >
-              HASH<span className="text-[var(--brand-neon-green)]">.</span>DEVS
+              <HashFullLogo
+                className="h-6 sm:h-7 w-auto text-[var(--text-primary)]"
+                aria-hidden="true"
+              />
+              <span className="sr-only">HASH.DEVS</span>
             </a>
 
             {/* Desktop Navigation Links */}

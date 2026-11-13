@@ -1,6 +1,7 @@
 import React from 'react';
 import { FooterLinkGroup, type FooterLink } from '@/components/ui/FooterLinkGroup';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { HashFullLogo } from '@/components/ui/HashFullLogo';
 import { Reveal } from '@/components/motion';
 import { cn } from '@/lib/utils';
 
@@ -41,9 +42,14 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
           <Reveal variant="fade-up" delay={50} className="lg:col-span-6 space-y-4">
             <a
               href="/"
-              className="inline-block font-semibold text-2xl tracking-tight text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
+              aria-label="HASH.DEVS Homepage"
+              className="inline-flex items-center gap-2 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
             >
-              HASH<span className="text-[var(--brand-neon-green)]">.</span>DEVS
+              <HashFullLogo
+                className="h-8 w-auto text-[var(--text-primary)]"
+                aria-hidden="true"
+              />
+              <span className="sr-only">HASH.DEVS</span>
             </a>
             <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-md leading-relaxed">
               Connected digital experiences that help businesses get discovered, communicate their value and convert visitors into customers.

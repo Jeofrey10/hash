@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
+import { HashFullLogo } from '@/components/ui/HashFullLogo';
 import { cn } from '@/lib/utils';
 import type { NavItem } from '@/components/navigation/Navigation';
 
@@ -114,9 +115,14 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
             onClose();
             triggerRef?.current?.focus();
           }}
-          className="font-semibold text-xl tracking-tight text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
+          aria-label="HASH.DEVS Homepage"
+          className="flex items-center gap-2 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] rounded"
         >
-          HASH<span className="text-[var(--brand-neon-green)]">.</span>DEVS
+          <HashFullLogo
+            className="h-7 w-auto text-[var(--text-primary)]"
+            aria-hidden="true"
+          />
+          <span className="sr-only">HASH.DEVS</span>
         </a>
         <div className="flex items-center gap-2">
           <ThemeSwitcher id="drawer-theme-switcher" size="md" />

@@ -37,7 +37,7 @@
 | **Stage 07** | **Global Animation Engineering & Motion System** | Centralized motion system (`motion.css`, `useScrollReveal`, `useReducedMotion`, `Reveal`, `TextReveal`, `ImageReveal`), micro-interactions polish, and comprehensive accessibility | **COMPLETED** |
 | **Stage 08** | **Approach Section Implementation** | Dedicated `ApproachSection` (`#approach`) communicating the 4-phase transformation process (Discover, Define, Design & Build, Refine & Grow) with connected progression rail | **COMPLETED** |
 | **Stage 09** | **Capabilities Section Implementation & Content Refinement** | Dedicated `CapabilitiesSection` (`#capabilities`) with 5 cross-disciplinary capability pillars ("What We Bring to the Work") separated from Services deliverables | **COMPLETED** |
-| **Stage 10** | **Contact Section & Project Inquiry Experience** | Dedicated `ContactSection` (`#contact`) with accessible 4-step inquiry workflow, review & edit capabilities, robust validation, mockable typed submission adapter, and zero data loss on navigation or error | **COMPLETED** |
+| **Stage 10** | **Contact Section & Excel Storage Integration** | Dedicated `ContactSection` (`#contact`) with accessible 4-step inquiry workflow, server-side Excel storage (`C:\hash.devs\data\inquiries.xlsx`), concurrency write-locking, and zero fake success | **COMPLETED** |
 | **Stage 11** | **Footer & Homepage Integration** | Global footer redesign, cross-section navigation cohesion, and homepage integration | *Pending* |
 
 ---
@@ -48,6 +48,17 @@
 - `#approach`: Destination for strategic methodology & narrative section (`ApproachSection`), featuring the 4-phase transformation process.
 - `#capabilities`: Destination for cross-disciplinary expertise showcase (`CapabilitiesSection`), featuring the 5 foundational capability pillars and 20 core methods.
 - `#contact`: Destination for primary conversion CTA ("Start a Project") and navigation link, anchoring the multi-step project inquiry experience (`ContactSection`).
+
+---
+
+## 4. Backend & Excel Storage Architecture
+- **Storage Target:** Configurable via `INQUIRY_EXCEL_PATH` (defaults to `<project_root>/data/inquiries.xlsx`).
+- **Sheets:**
+  1. `Inquiries`: 13 columns (Inquiry ID, Submitted At, Project Type(s), Project / Business Name, Project Description, Primary Goal, Estimated Budget (INR), Preferred Timeline, Full Name, Work Email, Phone Number, Additional Notes, Submission Status). Formatted with Obsidian Black `#050505` header, Hash Neon Green `#35E85B` border, auto-filter, and frozen row 1.
+  2. `Read Me`: Administrative and privacy guidance sheet.
+- **Concurrency & Concurrency Locking:** Serialized mutex queue (`withStorageLock`) ensuring sequential write execution for concurrent submissions.
+- **Formula Injection Defense:** Strips executable leading characters (`=`, `+`, `-`, `@`) with a prepended single quote (`'`).
+- **Endpoints:** `POST /api/inquiries` and `POST /api/inquiry` with 100KB size limit, RFC 5322 email regex verification, and unique `INQ-HD-YYYYMMDD-XXXX` ID generation.
 
 ---
 

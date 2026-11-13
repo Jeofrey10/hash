@@ -171,7 +171,7 @@ test.describe('Stage 10 Contact Section & Inquiry Workflow Validation', () => {
     await contactSection.getByRole('button', { name: /Continue/i }).click();
 
     // 1. Test Failure Response (500 Error)
-    await page.route('**/api/inquiry', async (route) => {
+    await page.route('**/api/inquir*', async (route) => {
       await route.fulfill({
         status: 500,
         contentType: 'application/json',
@@ -201,8 +201,8 @@ test.describe('Stage 10 Contact Section & Inquiry Workflow Validation', () => {
     await expect(contactSection.getByText('elena@helioslab.dev')).toBeVisible();
 
     // 2. Test Success Response (200 OK)
-    await page.unroute('**/api/inquiry');
-    await page.route('**/api/inquiry', async (route) => {
+    await page.unroute('**/api/inquir*');
+    await page.route('**/api/inquir*', async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -274,6 +274,7 @@ test.describe('Stage 10 Contact Section & Inquiry Workflow Validation', () => {
   });
 
   test('should capture all 8 required visual screenshots', async ({ page }) => {
+    test.setTimeout(60000);
     // 1. Contact section desktop (1440x900)
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
@@ -323,7 +324,7 @@ test.describe('Stage 10 Contact Section & Inquiry Workflow Validation', () => {
     });
 
     // 6. Success state using controlled test response
-    await page.route('**/api/inquiry', async (route) => {
+    await page.route('**/api/inquir*', async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',

@@ -5,14 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node --experimental-strip-types server/standalone.ts",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
+    "test:backend": "node --test --experimental-strip-types tests/backend/excelStorage.test.ts",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "test": "npm run test:backend && playwright test"
   },
   "dependencies": {
+    "exceljs": "^4.4.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

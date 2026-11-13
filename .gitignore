@@ -23,6 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
+# Data & Inquiries storage
+/data/
+*.xlsx
+.env
+.env.*
+!.env.example
+
 # Testing & Playwright
 test-results/
 playwright-report/

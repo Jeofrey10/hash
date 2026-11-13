@@ -39,9 +39,15 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 ### 2.6 Form Intake & Submission Security (Stage 10)
 - **Input Sanitization & Trimming:** All user input fields in `src/sections/ContactSection.tsx` and `src/lib/inquirySubmission.ts` are strictly stripped of dangerous characters, whitespace-trimmed, and validated against max length bounds before network serialization.
 - **Email Validation:** RFC 5322 regex checks are performed to ensure syntactic validity prior to payload transmission.
-- **No Secret Exposure in Frontend:** The submission adapter interacts with the endpoint (`VITE_INQUIRY_API_ENDPOINT` or `/api/inquiry`) without exposing backend service-role keys or database credentials in client bundles.
+- **No Secret Exposure in Frontend:** The submission adapter interacts with the endpoint (`VITE_INQUIRY_API_ENDPOINT` or `/api/inquiries`) without exposing backend service-role keys or database credentials in client bundles.
 - **Privacy Assurance:** The form collects only project-relevant parameters (services, description, preliminary goals, contact info) and explicitly refrains from harvesting marketing data, unnecessary third-party cookies, or sensitive business secrets.
 - **No False Success Simulation:** Production code strictly gates the success confirmation state behind a verified HTTP 2xx server response with a valid inquiry ID.
+
+### 2.7 Excel Storage Security & Formula Injection Defense
+- **Formula Injection Neutralization:** Cell values starting with spreadsheet formula execution operators (`=`, `+`, `-`, `@`) are automatically prepended with a single quote (`'`) in `server/excelStorage.ts` before persistence to prevent CSV/Excel Macro & Formula Injection attacks.
+- **Data Directory Isolation:** The `/data/` folder and `*.xlsx` files are strictly excluded from version control via `.gitignore`.
+- **No Public Exposure:** The Excel workbook is stored outside the public assets directory and is never served directly via unauthenticated static file servers or download endpoints.
+- **Safe Error Emission:** Server storage errors log diagnostic details internally while returning sanitized, generic messages to the client to avoid leaking host directory trees or internal file paths.
 
 ---
 

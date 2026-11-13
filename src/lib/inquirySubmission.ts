@@ -11,7 +11,7 @@ export async function submitProjectInquiry(
   data: InquiryFormData
 ): Promise<InquirySubmissionResult> {
   // Configured submission endpoint from Vite environment or standard local API route
-  const endpoint = import.meta.env.VITE_INQUIRY_API_ENDPOINT || '/api/inquiry';
+  const endpoint = import.meta.env.VITE_INQUIRY_API_ENDPOINT || '/api/inquiries';
 
   // Sanitize payload: trim inputs and filter empty optional fields
   const payload = {

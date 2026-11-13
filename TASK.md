@@ -396,6 +396,17 @@
   - [x] Captured all 8 required visual screenshots in `tests/e2e/screenshots/stage-10/`.
   - [x] Contact test suite passes 14/14 tests across Chromium desktop and mobile.
 
+- [x] **Excel Inquiry Storage Integration (`server/`)**
+  - [x] Server-side storage engine using `exceljs` writing to `C:\hash.devs\data\inquiries.xlsx` (configurable via `INQUIRY_EXCEL_PATH`).
+  - [x] Formatted `Inquiries` worksheet with frozen top row, auto-filter, zebra styling, brand colors (Obsidian `#050505`, Neon Green `#35E85B`), and exact columns A through M.
+  - [x] Dedicated `Read Me` documentation and privacy notice worksheet.
+  - [x] Concurrency locking queue (`withStorageLock`) guaranteeing atomic, sequential writes without data loss or workbook corruption.
+  - [x] Formula injection protection (`=`, `+`, `-`, `@`) neutralizing spreadsheet code execution.
+  - [x] Backend API endpoint `POST /api/inquiries` with 100KB size limit, full payload schema validation, unique human-readable ID generation (`INQ-HD-YYYYMMDD-XXXX`), and ISO timestamps.
+  - [x] Embedded Vite plugin (`inquiryApiPlugin`) attaching the API to local dev and preview servers, plus standalone server script (`server/standalone.ts`).
+  - [x] Automated backend tests (`tests/backend/excelStorage.test.ts`) passing 11/11 tests, and live E2E tests (`tests/e2e/excel-api.spec.ts`) passing 8/8 tests.
+  - [x] `.env.example` created and `.gitignore` updated to strictly ignore `/data/` and `*.xlsx`.
+
 ---
 
 ## Upcoming Stages

@@ -41,7 +41,11 @@ tests/production-repair/acceptance-video/
 tests/production-repair/continuous-recordings/
 tests/production-repair/extracted_frames/
 tests/production-repair/screenshots/
+tests/production-repair/live-screenshots/
+tests/production-repair/live-video/
 tests/production-repair/*.jpg
 tests/production-repair/*.png
 tests/production-repair/*.webm
+tests/production-repair/test-*.cjs
+
 

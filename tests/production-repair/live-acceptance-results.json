@@ -1,0 +1,18 @@
+{
+  "url": "https://hashdev-ten.vercel.app/",
+  "timestamp": "2026-11-14T12:34:53.913Z",
+  "results": [
+    {
+      "browser": "webkit",
+      "status": "PASSED",
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "browser": "chromium",
+      "status": "PASSED",
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ]
+}

@@ -8,9 +8,19 @@ export interface ScrollRevealOptions {
 }
 
 /**
+ * Universal helper to check if an element's bounding rect physically overlaps the window viewport.
+ */
+function isElementPhysicallyInViewport(el: HTMLElement): boolean {
+  if (typeof window === 'undefined') return true;
+  const rect = el.getBoundingClientRect();
+  return rect.bottom > 0 && rect.top < window.innerHeight;
+}
+
+/**
  * Hook to trigger bidirectional visibility state when an element scrolls into/out of the viewport.
  * Automatically reverses when scrolling away and replays when re-entering.
  * Fully respects reduced-motion preferences and preserves keyboard accessibility.
+ * Robust against body scroll locking (e.g. mobile navigation drawers or modals) and theme transitions.
  */
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   options: ScrollRevealOptions = {}
@@ -43,13 +53,10 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
       return;
     }
 
-    // Check immediate visibility on mount (e.g. Hero section or hash navigation)
-    // Run inside requestAnimationFrame to batch layout reads and avoid forced synchronous layout
+    // 1. Check immediate physical visibility on mount or layout change
     let rafMountId: number | null = requestAnimationFrame(() => {
       if (!element) return;
-      const rect = element.getBoundingClientRect();
-      const isCurrentlyInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-      if (isCurrentlyInViewport) {
+      if (isElementPhysicallyInViewport(element)) {
         setIsVisible(true);
         if (once && observer) {
           observer.unobserve(element);
@@ -59,6 +66,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
       }
     });
 
+    // 2. IntersectionObserver for bidirectional reveals
     let observer: IntersectionObserver | null = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -70,7 +78,18 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
               observer = null;
             }
           } else if (!once) {
-            setIsVisible(false);
+            // Guard against false non-intersections:
+            // a) If body scroll is locked (e.g. mobile drawer/modal open), do NOT falsely hide underlying elements.
+            const isBodyLocked = typeof document !== 'undefined' && document.body.style.overflow === 'hidden';
+            if (isBodyLocked) {
+              return;
+            }
+
+            // b) If the element is still physically within viewport bounds, do NOT hide it.
+            const inViewport = isElementPhysicallyInViewport(element);
+            if (!inViewport) {
+              setIsVisible(false);
+            }
           }
         }
       },
@@ -82,8 +101,21 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 
     observer.observe(element);
 
+    // 3. Global viewport sync listener (for drawer close, modal close, theme changes, or window resizes)
+    const handleRecheck = () => {
+      if (!element) return;
+      if (isElementPhysicallyInViewport(element)) {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('resize', handleRecheck, { passive: true });
+    window.addEventListener('hashdevs-viewport-check', handleRecheck);
+
     return () => {
       if (rafMountId) cancelAnimationFrame(rafMountId);
+      window.removeEventListener('resize', handleRecheck);
+      window.removeEventListener('hashdevs-viewport-check', handleRecheck);
       if (observer) {
         observer.unobserve(element);
         observer.disconnect();

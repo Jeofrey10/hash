@@ -39,9 +39,11 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
       return () => {
         clearTimeout(timer);
         document.body.style.overflow = originalOverflow;
+        window.dispatchEvent(new CustomEvent('hashdevs-viewport-check'));
       };
     } else {
       document.body.style.overflow = '';
+      window.dispatchEvent(new CustomEvent('hashdevs-viewport-check'));
     }
   }, [isOpen]);
 

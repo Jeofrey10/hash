@@ -46,6 +46,10 @@ export const ThemeProvider: React.FC<{ readonly children: React.ReactNode }> = (
     } catch {
       // localStorage unavailable
     }
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('hashdevs-viewport-check'));
+    }
   }, [theme]);
 
   const toggleTheme = () => {

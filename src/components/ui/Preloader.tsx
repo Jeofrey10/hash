@@ -94,6 +94,9 @@ export const Preloader: React.FC<PreloaderProps> = ({
           setIsExiting(true);
           setTimeout(() => {
             restoreOverflowSafely();
+            if (typeof window !== 'undefined') {
+              window.dispatchEvent(new CustomEvent('hashdevs-viewport-check'));
+            }
             setIsDone(true);
             if (onComplete) onComplete();
           }, 350);

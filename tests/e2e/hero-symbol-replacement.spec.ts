@@ -54,7 +54,7 @@ test.describe('Hero Central Symbol Replacement Verification', () => {
       await expect(coreLabel).toHaveCount(0);
 
       // 5. Verify the symbol is centered inside the core disk
-      const coreDisk = hero.locator('div:has(> div > svg[aria-label="HASH.DEVS brand symbol"])').first();
+      const coreDisk = hero.locator('div.rounded-full:has(> div > svg[aria-label="HASH.DEVS brand symbol"])');
       const symbolCenterY = await symbolSvg.evaluate((el) => {
         const rect = el.getBoundingClientRect();
         return rect.top + rect.height / 2;

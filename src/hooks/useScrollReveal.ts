@@ -8,43 +8,95 @@ export interface ScrollRevealOptions {
 }
 
 /**
- * Universal helper to check if an element's bounding rect physically overlaps the window viewport.
+ * Universal helper to check if an element's bounding rect physically overlaps the window viewport
+ * with an optional lookahead/safety buffer in pixels.
  */
-function isElementPhysicallyInViewport(el: HTMLElement): boolean {
+function isElementInViewportBuffer(el: HTMLElement, buffer = 80): boolean {
   if (typeof window === 'undefined') return true;
   const rect = el.getBoundingClientRect();
-  return rect.bottom > 0 && rect.top < window.innerHeight;
+  const innerHeight = window.innerHeight || document.documentElement.clientHeight || 800;
+  return rect.bottom > -buffer && rect.top < innerHeight + buffer;
+}
+
+/**
+ * Check if an element is genuinely far outside the viewport (hysteresis buffer)
+ * to avoid premature reset or boundary flickering.
+ */
+function isElementFarOutsideViewport(el: HTMLElement, hysteresis = 200): boolean {
+  if (typeof window === 'undefined') return false;
+  const rect = el.getBoundingClientRect();
+  const innerHeight = window.innerHeight || document.documentElement.clientHeight || 800;
+  return rect.bottom < -hysteresis || rect.top > innerHeight + hysteresis;
+}
+
+/**
+ * Centralized high-performance passive scroll & resize coordinator.
+ * Throttles checks using a single requestAnimationFrame across all active reveal elements.
+ * Guarantees exactly one active RAF loop and automatic cleanup when elements unmount.
+ */
+const activeChecks = new Set<() => void>();
+let scrollRafId: number | null = null;
+let isGlobalListenerAttached = false;
+
+function triggerGlobalCheck() {
+  if (scrollRafId !== null) return;
+  scrollRafId = requestAnimationFrame(() => {
+    scrollRafId = null;
+    activeChecks.forEach((check) => check());
+  });
+}
+
+function registerGlobalCheck(checkFn: () => void): () => void {
+  activeChecks.add(checkFn);
+  if (!isGlobalListenerAttached && typeof window !== 'undefined') {
+    window.addEventListener('scroll', triggerGlobalCheck, { passive: true });
+    window.addEventListener('resize', triggerGlobalCheck, { passive: true });
+    window.addEventListener('hashdevs-viewport-check', triggerGlobalCheck);
+    isGlobalListenerAttached = true;
+  }
+  return () => {
+    activeChecks.delete(checkFn);
+    if (activeChecks.size === 0 && isGlobalListenerAttached && typeof window !== 'undefined') {
+      window.removeEventListener('scroll', triggerGlobalCheck);
+      window.removeEventListener('resize', triggerGlobalCheck);
+      window.removeEventListener('hashdevs-viewport-check', triggerGlobalCheck);
+      isGlobalListenerAttached = false;
+      if (scrollRafId !== null) {
+        cancelAnimationFrame(scrollRafId);
+        scrollRafId = null;
+      }
+    }
+  };
 }
 
 /**
  * Hook to trigger bidirectional visibility state when an element scrolls into/out of the viewport.
  * Automatically reverses when scrolling away and replays when re-entering.
  * Fully respects reduced-motion preferences and preserves keyboard accessibility.
- * Robust against body scroll locking (e.g. mobile navigation drawers or modals) and theme transitions.
+ * Universal engine with zero section-specific hacks: applies uniform mathematical lookahead (+80px)
+ * and hysteresis (-200px) across all sections from Hero to Footer.
  */
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   options: ScrollRevealOptions = {}
 ) {
   const {
-    threshold = 0.1,
-    rootMargin = '0px 0px -40px 0px',
+    threshold = 0.02,
+    rootMargin = '80px 0px 80px 0px',
     once = false,
   } = options;
 
   const prefersReducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState<boolean>(() => prefersReducedMotion);
   const elementRef = useRef<T | null>(null);
+  const isVisibleRef = useRef<boolean>(isVisible);
 
   useEffect(() => {
     // If reduced motion is requested, immediately mark as visible
     if (prefersReducedMotion) {
-      setIsVisible(true);
-      return;
-    }
-
-    // Fallback if IntersectionObserver is unsupported
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      setIsVisible(true);
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setIsVisible(true);
+      }
       return;
     }
 
@@ -53,69 +105,81 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
       return;
     }
 
-    // 1. Check immediate physical visibility on mount or layout change
-    let rafMountId: number | null = requestAnimationFrame(() => {
-      if (!element) return;
-      if (isElementPhysicallyInViewport(element)) {
-        setIsVisible(true);
-        if (once && observer) {
-          observer.unobserve(element);
-          observer.disconnect();
-          observer = null;
-        }
-      }
-    });
-
-    // 2. IntersectionObserver for bidirectional reveals
-    let observer: IntersectionObserver | null = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            if (once && observer) {
-              observer.unobserve(element);
-              observer.disconnect();
-              observer = null;
-            }
-          } else if (!once) {
-            // Guard against false non-intersections:
-            // a) If body scroll is locked (e.g. mobile drawer/modal open), do NOT falsely hide underlying elements.
-            const isBodyLocked = typeof document !== 'undefined' && document.body.style.overflow === 'hidden';
-            if (isBodyLocked) {
-              return;
-            }
-
-            // b) If the element is still physically within viewport bounds, do NOT hide it.
-            const inViewport = isElementPhysicallyInViewport(element);
-            if (!inViewport) {
-              setIsVisible(false);
-            }
-          }
-        }
-      },
-      {
-        threshold,
-        rootMargin,
-      }
-    );
-
-    observer.observe(element);
-
-    // 3. Global viewport sync listener (for drawer close, modal close, theme changes, or window resizes)
-    const handleRecheck = () => {
-      if (!element) return;
-      if (isElementPhysicallyInViewport(element)) {
-        setIsVisible(true);
+    // State setter guarded by ref to avoid redundant React dispatch calls during scroll RAF
+    const setVisibility = (next: boolean) => {
+      if (isVisibleRef.current !== next) {
+        isVisibleRef.current = next;
+        setIsVisible(next);
       }
     };
 
-    window.addEventListener('resize', handleRecheck, { passive: true });
-    window.addEventListener('hashdevs-viewport-check', handleRecheck);
+    // Core universal visibility evaluation function
+    const evaluateVisibility = () => {
+      if (!element) return;
+
+      // Enter condition: element physically intersects the viewport with 80px lookahead buffer
+      if (isElementInViewportBuffer(element, 80)) {
+        setVisibility(true);
+      } else if (!once && isElementFarOutsideViewport(element, 200)) {
+        // Exit condition: element is genuinely 200px far outside and body scroll is NOT locked
+        const isBodyLocked = typeof document !== 'undefined' && document.body.style.overflow === 'hidden';
+        if (!isBodyLocked) {
+          setVisibility(false);
+        }
+      }
+    };
+
+    // 1. Initial check on mount
+    evaluateVisibility();
+
+    // 2. Register with centralized high-performance RAF scroll coordinator
+    const unregisterScroll = registerGlobalCheck(evaluateVisibility);
+
+    // 3. Fallback IntersectionObserver for standard browser integration
+    let observer: IntersectionObserver | null = null;
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              setVisibility(true);
+              if (once && observer) {
+                observer.unobserve(element);
+                observer.disconnect();
+                observer = null;
+              }
+            } else if (!once) {
+              const isBodyLocked = typeof document !== 'undefined' && document.body.style.overflow === 'hidden';
+              if (isBodyLocked) return;
+
+              // Only reset if genuinely far outside
+              if (isElementFarOutsideViewport(element, 200)) {
+                setVisibility(false);
+              }
+            }
+          }
+        },
+        {
+          threshold,
+          rootMargin,
+        }
+      );
+
+      observer.observe(element);
+    }
+
+    // 4. Guaranteed Safety Timeout Fallback:
+    // Guarantees that any mounted element within or near the viewport reaches isVisible: true
+    // Cancelled automatically if component unmounts before 1200ms
+    const safetyTimer = setTimeout(() => {
+      if (element && isElementInViewportBuffer(element, 120)) {
+        setVisibility(true);
+      }
+    }, 1200);
 
     return () => {
-      if (rafMountId) cancelAnimationFrame(rafMountId);
-      window.removeEventListener('resize', handleRecheck);
-      window.removeEventListener('hashdevs-viewport-check', handleRecheck);
+      clearTimeout(safetyTimer);
+      unregisterScroll();
       if (observer) {
         observer.unobserve(element);
         observer.disconnect();

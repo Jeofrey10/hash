@@ -106,6 +106,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       if (previousActiveElementRef.current && typeof previousActiveElementRef.current.focus === 'function') {
         previousActiveElementRef.current.focus();
       }
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('hashdevs-viewport-check'));
+      }
     };
   }, [isOpen, onClose]);
 

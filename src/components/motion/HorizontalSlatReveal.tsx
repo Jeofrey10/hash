@@ -25,11 +25,11 @@ export const HorizontalSlatReveal: React.FC<HorizontalSlatRevealProps> = ({
   children,
   as: Component = 'h2',
   slatCount = 6,
-  duration = 900,
-  slatStagger = 65,
+  duration = 650,
+  slatStagger = 45,
   delay = 0,
-  threshold = 0.1,
-  rootMargin = '0px 0px -40px 0px',
+  threshold = 0.02,
+  rootMargin = '80px 0px 80px 0px',
   once = false,
   slatBg = 'bg-[var(--bg-primary)]',
   className,
@@ -59,14 +59,14 @@ export const HorizontalSlatReveal: React.FC<HorizontalSlatRevealProps> = ({
             ? 'opacity-100 transform-none transition-none'
             : isVisible
             ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-3'
+            : 'opacity-100 translate-y-2'
         )}
         style={{
           transitionDuration: prefersReduced ? '0ms' : `${Math.round(duration * 0.55)}ms`,
           transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
           transitionDelay: prefersReduced
             ? '0ms'
-            : `${delay + Math.round(slatCount * slatStagger * 0.35)}ms`,
+            : `${delay + Math.round(slatCount * slatStagger * 0.25)}ms`,
         }}
       >
         {children}

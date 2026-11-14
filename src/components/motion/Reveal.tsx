@@ -22,12 +22,12 @@ export const Reveal: React.FC<RevealProps> = ({
   children,
   variant = 'fade-up',
   delay,
-  duration = 650,
+  duration = 500,
   staggerIndex,
-  staggerStep = 110,
+  staggerStep = 80,
   as: Component = 'div',
-  threshold = 0.1,
-  rootMargin = '0px 0px -40px 0px',
+  threshold = 0.02,
+  rootMargin = '80px 0px 80px 0px',
   once = false,
   className,
   style,
@@ -40,9 +40,11 @@ export const Reveal: React.FC<RevealProps> = ({
     once,
   });
 
-  // Calculate delay: staggerIndex takes precedence if provided
-  const computedDelay =
-    staggerIndex !== undefined ? (staggerIndex - 1) * staggerStep : (delay ?? 0);
+  // Calculate delay: on coarse/touch screens, cap stagger delay to 140ms so cards reveal snappily during scrolling
+  const isTouchScreen = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+  const rawDelay = staggerIndex !== undefined ? (staggerIndex - 1) * staggerStep : (delay ?? 0);
+  const computedDelay = isTouchScreen ? Math.min(rawDelay, 140) : rawDelay;
+  const effectiveDuration = isTouchScreen ? Math.min(duration, 450) : duration;
 
   const getVariantInitialClasses = (v: RevealVariant) => {
     if (prefersReduced) return 'opacity-0';
@@ -82,7 +84,7 @@ export const Reveal: React.FC<RevealProps> = ({
         className
       )}
       style={{
-        transitionDuration: prefersReduced ? '0ms' : `${duration}ms`,
+        transitionDuration: prefersReduced ? '0ms' : `${effectiveDuration}ms`,
         transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
         transitionDelay: prefersReduced ? '0ms' : `${computedDelay}ms`,
         ...style,

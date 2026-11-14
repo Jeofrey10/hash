@@ -21,9 +21,9 @@ export const EngineeringPanel: React.FC<FloatingPanelProps> = ({
     <div
       className={cn(
         'flex flex-col gap-3 p-4 sm:p-5 rounded-xl',
-        'bg-[var(--glass-bg-floating)] backdrop-blur-xl border border-[var(--border-medium)]',
+        'bg-[var(--glass-bg-floating)] backdrop-blur-none sm:backdrop-blur-xl border border-[var(--border-medium)]',
         'shadow-[var(--shadow-floating)] text-[var(--text-primary)]',
-        'transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none',
+        'transition-transform duration-300 ease-out sm:will-change-transform motion-reduce:transform-none',
         'w-[230px] xl:w-[250px]',
         className,
       )}
@@ -89,9 +89,9 @@ export const CreativePanel: React.FC<FloatingPanelProps> = ({
     <div
       className={cn(
         'flex flex-col gap-3 p-4 sm:p-5 rounded-xl',
-        'bg-[var(--glass-bg-floating)] backdrop-blur-xl border border-[var(--border-medium)]',
+        'bg-[var(--glass-bg-floating)] backdrop-blur-none sm:backdrop-blur-xl border border-[var(--border-medium)]',
         'shadow-[var(--shadow-floating)] text-[var(--text-primary)]',
-        'transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none',
+        'transition-transform duration-300 ease-out sm:will-change-transform motion-reduce:transform-none',
         'w-[230px] xl:w-[250px]',
         className,
       )}
@@ -161,7 +161,7 @@ export const CapabilitiesCard: React.FC<CapabilitiesCardProps> = ({
     <div
       className={cn(
         'flex flex-col gap-4 p-5 sm:p-6 rounded-2xl',
-        'bg-[var(--glass-bg-floating)] backdrop-blur-xl border border-[var(--border-medium)]',
+        'bg-[var(--glass-bg-floating)] backdrop-blur-none sm:backdrop-blur-xl border border-[var(--border-medium)]',
         'shadow-[var(--shadow-floating)] text-[var(--text-primary)]',
         'w-full max-w-md mx-auto',
         className,

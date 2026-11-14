@@ -54,7 +54,7 @@ export const HorizontalSlatReveal: React.FC<HorizontalSlatRevealProps> = ({
       {/* Underlying Content with Subtle Upward Settling */}
       <div
         className={cn(
-          'transition-all will-change-[transform,opacity]',
+          'transition-all',
           prefersReduced
             ? 'opacity-100 transform-none transition-none'
             : isVisible

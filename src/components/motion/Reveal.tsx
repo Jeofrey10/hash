@@ -78,7 +78,6 @@ export const Reveal: React.FC<RevealProps> = ({
       ref={ref}
       className={cn(
         'transition-[opacity,transform]',
-        !isVisible && 'will-change-[transform,opacity]',
         'focus-within:opacity-100 focus-within:transform-none',
         activeClasses,
         className

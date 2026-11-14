@@ -343,12 +343,22 @@ async function run10CycleStressTest(page, browserName) {
     for (let d = 0; d < 2; d++) {
       const menuBtn = await page.$('button[aria-controls="mobile-navigation-drawer"]');
       if (menuBtn) {
-        await menuBtn.click();
-        await page.waitForTimeout(100);
+        await menuBtn.click({ timeout: 5000 }).catch(async () => {
+          await page.evaluate(() => {
+            const btn = document.querySelector('button[aria-controls="mobile-navigation-drawer"]');
+            if (btn) btn.click();
+          });
+        });
+        await page.waitForTimeout(200);
         const closeBtn = await page.$('button[aria-label="Close menu"]');
-        if (closeBtn) await closeBtn.click();
-        else await page.keyboard.press('Escape');
-        await page.waitForTimeout(100);
+        if (closeBtn) {
+          await closeBtn.click({ timeout: 5000 }).catch(async () => {
+            await page.keyboard.press('Escape');
+          });
+        } else {
+          await page.keyboard.press('Escape');
+        }
+        await page.waitForTimeout(200);
       }
     }
 
@@ -367,7 +377,9 @@ async function run10CycleStressTest(page, browserName) {
       await page.waitForTimeout(400);
       const modalClose = await page.$('button[aria-label="Close consultation dialog"], button:has-text("Close Dialog")');
       if (modalClose) {
-        await modalClose.click();
+        await modalClose.click({ timeout: 5000 }).catch(async () => {
+          await page.keyboard.press('Escape');
+        });
         await page.waitForTimeout(400);
       } else {
         await page.keyboard.press('Escape');

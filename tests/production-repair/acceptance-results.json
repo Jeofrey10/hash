@@ -6,109 +6,109 @@
         "status": "PASSED",
         "perf": {
           "avgFps": 2.3,
-          "avgDelta": 443.74,
-          "frames": 38,
-          "longFrames": 31,
-          "droppedPct": 81.6
+          "avgDelta": 435.18,
+          "frames": 39,
+          "longFrames": 30,
+          "droppedPct": 76.9
         }
       },
       {
         "cycle": 2,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.4,
-          "avgDelta": 424,
-          "frames": 41,
-          "longFrames": 33,
-          "droppedPct": 80.5
+          "avgFps": 1.8,
+          "avgDelta": 547.46,
+          "frames": 35,
+          "longFrames": 29,
+          "droppedPct": 82.9
         }
       },
       {
         "cycle": 3,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.3,
-          "avgDelta": 429.18,
-          "frames": 39,
-          "longFrames": 31,
-          "droppedPct": 79.5
+          "avgFps": 2.1,
+          "avgDelta": 472.82,
+          "frames": 38,
+          "longFrames": 29,
+          "droppedPct": 76.3
         }
       },
       {
         "cycle": 4,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.2,
-          "avgDelta": 463.36,
-          "frames": 39,
-          "longFrames": 33,
-          "droppedPct": 84.6
+          "avgFps": 1.7,
+          "avgDelta": 592,
+          "frames": 31,
+          "longFrames": 24,
+          "droppedPct": 77.4
         }
       },
       {
         "cycle": 5,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.4,
-          "avgDelta": 414.17,
-          "frames": 42,
-          "longFrames": 32,
-          "droppedPct": 76.2
+          "avgFps": 1.8,
+          "avgDelta": 557.19,
+          "frames": 32,
+          "longFrames": 25,
+          "droppedPct": 78.1
         }
       },
       {
         "cycle": 6,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.2,
-          "avgDelta": 463.59,
-          "frames": 39,
-          "longFrames": 33,
-          "droppedPct": 84.6
+          "avgFps": 1.8,
+          "avgDelta": 549.47,
+          "frames": 32,
+          "longFrames": 26,
+          "droppedPct": 81.3
         }
       },
       {
         "cycle": 7,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.3,
-          "avgDelta": 431.05,
-          "frames": 38,
-          "longFrames": 31,
-          "droppedPct": 81.6
+          "avgFps": 1.7,
+          "avgDelta": 591.74,
+          "frames": 31,
+          "longFrames": 25,
+          "droppedPct": 80.6
         }
       },
       {
         "cycle": 8,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.4,
-          "avgDelta": 415.02,
-          "frames": 41,
-          "longFrames": 36,
-          "droppedPct": 87.8
+          "avgFps": 1.7,
+          "avgDelta": 600.12,
+          "frames": 33,
+          "longFrames": 27,
+          "droppedPct": 81.8
         }
       },
       {
         "cycle": 9,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.4,
-          "avgDelta": 410.85,
-          "frames": 41,
-          "longFrames": 33,
-          "droppedPct": 80.5
+          "avgFps": 1.6,
+          "avgDelta": 618.87,
+          "frames": 30,
+          "longFrames": 22,
+          "droppedPct": 73.3
         }
       },
       {
         "cycle": 10,
         "status": "PASSED",
         "perf": {
-          "avgFps": 2.3,
-          "avgDelta": 433.61,
-          "frames": 38,
-          "longFrames": 31,
-          "droppedPct": 81.6
+          "avgFps": 1.7,
+          "avgDelta": 585.59,
+          "frames": 32,
+          "longFrames": 24,
+          "droppedPct": 75
         }
       }
     ],
@@ -120,110 +120,110 @@
         "cycle": 1,
         "status": "PASSED",
         "perf": {
-          "avgFps": 52.1,
-          "avgDelta": 19.2,
-          "frames": 513,
-          "longFrames": 38,
-          "droppedPct": 7.4
+          "avgFps": 54,
+          "avgDelta": 18.52,
+          "frames": 551,
+          "longFrames": 24,
+          "droppedPct": 4.4
         }
       },
       {
         "cycle": 2,
         "status": "PASSED",
         "perf": {
-          "avgFps": 50.6,
-          "avgDelta": 19.77,
-          "frames": 500,
-          "longFrames": 45,
-          "droppedPct": 9
+          "avgFps": 53.9,
+          "avgDelta": 18.54,
+          "frames": 547,
+          "longFrames": 27,
+          "droppedPct": 4.9
         }
       },
       {
         "cycle": 3,
         "status": "PASSED",
         "perf": {
-          "avgFps": 51,
-          "avgDelta": 19.61,
-          "frames": 505,
-          "longFrames": 48,
-          "droppedPct": 9.5
+          "avgFps": 54.2,
+          "avgDelta": 18.43,
+          "frames": 557,
+          "longFrames": 28,
+          "droppedPct": 5
         }
       },
       {
         "cycle": 4,
         "status": "PASSED",
         "perf": {
-          "avgFps": 51.9,
-          "avgDelta": 19.28,
-          "frames": 517,
-          "longFrames": 49,
-          "droppedPct": 9.5
+          "avgFps": 53.1,
+          "avgDelta": 18.83,
+          "frames": 541,
+          "longFrames": 32,
+          "droppedPct": 5.9
         }
       },
       {
         "cycle": 5,
         "status": "PASSED",
         "perf": {
-          "avgFps": 51.8,
-          "avgDelta": 19.3,
-          "frames": 514,
-          "longFrames": 50,
-          "droppedPct": 9.7
+          "avgFps": 53.7,
+          "avgDelta": 18.62,
+          "frames": 549,
+          "longFrames": 31,
+          "droppedPct": 5.6
         }
       },
       {
         "cycle": 6,
         "status": "PASSED",
         "perf": {
-          "avgFps": 51.6,
-          "avgDelta": 19.37,
-          "frames": 513,
-          "longFrames": 58,
-          "droppedPct": 11.3
+          "avgFps": 52.9,
+          "avgDelta": 18.91,
+          "frames": 544,
+          "longFrames": 44,
+          "droppedPct": 8.1
         }
       },
       {
         "cycle": 7,
         "status": "PASSED",
         "perf": {
-          "avgFps": 51.7,
-          "avgDelta": 19.33,
-          "frames": 510,
-          "longFrames": 55,
-          "droppedPct": 10.8
+          "avgFps": 54.2,
+          "avgDelta": 18.45,
+          "frames": 556,
+          "longFrames": 30,
+          "droppedPct": 5.4
         }
       },
       {
         "cycle": 8,
         "status": "PASSED",
         "perf": {
-          "avgFps": 52.2,
-          "avgDelta": 19.17,
-          "frames": 514,
-          "longFrames": 52,
-          "droppedPct": 10.1
+          "avgFps": 54.5,
+          "avgDelta": 18.36,
+          "frames": 555,
+          "longFrames": 25,
+          "droppedPct": 4.5
         }
       },
       {
         "cycle": 9,
         "status": "PASSED",
         "perf": {
-          "avgFps": 51.7,
-          "avgDelta": 19.33,
-          "frames": 507,
-          "longFrames": 66,
-          "droppedPct": 13
+          "avgFps": 58.8,
+          "avgDelta": 17.01,
+          "frames": 579,
+          "longFrames": 12,
+          "droppedPct": 2.1
         }
       },
       {
         "cycle": 10,
         "status": "PASSED",
         "perf": {
-          "avgFps": 52.4,
-          "avgDelta": 19.08,
-          "frames": 513,
-          "longFrames": 52,
-          "droppedPct": 10.1
+          "avgFps": 59.2,
+          "avgDelta": 16.9,
+          "frames": 574,
+          "longFrames": 7,
+          "droppedPct": 1.2
         }
       }
     ],

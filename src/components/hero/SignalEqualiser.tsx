@@ -66,6 +66,11 @@ export const SignalEqualiser: React.FC<SignalEqualiserProps> = ({
       scrollTimeoutId = setTimeout(() => {
         isScrolling = false;
       }, 150);
+
+      // Resume RAF loop when scrolling back into hero viewport
+      if (isVisible && isTabVisible && window.scrollY <= currentHeight + 80 && !animationFrameId && !isReducedMotion) {
+        animationFrameId = requestAnimationFrame(renderFrame);
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 

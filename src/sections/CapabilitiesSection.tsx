@@ -108,7 +108,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({
       >
         {/* Subtle Ambient Radial Glow */}
         <div
-          className="absolute top-1/3 right-1/4 w-[600px] h-[400px] rounded-full blur-[150px] opacity-10"
+          className="absolute top-1/3 right-1/4 w-[600px] h-[400px] rounded-full blur-[40px] sm:blur-[150px] opacity-10"
           style={{
             background:
               'radial-gradient(ellipse at center, rgba(53, 232, 91, 0.25) 0%, rgba(23, 26, 24, 0.1) 60%, transparent 80%)',

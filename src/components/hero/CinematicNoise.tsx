@@ -24,7 +24,7 @@ export const CinematicNoise: React.FC<CinematicNoiseProps> = ({
       aria-hidden="true"
     >
       <div
-        className="absolute -inset-[50%] w-[200%] h-[200%] will-change-transform motion-reduce:animate-none"
+        className="absolute inset-0 sm:-inset-[50%] w-full h-full sm:w-[200%] sm:h-[200%] sm:will-change-transform motion-reduce:animate-none hero-anim-pauseable"
         style={{
           opacity: opacity ?? 'var(--noise-opacity, 0.075)',
           backgroundImage: 'url("/noise.webp")',

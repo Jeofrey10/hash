@@ -34,7 +34,7 @@ export const SignalCore: React.FC<SignalCoreProps> = ({
     >
       {/* 3D Tilted Gimbal Container */}
       <div
-        className="relative w-full h-full flex items-center justify-center transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none"
+        className="relative w-full h-full flex items-center justify-center transition-transform duration-300 ease-out sm:will-change-transform motion-reduce:transform-none"
         style={{
           transform: `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
           transformStyle: 'preserve-3d',
@@ -42,7 +42,7 @@ export const SignalCore: React.FC<SignalCoreProps> = ({
       >
         {/* Core Ambient Emerald Corona */}
         <div
-          className="absolute inset-0 rounded-full blur-[80px] opacity-40 pointer-events-none"
+          className="absolute inset-0 rounded-full blur-[30px] sm:blur-[80px] opacity-40 pointer-events-none"
           style={{
             background:
               'radial-gradient(circle, rgba(53, 232, 91, 0.45) 0%, rgba(23, 26, 24, 0.2) 60%, transparent 80%)',

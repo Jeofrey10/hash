@@ -27,7 +27,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       role="status"
       className={cn(
         'inline-flex items-center gap-2 h-7 px-3 rounded-full',
-        'bg-[var(--tag-bg)] border border-[var(--tag-border)] backdrop-blur-sm',
+        'bg-[var(--tag-bg)] border border-[var(--tag-border)] backdrop-blur-none sm:backdrop-blur-sm',
         'text-xs font-mono font-medium tracking-wide uppercase text-[var(--text-primary)]',
         'select-none transition-colors duration-200',
         className,

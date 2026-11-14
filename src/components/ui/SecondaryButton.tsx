@@ -34,7 +34,7 @@ export const SecondaryButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEl
     const combinedClasses = cn(
       'inline-flex items-center justify-center gap-2 rounded-lg',
       'bg-[var(--tag-bg)] text-[var(--text-primary)] border border-[var(--border-medium)]',
-      'backdrop-blur-sm transition-all duration-200 ease-out select-none',
+      'backdrop-blur-none sm:backdrop-blur-sm transition-all duration-200 ease-out select-none',
       'hover:bg-[var(--panel-hover-bg)] hover:border-[var(--border-active)] hover:text-[var(--text-primary)]',
       'active:scale-[0.98]',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-neon-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]',

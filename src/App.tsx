@@ -7,6 +7,7 @@ import { ApproachSection } from '@/sections/ApproachSection';
 import { CapabilitiesSection } from '@/sections/CapabilitiesSection';
 import { ContactSection } from '@/sections/ContactSection';
 import { Preloader } from '@/components/ui/Preloader';
+import { DiagnosticHUD } from '@/components/dev/DiagnosticHUD';
 
 // Lazy-load the ConsultationModal so its dialog and form dependencies only bundle when needed
 const ConsultationModal = lazy(() =>
@@ -48,6 +49,9 @@ export default function App() {
           />
         </Suspense>
       )}
+
+      {/* Development & Diagnostics HUD (Activated via ?diag=1) */}
+      <DiagnosticHUD />
     </ThemeProvider>
   );
 }

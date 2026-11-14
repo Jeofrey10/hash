@@ -69,7 +69,7 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ className }) =
       >
         {/* Subtle Ambient Radial Glow */}
         <div
-          className="absolute top-1/4 left-1/3 w-[550px] h-[350px] rounded-full blur-[140px] opacity-10"
+          className="absolute top-1/4 left-1/3 w-[550px] h-[350px] rounded-full blur-[40px] sm:blur-[140px] opacity-10"
           style={{
             background:
               'radial-gradient(ellipse at center, rgba(53, 232, 91, 0.25) 0%, rgba(23, 26, 24, 0.1) 60%, transparent 80%)',

@@ -105,11 +105,23 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
       return;
     }
 
+    // On coarse pointer (touch / mobile) devices, keep revealed elements permanently visible
+    // to prevent rapid momentum flickers, CALayer thrashing, and reverse-scroll blank voids.
+    // Desktop fine-pointer devices retain full bidirectional reveals.
+    const isTouchScreen = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+    const effectiveOnce = once || isTouchScreen;
+
+    let unregisterScroll: (() => void) | null = null;
+
     // State setter guarded by ref to avoid redundant React dispatch calls during scroll RAF
     const setVisibility = (next: boolean) => {
       if (isVisibleRef.current !== next) {
         isVisibleRef.current = next;
         setIsVisible(next);
+      }
+      if (next && effectiveOnce && unregisterScroll) {
+        unregisterScroll();
+        unregisterScroll = null;
       }
     };
 
@@ -120,7 +132,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
       // Enter condition: element physically intersects the viewport with 80px lookahead buffer
       if (isElementInViewportBuffer(element, 80)) {
         setVisibility(true);
-      } else if (!once && isElementFarOutsideViewport(element, 200)) {
+      } else if (!effectiveOnce && isElementFarOutsideViewport(element, 200)) {
         // Exit condition: element is genuinely 200px far outside and body scroll is NOT locked
         const isBodyLocked = typeof document !== 'undefined' && document.body.style.overflow === 'hidden';
         if (!isBodyLocked) {
@@ -133,22 +145,24 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     evaluateVisibility();
 
     // 2. Register with centralized high-performance RAF scroll coordinator
-    const unregisterScroll = registerGlobalCheck(evaluateVisibility);
+    if (!effectiveOnce || !isVisibleRef.current) {
+      unregisterScroll = registerGlobalCheck(evaluateVisibility);
+    }
 
     // 3. Fallback IntersectionObserver for standard browser integration
     let observer: IntersectionObserver | null = null;
-    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window && (!effectiveOnce || !isVisibleRef.current)) {
       observer = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
               setVisibility(true);
-              if (once && observer) {
+              if (effectiveOnce && observer) {
                 observer.unobserve(element);
                 observer.disconnect();
                 observer = null;
               }
-            } else if (!once) {
+            } else if (!effectiveOnce) {
               const isBodyLocked = typeof document !== 'undefined' && document.body.style.overflow === 'hidden';
               if (isBodyLocked) return;
 
@@ -179,7 +193,9 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 
     return () => {
       clearTimeout(safetyTimer);
-      unregisterScroll();
+      if (unregisterScroll) {
+        unregisterScroll();
+      }
       if (observer) {
         observer.unobserve(element);
         observer.disconnect();

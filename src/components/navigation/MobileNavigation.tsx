@@ -104,7 +104,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
       }}
       className={cn(
         'fixed inset-0 z-[150] lg:hidden',
-        'bg-[var(--bg-primary)]/96 backdrop-blur-2xl',
+        'bg-[var(--bg-primary)]/98 backdrop-blur-none sm:backdrop-blur-2xl',
         'flex flex-col justify-between p-6 sm:p-8',
         'animate-drawer-slide text-[var(--text-primary)]',
       )}

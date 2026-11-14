@@ -81,7 +81,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       >
         {/* Concentrated Green Radial Illumination Behind Headline & Visual Core */}
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] sm:w-[1000px] sm:h-[700px] rounded-full blur-[140px] opacity-35 transition-all duration-300"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] sm:w-[1000px] sm:h-[700px] rounded-full blur-[40px] sm:blur-[140px] opacity-35 transition-all duration-300"
           style={{
             background: 'var(--hero-radial-glow)',
           }}
@@ -89,7 +89,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
 
         {/* Ambient Lower Horizon Glow */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[320px] rounded-full blur-[110px] opacity-25 transition-all duration-300"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[320px] rounded-full blur-[40px] sm:blur-[110px] opacity-25 transition-all duration-300"
           style={{
             background: 'var(--hero-horizon-glow)',
           }}
@@ -124,7 +124,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className, onCtaClick 
       <div
         className={cn(
           'relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center',
-          'transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]',
+          'transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-[0.98]'
         )}
       >

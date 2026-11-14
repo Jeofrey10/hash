@@ -65,8 +65,8 @@ export const Navigation: React.FC<NavigationProps> = ({
               'pointer-events-auto flex items-center justify-between w-full lg:w-fit lg:mx-auto gap-4 sm:gap-8',
               'px-4 sm:px-6 h-[56px] rounded-2xl transition-[background-color,border-color,box-shadow] duration-300 ease-out',
               isScrolled
-                ? 'bg-[var(--glass-bg-floating)] backdrop-blur-md border border-[var(--border-medium)] shadow-[var(--shadow-floating)]'
-                : 'bg-[var(--glass-bg)] backdrop-blur-sm border border-[var(--border-subtle)] shadow-[var(--shadow-card)]',
+                ? 'bg-[var(--glass-bg-floating)] backdrop-blur-none sm:backdrop-blur-md border border-[var(--border-medium)] shadow-[var(--shadow-floating)]'
+                : 'bg-[var(--glass-bg)] backdrop-blur-none sm:backdrop-blur-sm border border-[var(--border-subtle)] shadow-[var(--shadow-card)]',
             )}
           >
             {/* Brand Logo */}

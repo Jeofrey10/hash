@@ -66,7 +66,6 @@ export const ImageReveal: React.FC<ImageRevealProps> = ({
         onLoad={() => setIsLoaded(true)}
         className={cn(
           'w-full h-full object-cover',
-          !showContent && 'will-change-[transform,opacity]',
           prefersReduced
             ? 'opacity-100 transform-none transition-none'
             : showContent

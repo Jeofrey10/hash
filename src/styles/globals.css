@@ -88,7 +88,8 @@ body {
 }
 
 /* Pause Hero background animation loops when hero is scrolled out of viewport */
-#hero[data-hero-visible="false"] .hero-anim-pauseable {
+#hero[data-hero-visible="false"] .hero-anim-pauseable,
+#hero[data-hero-visible="false"] .hero-anim-pauseable * {
   animation-play-state: paused !important;
 }
 
